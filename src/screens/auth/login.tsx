@@ -16,6 +16,8 @@ import {
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
 import { RootStackParamList } from "../../../App"; // adjust if needed
+import { login } from "@/src/api/user-service";
+import { Ionicons } from "@expo/vector-icons";
 
 type LoginScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -27,8 +29,11 @@ export default function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
+    // await login(email.trim(), password);
+    navigation.navigate("Layout");
     Alert.alert("Login Pressed", `Email: ${email}\nPassword: ${password}`);
   };
 
@@ -60,16 +65,27 @@ export default function Login() {
             onChangeText={setEmail}
             autoComplete="email"
           />
-
-          <TextInput
-            placeholder="Password"
-            placeholderTextColor="#aaa"
-            style={styles.input}
-            secureTextEntry
-            value={password}
-            onChangeText={setPassword}
-          />
-          <View style={{width:"100%",}}>
+          <View style={styles.passwordContainer}>
+            <TextInput
+              placeholder="Password"
+              placeholderTextColor="#aaa"
+              style={styles.passwordInput}
+              secureTextEntry={!showPassword}
+              value={password}
+              onChangeText={setPassword}
+            />
+            <TouchableOpacity
+              onPress={() => setShowPassword(!showPassword)}
+              style={styles.eyeIcon}
+            >
+              <Ionicons
+                name={showPassword ? "eye-off" : "eye"}
+                size={20}
+                color="#888"
+              />
+            </TouchableOpacity>
+          </View>
+          <View style={{ width: "100%" }}>
             <TouchableOpacity>
               <Text style={styles.forgotText}>Forgot Password?</Text>
             </TouchableOpacity>
@@ -156,5 +172,22 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: "#007bff",
     fontWeight: "bold",
+  },
+  passwordContainer: {
+    width: "100%",
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#f2f2f2",
+    borderRadius: 8,
+    marginBottom: 16,
+    paddingHorizontal: 10,
+  },
+  passwordInput: {
+    flex: 1,
+    height: 50,
+    fontSize: 16,
+  },
+  eyeIcon: {
+    padding: 8,
   },
 });

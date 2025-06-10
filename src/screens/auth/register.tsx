@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  View,
   Text,
   TextInput,
   TouchableOpacity,
@@ -10,22 +9,25 @@ import {
   Platform,
   TouchableWithoutFeedback,
   Keyboard,
-  Alert,
+  View,
 } from "react-native";
-import { useNavigation } from '@react-navigation/native'; // Import useNavigation
+import { useNavigation } from "@react-navigation/native";
+import { register } from "../../api/user-service";
 
 export default function Register() {
-  const navigation = useNavigation(); // Initialize navigation hook
+  const navigation = useNavigation();
 
-  const [name, setName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleRegister = () => {
-    Alert.alert(
-      "Register Pressed",
-      `Name: ${name}\nEmail: ${email}\nPassword: ${password}`
-    );
+  const handleRegister = async () => {
+    await register({
+      email: email,
+      phone_number: phoneNumber.trim(),
+      password: password,
+    });
+    navigation.goBack()
   };
 
   return (
@@ -39,7 +41,9 @@ export default function Register() {
           keyboardShouldPersistTaps="handled"
         >
           <Text style={styles.title}>Sign Up to Food Rescue</Text>
-          <Text style={styles.subtitle}>Join our community to help save food</Text>
+          <Text style={styles.subtitle}>
+            Join our community to help save food
+          </Text>
           <TextInput
             placeholder="Email"
             placeholderTextColor="#aaa"
@@ -50,12 +54,15 @@ export default function Register() {
             autoComplete="email"
           />
           <TextInput
-            placeholder="Name"
+            placeholder="Phone Number"
             placeholderTextColor="#aaa"
             style={styles.input}
-            value={name}
-            onChangeText={setName}
-            autoComplete="name"
+            value={phoneNumber}
+            onChangeText={setPhoneNumber}
+            keyboardType="phone-pad"
+            textContentType="telephoneNumber"
+            autoComplete="tel"
+            dataDetectorTypes="phoneNumber"
           />
 
           <TextInput
@@ -71,10 +78,12 @@ export default function Register() {
           <TouchableOpacity style={styles.button} onPress={handleRegister}>
             <Text style={styles.buttonText}>Sign Up</Text>
           </TouchableOpacity>
-
-          <TouchableOpacity onPress={() => navigation.goBack()}>
-            <Text style={styles.backText}>Already have an account? Log in.</Text>
-          </TouchableOpacity>
+          <View style={styles.loginContainer}>
+            <Text style={styles.loginText}>Already have an account? </Text>
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <Text style={styles.loginLink}>Log in.</Text>
+            </TouchableOpacity>
+          </View>
         </ScrollView>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
@@ -109,12 +118,13 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   button: {
-    backgroundColor: "#007bff",
+    backgroundColor: "#28a745",
     paddingVertical: 14,
     paddingHorizontal: 40,
     borderRadius: 8,
     width: "100%",
     alignItems: "center",
+    marginBottom: 16,
     marginTop: 16,
   },
   buttonText: {
@@ -122,9 +132,17 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
   },
-  backText: {
-    color: "#007bff",
+  loginContainer: {
+    flexDirection: "row",
+    marginTop: 10,
+  },
+  loginText: {
     fontSize: 14,
-    marginTop: 16,
+    color: "#333",
+  },
+  loginLink: {
+    fontSize: 14,
+    color: "#007bff",
+    fontWeight: "bold",
   },
 });
