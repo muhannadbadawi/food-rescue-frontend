@@ -92,30 +92,34 @@ export default function Explore() {
         <Marker coordinate={{ latitude, longitude }} title="أنت هنا" />
 
         {shops.map((shop) => (
-          <Marker
-            key={shop.id}
-            coordinate={{
-              latitude: shop.latitude,
-              longitude: shop.longitude,
-            }}
-            title={shop.name}
-            description={shop.description}
-            image={shop.image}
-            onPress={() => setSheetOpen(true)}
-          />
+          <React.Fragment key={shop.id}>
+            <Marker
+              coordinate={{
+                latitude: shop.latitude,
+                longitude: shop.longitude,
+              }}
+              title={shop.name}
+              description={shop.description}
+              image={shop.image}
+              onPress={() => setSheetOpen(true)}
+            />
+          </React.Fragment>
         ))}
       </MapView>
-      <GenericBottomSheet
+      {/* <GenericBottomSheet
         height={400}
         isOpen={sheetOpen}
         onOpen={() => console.log("Sheet opened")}
         onClose={() => setSheetOpen(false)}
-      >
-        <Text style={{ fontSize: 18, fontWeight: "bold" }}>
-          Hello from the bottom sheet!
-        </Text>
-        <Text>Put any content you want here.</Text>
-      </GenericBottomSheet>
+        children={
+          <>
+            <Text style={{ fontSize: 18, fontWeight: "bold" }}>
+              Hello from the bottom sheet!
+            </Text>
+            <Text>Put any content you want here.</Text>
+          </>
+        }
+      /> */}
     </View>
   );
 }

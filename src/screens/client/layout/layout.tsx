@@ -5,7 +5,15 @@ import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import Explore from "../explore/explore";
 
-const Tab = createBottomTabNavigator();
+type RootTabParamList = {
+  Explore: undefined;
+  Favorites: undefined;
+  Orders: undefined;
+  Profile: undefined;
+  Earn: undefined;
+};
+
+const Tab = createBottomTabNavigator<RootTabParamList>();
 
 const DummyScreen = ({ label }: { label: string }) => (
   <Text style={{ flex: 1, textAlign: "center", marginTop: 50 }}>{label}</Text>
@@ -14,13 +22,8 @@ const DummyScreen = ({ label }: { label: string }) => (
 export default function Layout() {
   const navigation = useNavigation();
 
-  return (
-    <Tab.Navigator
-      screenOptions={{
-        tabBarActiveTintColor: "#007AFF",
-        headerShown: true,
-      }}
-    >
+  const tabScreens = (
+    <>
       <Tab.Screen
         name="Explore"
         component={Explore}
@@ -66,6 +69,16 @@ export default function Layout() {
           ),
         }}
       />
-    </Tab.Navigator>
+    </>
+  );
+
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        tabBarActiveTintColor: "#007AFF",
+        headerShown: true,
+      }}
+      children={tabScreens}
+    />
   );
 }
