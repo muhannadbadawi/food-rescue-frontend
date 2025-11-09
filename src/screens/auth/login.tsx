@@ -15,7 +15,7 @@ import {
 } from "react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
-import { RootStackParamList } from "../../../App"; // adjust if needed
+import { RootStackParamList } from "../../../App";
 import { login } from "@/src/api/user-service";
 import { Ionicons } from "@expo/vector-icons";
 

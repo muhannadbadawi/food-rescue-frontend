@@ -19,10 +19,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/FoodRescueLogo.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.muhannadbadawi.FoodRescue"
     },
     "web": {
       "favicon": "./assets/FoodRescueLogo.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "5b5f1727-783a-44f4-b316-d77795536fd2"
+      }
     }
   }
 }
