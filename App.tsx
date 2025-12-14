@@ -7,7 +7,7 @@ import Register from "./src/screens/auth/register";
 import Layout from "./src/screens/client/layout/layout";
 import { useTheme, ThemeProvider } from "./src/theme/theme-context";
 
-import { initI18n } from "./src/localization/i18n"; 
+import { initI18n } from "./src/localization/i18n";
 
 export type RootStackParamList = {
   Login: undefined;
@@ -30,11 +30,7 @@ function StackScreens() {
       <Stack.Screen
         name="Register"
         component={Register}
-        options={{
-          headerShown: true,
-          headerStyle: { backgroundColor: colors.background },
-          headerTintColor: colors.text,
-        }}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="Layout"
@@ -68,7 +64,7 @@ function AppContent() {
     <>
       <StatusBar
         barStyle={
-          colors.background === "#fff" ? "dark-content" : "light-content"
+          colors.background === "#ffffff" ? "dark-content" : "light-content"
         }
         backgroundColor={colors.background}
         translucent={Platform.OS === "android"}

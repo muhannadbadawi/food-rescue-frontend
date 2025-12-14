@@ -16,5 +16,15 @@
     "theme": "Theme",
     "language": "Language",
     "logout": "Logout"
+  },
+  "registerScreen": {
+    "title": "Sign Up to Food Rescue",
+    "subtitle": "Join our community to help save food",
+    "email": "Email",
+    "phoneNumber": "Phone Number",
+    "password": "Password",
+    "signUp": "Sign Up",
+    "alreadyHaveAccount": "Already have an account? ",
+    "login": "Log in."
   }
 }

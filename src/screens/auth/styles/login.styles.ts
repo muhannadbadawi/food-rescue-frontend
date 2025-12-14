@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-
 export const getStyles = (colors: any) =>
   StyleSheet.create({
     container: {
@@ -11,8 +10,7 @@ export const getStyles = (colors: any) =>
     },
     logo: {
       width: "50%",
-      height: "15%",
-      aspectRatio: 4,
+      height: 80,
       marginBottom: 30,
     },
     title: {
@@ -29,7 +27,7 @@ export const getStyles = (colors: any) =>
     input: {
       width: "100%",
       height: 50,
-      backgroundColor: colors.card,
+      backgroundColor: colors.border,
       borderRadius: 8,
       paddingHorizontal: 15,
       fontSize: 16,
@@ -71,7 +69,7 @@ export const getStyles = (colors: any) =>
       width: "100%",
       flexDirection: "row",
       alignItems: "center",
-      backgroundColor: colors.card,
+      backgroundColor: colors.border,
       borderRadius: 8,
       marginBottom: 16,
       paddingHorizontal: 10,
