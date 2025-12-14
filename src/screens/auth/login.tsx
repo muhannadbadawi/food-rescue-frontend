@@ -4,7 +4,6 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  StyleSheet,
   ScrollView,
   KeyboardAvoidingView,
   Platform,
@@ -16,8 +15,11 @@ import {
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
 import { RootStackParamList } from "../../../App";
-import { login } from "@/src/api/user-service";
 import { Ionicons } from "@expo/vector-icons";
+import { useTheme } from "@/src/theme/theme-context";
+import { getStyles } from "./styles/login.styles";
+
+import { useTranslation } from "react-i18next"; 
 
 type LoginScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -26,15 +28,20 @@ type LoginScreenNavigationProp = NativeStackNavigationProp<
 
 export default function Login() {
   const navigation = useNavigation<LoginScreenNavigationProp>();
+  const colors = useTheme();
+  const styles = getStyles(colors);
+  const { t } = useTranslation(); 
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleLogin = async () => {
-    // await login(email.trim(), password);
+  const handleLogin = () => {
     navigation.navigate("Layout");
-    Alert.alert("Login Pressed", `Email: ${email}\nPassword: ${password}`);
+    Alert.alert(
+      t("login-screen.loginPressed"),
+      `${t("login-screen.email")}: ${email}\n${t("login-screen.password")}: ${password}`
+    );
   };
 
   return (
@@ -43,37 +50,35 @@ export default function Login() {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <ScrollView
-          contentContainerStyle={styles.container}
-          keyboardShouldPersistTaps="handled"
-        >
+        <ScrollView contentContainerStyle={styles.container}>
           <Image
             source={require("../../../assets/FoodRescueLogo.png")}
             style={styles.logo}
             resizeMode="contain"
           />
 
-          <Text style={styles.title}>Welcome</Text>
-          <Text style={styles.subtitle}>Login to Food Rescue</Text>
+          <Text style={styles.title}>{t("login-screen.welcome")}</Text>
+          <Text style={styles.subtitle}>{t("login-screen.loginToFoodRescue")}</Text>
 
           <TextInput
-            placeholder="Email"
-            placeholderTextColor="#aaa"
+            placeholder={t("login-screen.email")}
+            placeholderTextColor={colors.secondaryText}
             style={styles.input}
             keyboardType="email-address"
             value={email}
             onChangeText={setEmail}
-            autoComplete="email"
           />
+
           <View style={styles.passwordContainer}>
             <TextInput
-              placeholder="Password"
-              placeholderTextColor="#aaa"
+              placeholder={t("login-screen.password")}
+              placeholderTextColor={colors.secondaryText}
               style={styles.passwordInput}
               secureTextEntry={!showPassword}
               value={password}
               onChangeText={setPassword}
             />
+
             <TouchableOpacity
               onPress={() => setShowPassword(!showPassword)}
               style={styles.eyeIcon}
@@ -81,24 +86,27 @@ export default function Login() {
               <Ionicons
                 name={showPassword ? "eye-off" : "eye"}
                 size={20}
-                color="#888"
+                color={colors.icon}
               />
             </TouchableOpacity>
           </View>
+
           <View style={{ width: "100%" }}>
             <TouchableOpacity>
-              <Text style={styles.forgotText}>Forgot Password?</Text>
+              <Text style={styles.forgotText}>
+                {t("login-screen.forgot-password")}
+              </Text>
             </TouchableOpacity>
           </View>
 
           <TouchableOpacity style={styles.button} onPress={handleLogin}>
-            <Text style={styles.buttonText}>Login</Text>
+            <Text style={styles.buttonText}>{t("login-screen.login")}</Text>
           </TouchableOpacity>
 
           <View style={styles.registerContainer}>
-            <Text style={styles.registerText}>Don't have an account? </Text>
+            <Text style={styles.registerText}>{t("login-screen.have-account")}</Text>
             <TouchableOpacity onPress={() => navigation.navigate("Register")}>
-              <Text style={styles.registerLink}>Register</Text>
+              <Text style={styles.registerLink}>{t("login-screen.register")}</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
@@ -106,88 +114,3 @@ export default function Login() {
     </KeyboardAvoidingView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1,
-    justifyContent: "center",
-    backgroundColor: "#fff",
-    alignItems: "center",
-    padding: 20,
-  },
-  logo: {
-    width: "50%",
-    height: "15%",
-    aspectRatio: 4,
-    marginBottom: 30,
-  },
-  title: {
-    fontSize: 28,
-    fontWeight: "bold",
-    marginBottom: 4,
-  },
-  subtitle: {
-    fontSize: 16,
-    color: "#666",
-    marginBottom: 24,
-  },
-  input: {
-    width: "100%",
-    height: 50,
-    backgroundColor: "#f2f2f2",
-    borderRadius: 8,
-    paddingHorizontal: 15,
-    fontSize: 16,
-    marginBottom: 16,
-  },
-  button: {
-    backgroundColor: "#28a745",
-    paddingVertical: 14,
-    paddingHorizontal: 40,
-    borderRadius: 8,
-    width: "100%",
-    alignItems: "center",
-    marginBottom: 16,
-    marginTop: 16,
-  },
-  forgotText: {
-    alignItems: "flex-start",
-    color: "#007bff",
-    fontSize: 14,
-  },
-  buttonText: {
-    color: "#fff",
-    fontSize: 18,
-    fontWeight: "bold",
-  },
-  registerContainer: {
-    flexDirection: "row",
-    marginTop: 10,
-  },
-  registerText: {
-    fontSize: 14,
-    color: "#333",
-  },
-  registerLink: {
-    fontSize: 14,
-    color: "#007bff",
-    fontWeight: "bold",
-  },
-  passwordContainer: {
-    width: "100%",
-    flexDirection: "row",
-    alignItems: "center",
-    backgroundColor: "#f2f2f2",
-    borderRadius: 8,
-    marginBottom: 16,
-    paddingHorizontal: 10,
-  },
-  passwordInput: {
-    flex: 1,
-    height: 50,
-    fontSize: 16,
-  },
-  eyeIcon: {
-    padding: 8,
-  },
-});

@@ -1,0 +1,20 @@
+{
+  "login-screen": {
+    "welcome": "Welcome",
+    "loginToFoodRescue": "Login to Food Rescue",
+    "email": "Email",
+    "password": "Password",
+    "forgot-password": "Forgot Password?",
+    "have-account": "Don't have an account? ",
+    "register": "Register",
+    "login": "Login",
+    "loginPressed": "Login Pressed"
+  },
+  "profile": {
+    "savedAddresses": "Saved Addresses",
+    "country": "Country",
+    "theme": "Theme",
+    "language": "Language",
+    "logout": "Logout"
+  }
+}

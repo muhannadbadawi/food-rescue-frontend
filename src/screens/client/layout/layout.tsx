@@ -4,6 +4,8 @@ import { Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import Explore from "../explore/explore";
+import ProfileScreen from "../profile/profile";
+import { useTheme } from "@/src/theme/theme-context";
 
 type RootTabParamList = {
   Explore: undefined;
@@ -21,13 +23,15 @@ const DummyScreen = ({ label }: { label: string }) => (
 
 export default function Layout() {
   const navigation = useNavigation();
-
+  const colors = useTheme();
+  
   const tabScreens = (
     <>
       <Tab.Screen
         name="Explore"
         component={Explore}
         options={{
+          headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="search" size={size} color={color} />
           ),
@@ -37,6 +41,7 @@ export default function Layout() {
         name="Favorites"
         component={() => <DummyScreen label="Favorites" />}
         options={{
+          headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="heart-outline" size={size} color={color} />
           ),
@@ -46,6 +51,7 @@ export default function Layout() {
         name="Orders"
         component={() => <DummyScreen label="Orders" />}
         options={{
+          headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="cart-outline" size={size} color={color} />
           ),
@@ -53,8 +59,9 @@ export default function Layout() {
       />
       <Tab.Screen
         name="Profile"
-        component={() => <DummyScreen label="Profile" />}
+        component={ProfileScreen}
         options={{
+          headerShown: false,
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="person-outline" size={size} color={color} />
           ),
@@ -75,8 +82,11 @@ export default function Layout() {
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: "#007AFF",
+        tabBarActiveTintColor: colors.primary,
         headerShown: true,
+        tabBarBackground: () => (
+          <Text style={{ flex: 1, backgroundColor: colors.background }} />
+        ),
       }}
       children={tabScreens}
     />

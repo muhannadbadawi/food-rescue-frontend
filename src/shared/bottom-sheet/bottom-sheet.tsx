@@ -3,8 +3,6 @@ import {
   Dimensions,
   StyleSheet,
   View,
-  Text,
-  TouchableWithoutFeedback,
 } from 'react-native';
 
 import Animated, {
@@ -14,7 +12,6 @@ import Animated, {
   interpolate,
   Extrapolate,
   runOnJS,
-  useAnimatedGestureHandler,
 } from 'react-native-reanimated';
 
 import {
@@ -44,40 +41,40 @@ export default function GenericBottomSheet({
   onOpen,
   children,
 }: BottomSheetProps) {
-  const MAX_TRANSLATE_Y = - height;
+  const MAX_TRANSLATE_Y = -height;
   const translateY = useSharedValue(isOpen ? MAX_TRANSLATE_Y : 0);
 
   // Notify open/close state
   useEffect(() => {
     if (isOpen) {
       translateY.value = withSpring(MAX_TRANSLATE_Y);
-      onOpen && onOpen();
+      onOpen?.();
     } else {
       translateY.value = withSpring(0);
-      onClose && onClose();
+      onClose?.();
     }
   }, [isOpen]);
 
-  const panGestureEvent = useAnimatedGestureHandler<PanGestureHandlerGestureEvent, ContextType>({
-    onStart: (_, ctx) => {
-      ctx.startY = translateY.value;
-    },
-    onActive: (event, ctx) => {
-      translateY.value = ctx.startY + event.translationY;
+  // Gesture handler
+  const panGestureEvent = (event: PanGestureHandlerGestureEvent) => {
+    const ctx: ContextType = { startY: translateY.value };
 
-      if (translateY.value < MAX_TRANSLATE_Y) translateY.value = MAX_TRANSLATE_Y;
-      if (translateY.value > 0) translateY.value = 0;
-    },
-    onEnd: () => {
+    if (event.nativeEvent.state === 2) { // ACTIVE
+      translateY.value = ctx.startY + event.nativeEvent.translationY;
+      translateY.value = Math.max(translateY.value, MAX_TRANSLATE_Y);
+      translateY.value = Math.min(translateY.value, 0);
+    }
+
+    if (event.nativeEvent.state === 5) { // END
       if (translateY.value < MAX_TRANSLATE_Y / 2) {
         translateY.value = withSpring(MAX_TRANSLATE_Y);
-        if (onOpen) runOnJS(onOpen)();
+        onOpen && runOnJS(onOpen)();
       } else {
         translateY.value = withSpring(0);
-        if (onClose) runOnJS(onClose)();
+        onClose && runOnJS(onClose)();
       }
-    },
-  });
+    }
+  };
 
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: translateY.value }],
@@ -115,7 +112,7 @@ export default function GenericBottomSheet({
 
 const styles = StyleSheet.create({
   wrapper: {
-    
+    flex: 1,
     justifyContent: 'flex-end',
   },
   sheet: {

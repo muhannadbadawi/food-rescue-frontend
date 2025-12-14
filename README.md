@@ -15,3 +15,55 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
+
+```
+food-rescue
+├─ app.json
+├─ App.tsx
+├─ assets
+│  ├─ FoodRescueLogo.png
+│  ├─ supermarket.png
+│  ├─ supermarket2.png
+│  └─ supermarket3.png
+├─ eas.json
+├─ package.json
+├─ README.md
+├─ src
+│  ├─ api
+│  │  └─ user-service.ts
+│  ├─ constants
+│  │  └─ Colors.ts
+│  ├─ localization
+│  │  ├─ ar.json
+│  │  ├─ en.json
+│  │  └─ i18n.ts
+│  ├─ screens
+│  │  ├─ auth
+│  │  │  ├─ login.tsx
+│  │  │  ├─ register.tsx
+│  │  │  └─ styles
+│  │  │     ├─ login.styles.ts
+│  │  │     └─ register.styles.ts
+│  │  └─ client
+│  │     ├─ explore
+│  │     │  ├─ explore.styles.ts
+│  │     │  └─ explore.tsx
+│  │     ├─ layout
+│  │     │  └─ layout.tsx
+│  │     └─ profile
+│  │        ├─ profile.styles.ts
+│  │        └─ profile.tsx
+│  ├─ shared
+│  │  ├─ avatar
+│  │  │  ├─ avatar.styles.ts
+│  │  │  └─ avatar.tsx
+│  │  ├─ bottom-sheet
+│  │  │  └─ bottom-sheet.tsx
+│  │  └─ text
+│  ├─ stores
+│  │  └─ useStoreLocations.ts
+│  └─ theme
+│     └─ theme-context.tsx
+└─ tsconfig.json
+
+```

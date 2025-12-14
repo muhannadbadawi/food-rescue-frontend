@@ -1,0 +1,21 @@
+{
+  "login-screen": {
+    "welcome": "أهلاً وسهلاً",
+    "loginToFoodRescue": "تسجيل الدخول إلى فود ريسكيو",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "forgot-password": "نسيت كلمة المرور؟",
+    "have-account": "ليس لديك حساب؟ ",
+    "register": "تسجيل",
+    "login": "تسجيل الدخول",
+    "loginPressed": "تم الضغط على تسجيل الدخول"
+  },
+
+  "profile": {
+    "savedAddresses": "العناوين المحفوظة",
+    "country": "الدولة",
+    "theme": "المظهر",
+    "language": "اللغة",
+    "logout": "تسجيل الخروج"
+  }
+}
