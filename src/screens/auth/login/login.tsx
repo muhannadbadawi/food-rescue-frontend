@@ -14,10 +14,10 @@ import {
 } from "react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
-import { RootStackParamList } from "../../../App";
+import { RootStackParamList } from "../../../../App";
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@/src/theme/theme-context";
-import { getStyles } from "./styles/login.styles";
+import { getStyles } from "./login.styles";
 import { useTranslation } from "react-i18next";
 
 type LoginScreenNavigationProp = NativeStackNavigationProp<
@@ -99,7 +99,7 @@ export default function Login() {
           </View>
 
           <View style={{ width: "100%" }}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate("ForgotPassword")}>
               <Text style={styles.forgotText}>
                 {t("login-screen.forgot-password")}
               </Text>

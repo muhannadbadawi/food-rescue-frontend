@@ -2,17 +2,23 @@ import React, { useEffect, useState } from "react";
 import { Platform, StatusBar, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Login from "./src/screens/auth/login";
-import Register from "./src/screens/auth/register";
+import Login from "./src/screens/auth/login/login";
+import Register from "./src/screens/auth/register/register";
 import Layout from "./src/screens/client/layout/layout";
 import { useTheme, ThemeProvider } from "./src/theme/theme-context";
 
 import { initI18n } from "./src/localization/i18n";
+import ForgotPassword from "./src/screens/auth/forgot-password/forgot-password";
+import OtpScreen from "./src/screens/auth/otp/otp";
+import ResetPassword from "./src/screens/auth/reset-password/reset-password";
 
 export type RootStackParamList = {
   Login: undefined;
   Register: undefined;
+  ForgotPassword: undefined;
   Layout: undefined;
+  OTPScreen: undefined;
+  ResetPassword: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -32,6 +38,22 @@ function StackScreens() {
         component={Register}
         options={{ headerShown: false }}
       />
+      <Stack.Screen
+        name="ForgotPassword"
+        component={ForgotPassword}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="OTPScreen"
+        component={OtpScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="ResetPassword"
+        component={ResetPassword}
+        options={{ headerShown: false }}
+      />
+
       <Stack.Screen
         name="Layout"
         component={Layout}

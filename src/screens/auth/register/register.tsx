@@ -11,11 +11,12 @@ import {
   View,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { register } from "../../api/user-service";
-import { getStyles } from "./styles/register.styles";
+import { register } from "../../../api/user-service";
+import { getStyles } from "./register.styles";
 import { useTheme } from "@/src/theme/theme-context";
 import { useTranslation } from "react-i18next"; // Translation hook
 import i18n from "@/src/localization/i18n"; // i18n instance
+import { Ionicons } from "@expo/vector-icons";
 
 export default function Register() {
   const navigation = useNavigation();
@@ -43,17 +44,25 @@ export default function Register() {
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <ScrollView
-          contentContainerStyle={[
-            styles.container,
-            i18n.language === "ar" && { flexDirection: "column-reverse" }, // RTL support
-          ]}
+          contentContainerStyle={styles.container}
           keyboardShouldPersistTaps="handled"
         >
-          <Text style={styles.title}>{t("registerScreen.title")}</Text>
-          <Text style={styles.subtitle}>{t("registerScreen.subtitle")}</Text>
+          <Ionicons
+            name="person"
+            size={70}
+            color={"#fff"}
+            style={{
+              backgroundColor: colors.primary,
+              padding: 15,
+              borderRadius: "50%",
+              margin: 30,
+            }}
+          />
+          <Text style={styles.title}>{t("register-screen.title")}</Text>
+          <Text style={styles.subtitle}>{t("register-screen.subtitle")}</Text>
 
           <TextInput
-            placeholder={t("registerScreen.email")}
+            placeholder={t("register-screen.email")}
             placeholderTextColor={colors.secondaryText}
             style={styles.input}
             keyboardType="email-address"
@@ -64,7 +73,7 @@ export default function Register() {
           />
 
           <TextInput
-            placeholder={t("registerScreen.phoneNumber")}
+            placeholder={t("register-screen.phoneNumber")}
             placeholderTextColor={colors.secondaryText}
             style={styles.input}
             value={phoneNumber}
@@ -76,7 +85,7 @@ export default function Register() {
           />
 
           <TextInput
-            placeholder={t("registerScreen.password")}
+            placeholder={t("register-screen.password")}
             placeholderTextColor={colors.secondaryText}
             style={styles.input}
             secureTextEntry
@@ -87,13 +96,15 @@ export default function Register() {
           />
 
           <TouchableOpacity style={styles.button} onPress={handleRegister}>
-            <Text style={styles.buttonText}>{t("registerScreen.signUp")}</Text>
+            <Text style={styles.buttonText}>{t("register-screen.signUp")}</Text>
           </TouchableOpacity>
 
           <View style={styles.loginContainer}>
-            <Text style={styles.loginText}>{t("registerScreen.alreadyHaveAccount")}</Text>
+            <Text style={styles.loginText}>
+              {t("register-screen.alreadyHaveAccount")}
+            </Text>
             <TouchableOpacity onPress={() => navigation.goBack()}>
-              <Text style={styles.loginLink}>{t("registerScreen.login")}</Text>
+              <Text style={styles.loginLink}>{t("register-screen.login")}</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
