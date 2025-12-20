@@ -4,11 +4,11 @@
     "slug": "FoodRescue",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/FoodRescueLogo.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/splash-icon.png",
+      "image": "./assets/FoodRescueLogo.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -17,12 +17,18 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/FoodRescueLogo.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.muhannadbadawi.FoodRescue"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/FoodRescueLogo.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "5b5f1727-783a-44f4-b316-d77795536fd2"
+      }
     }
   }
 }

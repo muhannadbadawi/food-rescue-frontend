@@ -1,50 +1,124 @@
-# Welcome to your Expo app 👋
+# food_rescue
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A new Flutter project.
 
-## Get started
+## Getting Started
 
-1. Install dependencies
+This project is a starting point for a Flutter application.
 
-   ```bash
-   npm install
-   ```
+A few resources to get you started if this is your first Flutter project:
 
-2. Start the app
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-   ```bash
-    npx expo start
-   ```
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
 
-In the output, you'll find options to open the app in a
+```
+RootStack
+ ├── AuthStack
+ │    ├── Login
+ │    ├── Register
+ │    ├── ForgotPassword
+ │    └── OTP / Reset
+ │
+ └── AppStack
+      └── Tabs
+           ├── Explore
+           ├── Favorites
+           ├── Orders
+           ├── Earn
+           └── SettingsStack
+                ├── SettingsMain
+                ├── Receipts
+                ├── SavedAddresses
+                ├── PaymentMethod
+                ├── Country
+                ├── Theme
+                └── Language
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
 
-## Learn more
+```
+food-rescue
+├─ app.json
+├─ App.tsx
+├─ assets
+│  ├─ FoodRescueLogo.png
+│  ├─ supermarket.png
+│  ├─ supermarket2.png
+│  └─ supermarket3.png
+├─ eas.json
+├─ package.json
+├─ README.md
+├─ src
+│  ├─ api
+│  │  └─ user-service.ts
+│  ├─ constants
+│  │  └─ Colors.ts
+│  ├─ localization
+│  │  ├─ ar.json
+│  │  ├─ en.json
+│  │  └─ i18n.ts
+│  ├─ navigation
+│  │  ├─ app-screens.ts
+│  │  ├─ app-stack.tsx
+│  │  ├─ auth-stack.tsx
+│  │  └─ profile-screens.ts
+│  ├─ screens
+│  │  ├─ auth
+│  │  │  ├─ auth-context.tsx
+│  │  │  ├─ forgot-password
+│  │  │  │  ├─ forgot-password.styles.ts
+│  │  │  │  └─ forgot-password.tsx
+│  │  │  ├─ login
+│  │  │  │  ├─ login.styles.ts
+│  │  │  │  └─ login.tsx
+│  │  │  ├─ otp
+│  │  │  │  ├─ otp.styles.ts
+│  │  │  │  └─ otp.tsx
+│  │  │  ├─ register
+│  │  │  │  ├─ register.styles.ts
+│  │  │  │  └─ register.tsx
+│  │  │  └─ reset-password
+│  │  │     ├─ reset-password.styles.ts
+│  │  │     └─ reset-password.tsx
+│  │  └─ client
+│  │     ├─ explore
+│  │     │  ├─ explore.styles.ts
+│  │     │  └─ explore.tsx
+│  │     ├─ layout
+│  │     │  └─ layout.tsx
+│  │     └─ profile
+│  │        ├─ payment-method
+│  │        │  ├─ payment-method.styles.ts
+│  │        │  └─ payment-method.tsx
+│  │        ├─ profile-main
+│  │        │  ├─ profile.styles.ts
+│  │        │  └─ profile.tsx
+│  │        ├─ profile-stack.tsx
+│  │        ├─ receipts
+│  │        │  ├─ receipts.styles.ts
+│  │        │  └─ receipts.tsx
+│  │        └─ saved-addresses
+│  │           ├─ saved-addresses.styles.ts
+│  │           └─ saved-addresses.tsx
+│  ├─ shared
+│  │  ├─ avatar
+│  │  │  ├─ avatar.styles.ts
+│  │  │  └─ avatar.tsx
+│  │  ├─ bottom-sheet
+│  │  │  └─ bottom-sheet.tsx
+│  │  ├─ empty
+│  │  │  ├─ empty.styles.ts
+│  │  │  └─ empty.tsx
+│  │  └─ text
+│  ├─ stores
+│  │  └─ useStoreLocations.ts
+│  └─ theme
+│     └─ theme-context.tsx
+└─ tsconfig.json
 
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```

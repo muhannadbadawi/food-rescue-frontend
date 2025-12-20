@@ -1,10 +1,48 @@
-import React from 'react';
-import { Text, View } from 'react-native';
+import React, { useEffect, useState } from "react";
+import { Platform, StatusBar, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+
+import { ThemeProvider, useTheme } from "@/src/theme/theme-context";
+import { initI18n } from "@/src/localization/i18n";
+
+import AuthStack from "@/src/navigation/auth-stack";
+import AppStack from "@/src/navigation/app-stack";
+import { AuthProvider, useAuth } from "./src/screens/auth/auth-context";
 
 export default function App() {
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    initI18n().then(() => setReady(true));
+  }, []);
+
+  if (!ready) return <View />;
+
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Hello, Expo!</Text>
-    </View>
+    <ThemeProvider>
+      <AuthProvider>
+        <AppContent />
+      </AuthProvider>
+    </ThemeProvider>
+  );
+}
+
+function AppContent() {
+  const colors = useTheme();
+  const { isLoggedIn } = useAuth();
+
+  return (
+    <>
+      <StatusBar
+        barStyle={
+          colors.background === "#ffffff" ? "dark-content" : "light-content"
+        }
+        backgroundColor={colors.background}
+        translucent={Platform.OS === "android"}
+      />
+      <NavigationContainer>
+        {isLoggedIn ? <AppStack /> : <AuthStack />}
+      </NavigationContainer>
+    </>
   );
 }

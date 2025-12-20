@@ -1,0 +1,66 @@
+{
+  "login-screen": {
+    "welcome": "أهلاً وسهلاً",
+    "loginToFoodRescue": "تسجيل الدخول إلى فود ريسكيو",
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "forgot-password": "نسيت كلمة المرور؟",
+    "have-account": "ليس لديك حساب؟ ",
+    "register": "تسجيل",
+    "login": "تسجيل الدخول",
+    "loginPressed": "تم الضغط على تسجيل الدخول"
+  },
+  "register-screen": {
+    "title": "سجل في فود ريسكيو",
+    "subtitle": "انضم إلى مجتمعنا للمساعدة في إنقاذ الطعام",
+    "email": "البريد الإلكتروني",
+    "phoneNumber": "رقم الهاتف",
+    "password": "كلمة المرور",
+    "signUp": "تسجيل",
+    "alreadyHaveAccount": "هل لديك حساب بالفعل؟ ",
+    "login": "تسجيل الدخول"
+  },
+  "forgot-password-screen": {
+    "title": "نسيت كلمة المرور",
+    "subtitle": "لا تقلق، سنرسل لك تعليمات إعادة التعيين",
+    "enter-email": "أدخل بريدك الإلكتروني",
+    "reset-password": "إعادة تعيين كلمة المرور",
+    "back": "العودة إلى تسجيل الدخول"
+  },
+  "otp": {
+    "title": "تأكيد رمز التحقق",
+    "subtitle": "أدخل الرمز المكوّن من 6 أرقام المرسل إلى بريدك الإلكتروني",
+    "verify": "تأكيد",
+    "back": "عودة"
+  },
+  "tabs": {
+    "explore": "استكشاف",
+    "favorites": "المفضلة",
+    "orders": "الطلبات",
+    "earn": "كسب",
+    "settings": "الإعدادات"
+  },
+  "settings": {
+    "receipts": "الإيصالات",
+    "paymentMethod": "طريقة الدفع",
+    "savedAddresses": "العناوين المحفوظة",
+    "country": "الدولة",
+    "theme": "المظهر",
+    "language": "اللغة",
+    "logout": "تسجيل الخروج"
+  },
+  "reset-password-screen": {
+    "title": "إعادة تعيين كلمة المرور",
+    "subtitle": "أدخل كلمة المرور الجديدة أدناه",
+    "password": "كلمة المرور",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "reset": "إعادة تعيين كلمة المرور",
+    "back": "عودة"
+  },
+  "empty": {
+    "title": "لا يوجد محتوى بعد",
+    "subtitle": "سيظهر المحتوى هنا عند توفره",
+    "darkMode": "الوضع الداكن",
+    "lightMode": "الوضع الفاتح"
+  }
+}
