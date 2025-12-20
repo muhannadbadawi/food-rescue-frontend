@@ -1,10 +1,6 @@
-import React, { useEffect } from 'react';
-import {
-  Dimensions,
-  StyleSheet,
-  View,
-} from 'react-native';
-
+import React, { useEffect } from "react";
+import { Dimensions, StyleSheet, View } from "react-native";
+import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -12,127 +8,111 @@ import Animated, {
   interpolate,
   Extrapolate,
   runOnJS,
-} from 'react-native-reanimated';
+} from "react-native-reanimated";
 
-import {
-  PanGestureHandler,
-  GestureHandlerRootView,
-  PanGestureHandlerGestureEvent,
-} from 'react-native-gesture-handler';
-
-const { height: SCREEN_HEIGHT } = Dimensions.get('window');
-
-type ContextType = {
-  startY: number;
-};
+const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 
 interface BottomSheetProps {
-  height?: number; // height of sheet (default 60% screen height)
-  isOpen?: boolean; // open initially?
-  onClose?: () => void;
+  height?: number;
+  isOpen: boolean;
+  onClose: () => void;
   onOpen?: () => void;
   children: React.ReactNode;
 }
 
 export default function GenericBottomSheet({
   height = SCREEN_HEIGHT * 0.6,
-  isOpen = false,
+  isOpen,
   onClose,
   onOpen,
   children,
 }: BottomSheetProps) {
-  const MAX_TRANSLATE_Y = -height;
-  const translateY = useSharedValue(isOpen ? MAX_TRANSLATE_Y : 0);
+  const translateY = useSharedValue(height); 
+  const startY = useSharedValue(0);
 
-  // Notify open/close state
   useEffect(() => {
-    if (isOpen) {
-      translateY.value = withSpring(MAX_TRANSLATE_Y);
-      onOpen?.();
-    } else {
-      translateY.value = withSpring(0);
-      onClose?.();
-    }
+    translateY.value = withSpring(isOpen ? 0 : height, {
+      damping: 50,
+      stiffness: 80, 
+      mass: 0.8, 
+    });
   }, [isOpen]);
 
-  // Gesture handler
-  const panGestureEvent = (event: PanGestureHandlerGestureEvent) => {
-    const ctx: ContextType = { startY: translateY.value };
-
-    if (event.nativeEvent.state === 2) { // ACTIVE
-      translateY.value = ctx.startY + event.nativeEvent.translationY;
-      translateY.value = Math.max(translateY.value, MAX_TRANSLATE_Y);
-      translateY.value = Math.min(translateY.value, 0);
-    }
-
-    if (event.nativeEvent.state === 5) { // END
-      if (translateY.value < MAX_TRANSLATE_Y / 2) {
-        translateY.value = withSpring(MAX_TRANSLATE_Y);
-        onOpen && runOnJS(onOpen)();
+  const panGesture = Gesture.Pan()
+    .onBegin(() => {
+      startY.value = translateY.value;
+    })
+    .onUpdate((event) => {
+      translateY.value = startY.value + event.translationY;
+      translateY.value = Math.max(0, Math.min(translateY.value, height));
+    })
+    .onEnd((event) => {
+      if (translateY.value > height / 2 || event.velocityY > 800) {
+        translateY.value = withSpring(height);
+        runOnJS(onClose)();
       } else {
         translateY.value = withSpring(0);
-        onClose && runOnJS(onClose)();
+        onOpen && runOnJS(onOpen)();
       }
-    }
-  };
+    });
 
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{ translateY: translateY.value }],
     borderTopLeftRadius: interpolate(
       translateY.value,
-      [MAX_TRANSLATE_Y, 0],
-      [20, 5],
+      [0, height],
+      [20, 8],
       Extrapolate.CLAMP
     ),
     borderTopRightRadius: interpolate(
       translateY.value,
-      [MAX_TRANSLATE_Y, 0],
-      [20, 5],
+      [0, height],
+      [20, 8],
       Extrapolate.CLAMP
     ),
     opacity: interpolate(
       translateY.value,
-      [MAX_TRANSLATE_Y, 0],
-      [1, 0.5],
+      [0, height],
+      [1, 0.6],
       Extrapolate.CLAMP
     ),
   }));
 
   return (
-    <GestureHandlerRootView style={styles.wrapper}>
-      <PanGestureHandler onGestureEvent={panGestureEvent}>
-        <Animated.View style={[styles.sheet, { height }, animatedStyle]}>
-          <View style={styles.handleBar} />
-          {children}
-        </Animated.View>
-      </PanGestureHandler>
-    </GestureHandlerRootView>
+    <View style={styles.wrapper} pointerEvents="box-none">
+      <Animated.View style={[styles.sheet, { height }, animatedStyle]}>
+        <GestureDetector gesture={panGesture}>
+          <View style={styles.handle} />
+        </GestureDetector>
+        {children}
+      </Animated.View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   wrapper: {
-    flex: 1,
-    justifyContent: 'flex-end',
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: "flex-end",
   },
   sheet: {
-    backgroundColor: 'white',
+    backgroundColor: "#FFF",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
+    paddingTop: 12,
     paddingHorizontal: 16,
-    paddingTop: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: -3 },
-    shadowOpacity: 0.15,
-    shadowRadius: 5,
-    elevation: 5,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: -4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 8,
+    elevation: 12,
   },
-  handleBar: {
-    width: 40,
+  handle: {
+    width: 44,
     height: 5,
-    borderRadius: 2.5,
-    backgroundColor: '#ccc',
-    alignSelf: 'center',
-    marginBottom: 8,
+    borderRadius: 3,
+    backgroundColor: "#CCC",
+    alignSelf: "center",
+    marginBottom: 12,
   },
 });

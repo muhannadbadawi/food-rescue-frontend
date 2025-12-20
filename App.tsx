@@ -8,6 +8,7 @@ import { initI18n } from "@/src/localization/i18n";
 import AuthStack from "@/src/navigation/auth-stack";
 import AppStack from "@/src/navigation/app-stack";
 import { AuthProvider, useAuth } from "./src/screens/auth/auth-context";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export default function App() {
   const [ready, setReady] = useState(false);
@@ -19,11 +20,13 @@ export default function App() {
   if (!ready) return <View />;
 
   return (
-    <ThemeProvider>
-      <AuthProvider>
-        <AppContent />
-      </AuthProvider>
-    </ThemeProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <ThemeProvider>
+        <AuthProvider>
+          <AppContent />
+        </AuthProvider>
+      </ThemeProvider>
+    </GestureHandlerRootView>
   );
 }
 
