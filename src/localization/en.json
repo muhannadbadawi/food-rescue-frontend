@@ -27,7 +27,16 @@
     "reset-password": "Reset Password",
     "back": "Back to login"
   },
+  "tabs": {
+    "explore": "Explore",
+    "favorites": "Favorites",
+    "orders": "Orders",
+    "earn": "Earn",
+    "profile": "Profile"
+  },
   "profile": {
+    "receipts": "Receipts",
+    "paymentMethod": "Payment Method",
     "savedAddresses": "Saved Addresses",
     "country": "Country",
     "theme": "Theme",
@@ -47,5 +56,11 @@
     "confirmPassword": "Confirm Password",
     "reset": "Reset Password",
     "back": "Back"
+  },
+  "empty": {
+    "title": "Nothing here yet",
+    "subtitle": "When you have content, it will appear here",
+    "darkMode": "Dark Mode",
+    "lightMode": "Light Mode"
   }
 }

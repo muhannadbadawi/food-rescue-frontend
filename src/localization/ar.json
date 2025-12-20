@@ -33,7 +33,16 @@
     "verify": "تأكيد",
     "back": "عودة"
   },
+  "tabs": {
+    "explore": "استكشاف",
+    "favorites": "المفضلة",
+    "orders": "الطلبات",
+    "earn": "كسب",
+    "profile": "الملف الشخصي"
+  },
   "profile": {
+    "receipts": "الإيصالات",
+    "paymentMethod": "طريقة الدفع",
     "savedAddresses": "العناوين المحفوظة",
     "country": "الدولة",
     "theme": "المظهر",
@@ -47,5 +56,11 @@
     "confirmPassword": "تأكيد كلمة المرور",
     "reset": "إعادة تعيين كلمة المرور",
     "back": "عودة"
+  },
+  "empty": {
+    "title": "لا يوجد محتوى بعد",
+    "subtitle": "سيظهر المحتوى هنا عند توفره",
+    "darkMode": "الوضع الداكن",
+    "lightMode": "الوضع الفاتح"
   }
 }

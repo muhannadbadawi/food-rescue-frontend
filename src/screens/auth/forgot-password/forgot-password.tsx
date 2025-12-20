@@ -11,14 +11,15 @@ import {
 } from "react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
-import { RootStackParamList } from "../../../../App";
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@/src/theme/theme-context";
 import { getStyles } from "./forgot-password.styles";
 import { useTranslation } from "react-i18next";
+import { AppScreens } from "@/src/navigation/app-screens";
+import { AuthStackParamList } from "@/src/navigation/auth-stack";
 
 type LoginScreenNavigationProp = NativeStackNavigationProp<
-  RootStackParamList,
+  AuthStackParamList,
   "ForgotPassword"
 >;
 
@@ -31,7 +32,7 @@ const ForgotPassword = () => {
   const [email, setEmail] = useState("");
 
   const handleLogin = () => {
-    navigation.navigate("OTPScreen");
+    navigation.navigate(AppScreens.OTPScreen);
   };
 
   return (

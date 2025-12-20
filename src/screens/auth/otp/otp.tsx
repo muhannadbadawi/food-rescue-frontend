@@ -1,4 +1,3 @@
-import { RootStackParamList } from "@/App";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import React, { useState } from "react";
@@ -17,9 +16,11 @@ import { OtpInput } from "react-native-otp-entry";
 import { getStyles } from "./otp.styles";
 import { useTheme } from "@/src/theme/theme-context";
 import { Ionicons } from "@expo/vector-icons";
+import { AppScreens } from "@/src/navigation/app-screens";
+import { AuthStackParamList } from "@/src/navigation/auth-stack";
 
 type OTPScreenNavigationProp = NativeStackNavigationProp<
-  RootStackParamList,
+  AuthStackParamList,
   "OTPScreen"
 >;
 
@@ -33,7 +34,7 @@ const OtpScreen = () => {
 
   const onVerify = () => {
     if (otp.length !== 6) return;
-    navigation.navigate("ResetPassword");
+    navigation.navigate(AppScreens.ResetPassword);
   };
 
   return (
@@ -81,9 +82,7 @@ const OtpScreen = () => {
             onPress={() => navigation.goBack()}
           >
             <Ionicons name="arrow-back" size={20} color={colors.primary} />
-            <Text style={styles.forgotText}>
-              {t("otp.back")}
-            </Text>
+            <Text style={styles.forgotText}>{t("otp.back")}</Text>
           </TouchableOpacity>
         </ScrollView>
       </TouchableWithoutFeedback>

@@ -1,4 +1,3 @@
-import { RootStackParamList } from "@/App";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useTranslation } from "react-i18next";
@@ -17,9 +16,11 @@ import {
 } from "react-native";
 import { useTheme } from "@/src/theme/theme-context";
 import { Ionicons } from "@expo/vector-icons";
+import { AppScreens } from "@/src/navigation/app-screens";
+import { AuthStackParamList } from "@/src/navigation/auth-stack";
 
 type ResetPasswordNavigationProp = NativeStackNavigationProp<
-  RootStackParamList,
+  AuthStackParamList,
   "ResetPassword"
 >;
 
@@ -41,6 +42,7 @@ const ResetPassword = () => {
       return;
     }
     console.log("Password reset:", password);
+    navigation.navigate(AppScreens.Login);
   };
 
   return (
@@ -95,8 +97,8 @@ const ResetPassword = () => {
               placeholderTextColor={colors.secondaryText}
               style={styles.passwordInput}
               secureTextEntry={!showConfirmPassword}
-              value={confirmPassword} 
-              onChangeText={setConfirmPassword} 
+              value={confirmPassword}
+              onChangeText={setConfirmPassword}
             />
 
             <TouchableOpacity

@@ -14,14 +14,16 @@ import {
 } from "react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
-import { RootStackParamList } from "../../../../App";
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@/src/theme/theme-context";
 import { getStyles } from "./login.styles";
 import { useTranslation } from "react-i18next";
+import { useAuth } from "../auth-context";
+import { AuthStackParamList } from "@/src/navigation/auth-stack";
+import { AppScreens } from "@/src/navigation/app-screens";
 
 type LoginScreenNavigationProp = NativeStackNavigationProp<
-  RootStackParamList,
+  AuthStackParamList,
   "Login"
 >;
 
@@ -30,13 +32,14 @@ export default function Login() {
   const colors = useTheme();
   const styles = getStyles(colors);
   const { t } = useTranslation();
+  const { setIsLoggedIn } = useAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = () => {
-    navigation.navigate("Layout");
+    setIsLoggedIn(true);
     Alert.alert(
       t("login-screen.loginPressed"),
       `${t("login-screen.email")}: ${email}\n${t(
@@ -99,7 +102,9 @@ export default function Login() {
           </View>
 
           <View style={{ width: "100%" }}>
-            <TouchableOpacity onPress={() => navigation.navigate("ForgotPassword")}>
+            <TouchableOpacity
+              onPress={() => navigation.navigate(AppScreens.ForgotPassword)}
+            >
               <Text style={styles.forgotText}>
                 {t("login-screen.forgot-password")}
               </Text>

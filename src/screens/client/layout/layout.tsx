@@ -2,10 +2,9 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { useNavigation } from "@react-navigation/native";
 import Explore from "../explore/explore";
-import ProfileScreen from "../profile/profile";
 import { useTheme } from "@/src/theme/theme-context";
+import ProfileStack from "../profile/profile-stack";
 
 type RootTabParamList = {
   Explore: undefined;
@@ -22,7 +21,6 @@ const DummyScreen = ({ label }: { label: string }) => (
 );
 
 export default function Layout() {
-  const navigation = useNavigation();
   const colors = useTheme();
   
   const tabScreens = (
@@ -59,7 +57,7 @@ export default function Layout() {
       />
       <Tab.Screen
         name="Profile"
-        component={ProfileScreen}
+        component={ProfileStack}
         options={{
           headerShown: false,
           tabBarIcon: ({ color, size }) => (
