@@ -35,27 +35,32 @@ export const initI18n = async () => {
 
 const { DevSettings } = NativeModules;
 
-export const changeLanguage = async (lang: "en" | "ar") => {
-  await AsyncStorage.setItem(LANG_KEY, lang);
-  await i18n.changeLanguage(lang);
+export const changeLanguage = (lang: "en" | "ar") => {
+  Alert.alert(
+    "Language Changed",
+    "App needs to restart to apply language change",
+    [
+      {
+        text: "Close",
+      },
+      {
+        text: "Restart",
+        onPress: () => {
+          (async () => {
+            await AsyncStorage.setItem(LANG_KEY, lang);
+            await i18n.changeLanguage(lang);
 
-  const isRTL = lang === "ar";
+            const isRTL = lang === "ar";
+            I18nManager.forceRTL(isRTL);
 
-  if (I18nManager.isRTL !== isRTL) {
-    I18nManager.forceRTL(isRTL);
-    Alert.alert(
-      "Language Changed",
-      "App needs to restart to apply language change",
-      [
-        {
-          text: "Restart",
-          onPress: () => {
-            DevSettings.reload();
-          },
+            if (DevSettings && DevSettings.reload) {
+              DevSettings.reload();
+            }
+          })();
         },
-      ]
-    );
-  }
+      },
+    ]
+  );
 };
 
 export default i18n;

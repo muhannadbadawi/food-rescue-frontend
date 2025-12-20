@@ -6,7 +6,17 @@ export const getStyles = (colors: any) =>
       flex: 1,
       backgroundColor: colors.background,
     },
-    headerContainer:{
-
-    }
+    headerContainer: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+      padding: 20,
+    },
+    headerTitle: {
+      color: colors.text,
+      fontSize: 18,
+      fontWeight: "bold",
+      textAlign: "center",
+      flex: 1, 
+    },
   });

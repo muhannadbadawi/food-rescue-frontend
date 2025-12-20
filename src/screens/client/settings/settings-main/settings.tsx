@@ -36,15 +36,11 @@ const ProfileScreen = () => {
   const goToSavedAddresses = () => {
     localNavigation.navigate(SettingScreens.SavedAddresses);
   };
-
-  const toggleLanguage = () => {
-    const nextLang = i18n.language === "ar" ? "en" : "ar";
-    changeLanguage(nextLang);
+  const goToLanguageScreen = () => {
+    localNavigation.navigate(SettingScreens.LanguageScreen);
   };
-
-  const changeTheme = () => {
-    const nextTheme = theme === "light" ? "dark" : "light";
-    setTheme(nextTheme);
+  const goToThemeScreen = () => {
+    localNavigation.navigate(SettingScreens.ThemeScreen);
   };
 
   const onLogout = () => {
@@ -94,7 +90,7 @@ const ProfileScreen = () => {
           style={styles.icon}
         />
       ),
-      onClick: () => changeTheme(),
+      onClick: () => goToThemeScreen(),
     },
     {
       id: 5,
@@ -102,7 +98,7 @@ const ProfileScreen = () => {
       icon: (
         <Ionicons name={"language-outline"} size={24} style={styles.icon} />
       ),
-      onClick: () => toggleLanguage(),
+      onClick: () => goToLanguageScreen(),
     },
     {
       id: 6,
@@ -114,30 +110,32 @@ const ProfileScreen = () => {
   ];
 
   return (
-    <Screen style={styles.container}>
-      {/* Header */}
-      <View style={styles.header}>
-        <View style={styles.headerLeft}>
-          <Avatar name="John Doe" />
-          <Text style={styles.avatarName}>John Doe</Text>
+    <Screen>
+      <View style={styles.container}>
+        {/* Header */}
+        <View style={styles.header}>
+          <View style={styles.headerLeft}>
+            <Avatar name="John Doe" />
+            <Text style={styles.avatarName}>John Doe</Text>
+          </View>
+          <TouchableOpacity>
+            <Ionicons name="pencil-outline" size={24} color={colors.text} />
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity>
-          <Ionicons name="pencil-outline" size={24} color={colors.text} />
-        </TouchableOpacity>
-      </View>
 
-      {/* Buttons */}
-      {buttons.map((btn) => (
-        <TouchableOpacity
-          key={btn.id}
-          style={styles.buttonWrapper}
-          onPress={btn.onClick}
-          activeOpacity={0.6}
-        >
-          {btn.icon}
-          <Text style={styles.buttonText}>{btn.title}</Text>
-        </TouchableOpacity>
-      ))}
+        {/* Buttons */}
+        {buttons.map((btn) => (
+          <TouchableOpacity
+            key={btn.id}
+            style={styles.buttonWrapper}
+            onPress={btn.onClick}
+            activeOpacity={0.6}
+          >
+            {btn.icon}
+            <Text style={styles.buttonText}>{btn.title}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>
     </Screen>
   );
 };

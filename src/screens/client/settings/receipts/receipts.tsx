@@ -10,7 +10,7 @@ const Receipts = () => {
   const { t } = useTranslation();
 
   return (
-    <Screen>
+    <Screen showBackButton title={t("settings.receipts")}>
       <EmptyScreen />
     </Screen>
   );

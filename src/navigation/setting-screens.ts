@@ -4,8 +4,8 @@ export const SettingScreens = {
   SavedAddresses: "SavedAddresses",
   PaymentMethod: "PaymentMethod",
   Country: "Country",
-  Theme: "Theme",
-  Language: "Language",
+  ThemeScreen: "ThemeScreen",
+  LanguageScreen: "LanguageScreen",
 } as const;
 
 export type SettingScreenName = (typeof SettingScreens)[keyof typeof SettingScreens];
