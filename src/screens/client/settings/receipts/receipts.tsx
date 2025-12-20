@@ -3,16 +3,16 @@ import { useTheme } from "@/src/theme/theme-context";
 import React from "react";
 import { getStyles } from "./receipts.styles";
 import { useTranslation } from "react-i18next";
-import { SafeAreaView } from "react-native-safe-area-context";
+import Screen from "@/src/shared/screen/screen";
 const Receipts = () => {
   const colors = useTheme();
   const styles = getStyles(colors);
   const { t } = useTranslation();
 
   return (
-    <SafeAreaView style={styles.container}>
+    <Screen>
       <EmptyScreen />
-    </SafeAreaView>
+    </Screen>
   );
 };
 export default Receipts;

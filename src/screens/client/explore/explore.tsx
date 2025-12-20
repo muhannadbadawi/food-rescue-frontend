@@ -12,7 +12,7 @@ import {
 import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
 import GenericBottomSheet from "@/src/shared/bottom-sheet/bottom-sheet";
-import { SafeAreaView } from "react-native-safe-area-context";
+import Screen from "@/src/shared/screen/screen";
 import { useTheme } from "@/src/theme/theme-context";
 import { getStyles } from "./explore.styles";
 
@@ -24,7 +24,7 @@ export default function Explore() {
   const [sheetOpen, setSheetOpen] = useState(true);
   const colors = useTheme();
   const styles = getStyles(colors);
-  
+
   useEffect(() => {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
@@ -80,7 +80,7 @@ export default function Explore() {
   ];
 
   return (
-    <SafeAreaView style={styles.container}>
+    <Screen>
       <MapView
         style={styles.map}
         showsUserLocation
@@ -125,7 +125,7 @@ export default function Explore() {
           </>
         }
       />
-    </SafeAreaView>
+    </Screen>
   );
 }
 

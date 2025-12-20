@@ -2,7 +2,6 @@ import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import Avatar from "@/src/shared/avatar/avatar";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { useTheme, useThemeController } from "@/src/theme/theme-context";
 import { getStyles } from "./settings.styles";
 import { useNavigation } from "@react-navigation/native";
@@ -12,6 +11,7 @@ import i18n, { changeLanguage } from "@/src/localization/i18n";
 import { SettingsStackParamList } from "../settings-stack";
 import { useAuth } from "@/src/screens/auth/auth-context";
 import { SettingScreens } from "@/src/navigation/setting-screens";
+import Screen from "@/src/shared/screen/screen";
 
 type LocalNavigationProp = NativeStackNavigationProp<
   SettingsStackParamList,
@@ -114,7 +114,7 @@ const ProfileScreen = () => {
   ];
 
   return (
-    <SafeAreaView style={styles.container}>
+    <Screen style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
         <View style={styles.headerLeft}>
@@ -138,7 +138,7 @@ const ProfileScreen = () => {
           <Text style={styles.buttonText}>{btn.title}</Text>
         </TouchableOpacity>
       ))}
-    </SafeAreaView>
+    </Screen>
   );
 };
 

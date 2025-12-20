@@ -1,9 +1,8 @@
 import { useTheme } from "@/src/theme/theme-context";
 import React from "react";
-import { Text } from "react-native";
 import { getStyles } from "./saved-addresses.styles";
 import { useTranslation } from "react-i18next";
-import { SafeAreaView } from "react-native-safe-area-context";
+import Screen from "@/src/shared/screen/screen";
 import EmptyScreen from "@/src/shared/empty/empty";
 const SavedAddresses = () => {
   const colors = useTheme();
@@ -11,9 +10,9 @@ const SavedAddresses = () => {
   const { t } = useTranslation();
 
   return (
-    <SafeAreaView style={styles.container}>
+    <Screen>
       <EmptyScreen />
-    </SafeAreaView>
+    </Screen>
   );
 };
 export default SavedAddresses;
