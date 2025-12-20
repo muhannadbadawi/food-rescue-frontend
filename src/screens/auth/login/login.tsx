@@ -10,7 +10,6 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Alert,
-  Image,
 } from "react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
@@ -32,14 +31,14 @@ export default function Login() {
   const colors = useTheme();
   const styles = getStyles(colors);
   const { t } = useTranslation();
-  const { setIsLoggedIn } = useAuth();
+  const { login } = useAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = () => {
-    setIsLoggedIn(true);
+    login()
     Alert.alert(
       t("login-screen.loginPressed"),
       `${t("login-screen.email")}: ${email}\n${t(

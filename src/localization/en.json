@@ -32,9 +32,9 @@
     "favorites": "Favorites",
     "orders": "Orders",
     "earn": "Earn",
-    "profile": "Profile"
+    "settings": "Settings"
   },
-  "profile": {
+  "settings": {
     "receipts": "Receipts",
     "paymentMethod": "Payment Method",
     "savedAddresses": "Saved Addresses",

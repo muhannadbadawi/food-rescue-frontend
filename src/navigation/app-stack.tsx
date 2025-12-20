@@ -4,9 +4,9 @@ import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@/src/theme/theme-context";
 
 import Explore from "@/src/screens/client/explore/explore";
-import ProfileStack from "@/src/screens/client/profile/profile-stack";
-import { Text } from "react-native";
+import { Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
+import SettingsStack from "../screens/client/settings/settings-stack";
 
 type AppTabParamList = {
   Explore: undefined;
@@ -30,6 +30,9 @@ export default function AppStack() {
     <Tab.Navigator
       screenOptions={{
         tabBarActiveTintColor: colors.primary,
+        tabBarBackground: () => (
+          <View style={{ flex: 1, backgroundColor: colors.background }} />
+        ),
         headerShown: false,
       }}
     >
@@ -79,11 +82,11 @@ export default function AppStack() {
 
       <Tab.Screen
         name="Profile"
-        component={ProfileStack}
+        component={SettingsStack}
         options={{
-          tabBarLabel: t("tabs.profile"),
+          tabBarLabel: t("tabs.settings"),
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="person-outline" size={size} color={color} />
+            <Ionicons name="settings-outline" size={size} color={color} />
           ),
         }}
       />

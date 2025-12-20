@@ -1,5 +1,5 @@
-export const ProfileScreens = {
-  ProfileMain: "ProfileMain",
+export const SettingScreens = {
+  SettingsMain: "SettingsMain",
   Receipts: "Receipts",
   SavedAddresses: "SavedAddresses",
   PaymentMethod: "PaymentMethod",
@@ -8,4 +8,4 @@ export const ProfileScreens = {
   Language: "Language",
 } as const;
 
-export type ProfileScreenName = (typeof ProfileScreens)[keyof typeof ProfileScreens];
+export type SettingScreenName = (typeof SettingScreens)[keyof typeof SettingScreens];

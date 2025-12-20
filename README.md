@@ -29,8 +29,8 @@ RootStack
            ├── Favorites
            ├── Orders
            ├── Earn
-           └── ProfileStack
-                ├── ProfileMain
+           └── SettingsStack
+                ├── SettingsMain
                 ├── Receipts
                 ├── SavedAddresses
                 ├── PaymentMethod

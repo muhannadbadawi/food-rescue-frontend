@@ -38,9 +38,9 @@
     "favorites": "المفضلة",
     "orders": "الطلبات",
     "earn": "كسب",
-    "profile": "الملف الشخصي"
+    "settings": "الإعدادات"
   },
-  "profile": {
+  "settings": {
     "receipts": "الإيصالات",
     "paymentMethod": "طريقة الدفع",
     "savedAddresses": "العناوين المحفوظة",
