@@ -63,15 +63,15 @@ export const getStyles = (colors: any) =>
 
     darkSquare: {
       ...squareBase,
-      backgroundColor: colors.mutedText,
+      backgroundColor: colors.textMuted,
     },
     darkRectangle: {
       ...rectangleBase,
-      backgroundColor: colors.mutedText,
+      backgroundColor: colors.textMuted,
     },
     darkButton: {
       ...buttonBase,
-      backgroundColor: colors.selectedColor,
+      backgroundColor: colors.primary,
     },
 
     lightContainer: {
@@ -80,15 +80,15 @@ export const getStyles = (colors: any) =>
     },
     lightSquare: {
       ...squareBase,
-      backgroundColor: colors.mutedText,
+      backgroundColor: colors.textMuted,
     },
     lightRectangle: {
       ...rectangleBase,
-      backgroundColor: colors.mutedText,
+      backgroundColor: colors.textMuted,
     },
     lightButton: {
       ...buttonBase,
-      backgroundColor: colors.selectedColor,
+      backgroundColor: colors.primary,
     },
     themeText: {
       fontSize: 16,

@@ -73,7 +73,7 @@ const ResetPassword = () => {
           <View style={styles.passwordContainer}>
             <TextInput
               placeholder={t("reset-password-screen.password")}
-              placeholderTextColor={colors.secondaryText}
+              placeholderTextColor={colors.textSecondary}
               style={styles.passwordInput}
               secureTextEntry={!showPassword}
               value={password}
@@ -94,7 +94,7 @@ const ResetPassword = () => {
           <View style={styles.passwordContainer}>
             <TextInput
               placeholder={t("reset-password-screen.confirmPassword")}
-              placeholderTextColor={colors.secondaryText}
+              placeholderTextColor={colors.textSecondary}
               style={styles.passwordInput}
               secureTextEntry={!showConfirmPassword}
               value={confirmPassword}

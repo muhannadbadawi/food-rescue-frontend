@@ -30,6 +30,6 @@ export const getStyles = (colors: any) =>
       width: 44,
       height: 5,
       borderRadius: 3,
-      backgroundColor: colors.tabIconDefault,
+      backgroundColor: colors.icon,
     },
   });

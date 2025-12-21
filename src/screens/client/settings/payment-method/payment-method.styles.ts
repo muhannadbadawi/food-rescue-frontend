@@ -25,6 +25,6 @@ export const getStyles = (colors: any) =>
     },
     details: {
       fontSize: 14,
-      color: colors.secondaryText,
+      color: colors.textSecondary,
     },
   });

@@ -39,7 +39,7 @@ export const getStyles = (colors: any) =>
       height: 20,
       borderRadius: 10,
       borderWidth: 2,
-      borderColor: colors.mutedText,
+      borderColor: colors.textMuted,
       alignItems: "center",
       justifyContent: "center",
     },

@@ -1,61 +1,67 @@
-const tintColorLight = "#4aaf5bff";
-const tintColorDark = "#ffffff";
+const primaryGreen = "#4AAF5B";
 
 export const DefaultColors = {
   light: {
-    primary: "#4aaf5bff",
-    primaryText: "#ffffff",
+    /* ===== Brand ===== */
+    primary: primaryGreen,
+    onPrimary: "#FFFFFF",
 
-    background: "#ffffff",
-    surface: "#f9f9f9ff",
+    /* ===== Backgrounds ===== */
+    background: "#FFFFFF",
+    surface: "#F9FAFB",
 
-    textPrimary: "#11181C",
-    secondaryText: "#6e6e6eff",
-    mutedText: "#9ca3aaff",
+    /* ===== Text ===== */
+    textPrimary: "#111827",
+    textSecondary: "#6B7280",
+    textMuted: "#9CA3AF",
 
-    border: "#e2e2e2ff",
-    divider: "#f0f0f0ff",
+    /* ===== Borders & Dividers ===== */
+    border: "#E5E7EB",
+    divider: "#F3F4F6",
 
-    icon: "#687076",
-    tint: tintColorLight,
+    /* ===== Icons ===== */
+    icon: "#6B7280",
 
-    tabIconDefault: "#687076",
-    tabIconSelected: tintColorLight,
+    /* ===== States ===== */
+    success: "#22C55E",
+    warning: "#F59E0B",
+    error: "#EF4444",
+    onError: "#FFFFFF",
 
-    success: "#22c55eff",
-    warning: "#f59e0bff",
-    error: "#FF3B30",
-    errorText: "#ffffff",
-    selectedColor: "#1362acff",
+    /* ===== Selection & Overlay ===== */
+    selected: primaryGreen,
     overlay: "rgba(0,0,0,0.4)",
   },
 
   dark: {
-    primary: "#4aaf5bff",
-    primaryText: "#ffffff",
+    /* ===== Brand ===== */
+    primary: primaryGreen,
+    onPrimary: "#FFFFFF",
 
+    /* ===== Backgrounds ===== */
     background: "#121212",
-    surface: "#1e1e1eff",
+    surface: "#1E1E1E",
 
-    textPrimary: "#ECEDEE",
-    secondaryText: "#9e9e9eff",
-    mutedText: "#6b7280ff",
+    /* ===== Text ===== */
+    textPrimary: "#E5E7EB",
+    textSecondary: "#9CA3AF",
+    textMuted: "#6B7280",
 
-    border: "#1c1c1eff",
-    divider: "#2a2a2aff",
+    /* ===== Borders & Dividers ===== */
+    border: "#464646ff",
+    divider: "#333333",
 
-    icon: "#9BA1A6",
-    tint: tintColorDark,
+    /* ===== Icons ===== */
+    icon: "#9CA3AF",
 
-    tabIconDefault: "#9BA1A6",
-    tabIconSelected: tintColorDark,
+    /* ===== States ===== */
+    success: "#22C55E",
+    warning: "#FBBF24",
+    error: "#F87171",
+    onError: "#FFFFFF",
 
-    success: "#22c55eff",
-    warning: "#fbbf24ff",
-    error: "#ff453aff",
-    errorText: "#ffffff",
-    selectedColor: "#1362acff",
-
+    /* ===== Selection & Overlay ===== */
+    selected: primaryGreen,
     overlay: "rgba(0,0,0,0.6)",
   },
 } as const;

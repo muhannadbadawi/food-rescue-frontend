@@ -25,7 +25,7 @@ export const getStyles = (colors: any) =>
     description: {
       fontSize: 16,
       fontWeight: "500",
-      color: colors.mutedText,
+      color: colors.textMuted,
       marginBottom: 4,
     },
     amount: {

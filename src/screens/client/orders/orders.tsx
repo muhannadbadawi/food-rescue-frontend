@@ -1,4 +1,3 @@
-// src/screens/client/orders/orders.tsx
 import React from "react";
 import { View, Text, FlatList, Image, TouchableOpacity } from "react-native";
 import { useTheme } from "@/src/theme/theme-context";

@@ -34,6 +34,6 @@ export const getStyles = (colors: any) =>
 
     email: {
       fontSize: 14,
-      color: colors.mutedText,
+      color: colors.textMuted,
     },
   });

@@ -2,38 +2,56 @@ import { StyleSheet } from "react-native";
 
 export const getStyles = (colors: any) =>
   StyleSheet.create({
-    title: {
-      fontSize: 24,
-      fontWeight: "bold",
-      color: colors.textPrimary,
-      marginBottom: 16,
-      paddingHorizontal: 16,
-    },
     list: {
+      flex: 1,
       paddingHorizontal: 16,
-      paddingBottom: 16,
+      paddingBottom: 20,
     },
+
+    summaryCard: {
+      backgroundColor: colors.primary,
+      borderRadius: 14,
+      padding: 20,
+      marginBottom: 24,
+    },
+
+    summaryLabel: {
+      color: colors.primaryText,
+      fontSize: 14,
+      opacity: 0.9,
+    },
+
+    summaryAmount: {
+      color: colors.primaryText,
+      fontSize: 28,
+      fontWeight: "bold",
+      marginTop: 6,
+    },
+
     card: {
       flexDirection: "row",
       justifyContent: "space-between",
       alignItems: "center",
-      backgroundColor: colors.card,
+      backgroundColor: colors.surface,
       borderRadius: 12,
-      padding: 12,
+      padding: 14,
       marginBottom: 12,
-      shadowColor: "#000",
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.1,
-      shadowRadius: 4,
-      elevation: 3,
     },
+
     date: {
-      fontSize: 16,
-      color: colors.textPrimary,
+      fontSize: 14,
+      color: colors.textSecondary,
     },
+
+    subText: {
+      fontSize: 12,
+      color: colors.textMuted,
+      marginTop: 2,
+    },
+
     amount: {
-      fontSize: 16,
+      fontSize: 18,
       fontWeight: "bold",
-      color: colors.primary,
+      color: colors.success,
     },
   });

@@ -71,7 +71,7 @@ export default function Login() {
 
           <TextInput
             placeholder={t("login-screen.email")}
-            placeholderTextColor={colors.secondaryText}
+            placeholderTextColor={colors.textSecondary}
             style={styles.input}
             keyboardType="email-address"
             value={email}
@@ -81,7 +81,7 @@ export default function Login() {
           <View style={styles.passwordContainer}>
             <TextInput
               placeholder={t("login-screen.password")}
-              placeholderTextColor={colors.secondaryText}
+              placeholderTextColor={colors.textSecondary}
               style={styles.passwordInput}
               secureTextEntry={!showPassword}
               value={password}

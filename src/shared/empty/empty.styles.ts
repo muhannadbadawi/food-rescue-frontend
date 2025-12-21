@@ -12,7 +12,7 @@ export const getStyles = (colors: any) =>
 
     icon: {
       marginBottom: 16,
-      color: colors.mutedText,
+      color: colors.textMuted,
     },
 
     title: {
@@ -25,7 +25,7 @@ export const getStyles = (colors: any) =>
 
     subtitle: {
       fontSize: 14,
-      color: colors.mutedText,
+      color: colors.textMuted,
       textAlign: "center",
       lineHeight: 20,
       marginBottom: 24,

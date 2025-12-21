@@ -63,7 +63,7 @@ export default function Register() {
 
           <TextInput
             placeholder={t("register-screen.email")}
-            placeholderTextColor={colors.secondaryText}
+            placeholderTextColor={colors.textSecondary}
             style={styles.input}
             keyboardType="email-address"
             value={email}
@@ -74,7 +74,7 @@ export default function Register() {
 
           <TextInput
             placeholder={t("register-screen.phoneNumber")}
-            placeholderTextColor={colors.secondaryText}
+            placeholderTextColor={colors.textSecondary}
             style={styles.input}
             value={phoneNumber}
             onChangeText={setPhoneNumber}
@@ -86,7 +86,7 @@ export default function Register() {
 
           <TextInput
             placeholder={t("register-screen.password")}
-            placeholderTextColor={colors.secondaryText}
+            placeholderTextColor={colors.textSecondary}
             style={styles.input}
             secureTextEntry
             value={password}

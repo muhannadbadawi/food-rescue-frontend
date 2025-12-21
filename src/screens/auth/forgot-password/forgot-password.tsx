@@ -50,7 +50,7 @@ const ForgotPassword = () => {
 
           <TextInput
             placeholder={t("forgot-password-screen.enter-email")}
-            placeholderTextColor={colors.secondaryText}
+            placeholderTextColor={colors.textSecondary}
             style={styles.input}
             keyboardType="email-address"
             value={email}

@@ -81,5 +81,9 @@
     "chooseYourTheme": "Choose your preferred theme",
     "dark": "Dark",
     "light": "Light"
+  },
+  "earn": {
+    "totalEarnings": "Total Earnings",
+    "daily": "Daily earning"
   }
 }

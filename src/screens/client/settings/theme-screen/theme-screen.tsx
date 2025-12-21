@@ -25,7 +25,7 @@ const ThemeScreen = () => {
             <TouchableOpacity
               style={[
                 styles.darkContainer,
-                theme === "dark" && { borderColor: colors.selectedColor },
+                theme === "dark" && { borderColor: colors.primary },
               ]}
               onPress={() => toggleTheme("dark")}
             >
@@ -48,7 +48,7 @@ const ThemeScreen = () => {
             <TouchableOpacity
               style={[
                 styles.lightContainer,
-                theme === "light" && { borderColor: colors.selectedColor },
+                theme === "light" && { borderColor: colors.primary },
               ]}
               onPress={() => toggleTheme("light")}
             >

@@ -17,7 +17,7 @@ export const getStyles = (colors: any) =>
     },
     subtitle: {
       fontSize: 16,
-      color: colors.secondaryText,
+      color: colors.textSecondary,
       marginBottom: 24,
     },
     input: {

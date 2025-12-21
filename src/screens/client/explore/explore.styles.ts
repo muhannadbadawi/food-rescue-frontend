@@ -27,7 +27,7 @@ export const getStyles = (colors: any) =>
 
     shopDescription: {
       fontSize: 14,
-      color: colors.mutedText,
+      color: colors.textMuted,
       marginBottom: 8,
     },
 
@@ -39,7 +39,7 @@ export const getStyles = (colors: any) =>
 
     distance: {
       fontSize: 13,
-      color: colors.mutedText,
+      color: colors.textMuted,
       marginBottom: 8,
     },
 
@@ -53,13 +53,13 @@ export const getStyles = (colors: any) =>
 
     offerItem: {
       fontSize: 13,
-      color: colors.mutedText,
+      color: colors.textMuted,
       marginLeft: 6,
     },
 
     emptyText: {
       textAlign: "center",
-      color: colors.mutedText,
+      color: colors.textMuted,
       fontSize: 16,
     },
   });
