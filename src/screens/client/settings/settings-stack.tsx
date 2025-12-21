@@ -7,9 +7,11 @@ import SavedAddresses from "./saved-addresses/saved-addresses";
 import PaymentMethod from "./payment-method/payment-method";
 import LanguageScreen from "./language-screen/language-screen";
 import ThemeScreen from "./theme-screen/theme-screen";
+import Profile from "./profile/profile";
 
 export type SettingsStackParamList = {
   SettingsMain: undefined;
+  Profile: undefined;
   Receipts: undefined;
   SavedAddresses: undefined;
   PaymentMethod: undefined;
@@ -23,6 +25,7 @@ export default function SettingsStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="SettingsMain" component={SettingsMain} />
+      <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="Receipts" component={Receipts} />
       <Stack.Screen name="SavedAddresses" component={SavedAddresses} />
       <Stack.Screen name="PaymentMethod" component={PaymentMethod} />

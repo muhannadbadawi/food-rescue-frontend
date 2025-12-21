@@ -21,11 +21,13 @@ type LocalNavigationProp = NativeStackNavigationProp<
 const ProfileScreen = () => {
   const colors = useTheme();
   const styles = getStyles(colors);
-  const { theme, setTheme } = useThemeController();
   const localNavigation = useNavigation<LocalNavigationProp>();
   const { logout } = useAuth();
   const { t } = useTranslation();
 
+  const goToProfile = () => {
+    localNavigation.navigate(SettingScreens.Profile);
+  };
   const goToReceipts = () => {
     localNavigation.navigate(SettingScreens.Receipts);
   };
@@ -113,15 +115,21 @@ const ProfileScreen = () => {
     <Screen>
       <View style={styles.container}>
         {/* Header */}
-        <View style={styles.header}>
-          <View style={styles.headerLeft}>
-            <Avatar name="John Doe" />
-            <Text style={styles.avatarName}>John Doe</Text>
+        <TouchableOpacity onPress={goToProfile}>
+          <View style={styles.header}>
+            <View style={styles.headerLeft}>
+              <Avatar name="Mohannad Badawi" />
+              <Text style={styles.avatarName}>Mohannad Badawi</Text>
+            </View>
+            <View>
+              <Ionicons
+                name="pencil-outline"
+                size={24}
+                color={colors.textPrimary}
+              />
+            </View>
           </View>
-          <TouchableOpacity>
-            <Ionicons name="pencil-outline" size={24} color={colors.textPrimary} />
-          </TouchableOpacity>
-        </View>
+        </TouchableOpacity>
 
         {/* Buttons */}
         {buttons.map((btn) => (

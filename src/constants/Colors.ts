@@ -26,7 +26,7 @@ export const DefaultColors = {
     warning: "#f59e0bff",
     error: "#FF3B30",
     errorText: "#ffffff",
-
+    selectedColor: "#1362acff",
     overlay: "rgba(0,0,0,0.4)",
   },
 
@@ -54,6 +54,7 @@ export const DefaultColors = {
     warning: "#fbbf24ff",
     error: "#ff453aff",
     errorText: "#ffffff",
+    selectedColor: "#1362acff",
 
     overlay: "rgba(0,0,0,0.6)",
   },

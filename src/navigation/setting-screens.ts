@@ -1,5 +1,6 @@
 export const SettingScreens = {
   SettingsMain: "SettingsMain",
+  Profile: "Profile",
   Receipts: "Receipts",
   SavedAddresses: "SavedAddresses",
   PaymentMethod: "PaymentMethod",

@@ -4,33 +4,54 @@ export const getStyles = (colors: any) =>
   StyleSheet.create({
     container: {
       padding: 20,
+      gap: 16,
     },
+
     languageRow: {
       flexDirection: "row",
       alignItems: "center",
-      marginBottom: 20,
-    },
-    radioCircle: {
-      height: 24,
-      width: 24,
+      justifyContent: "space-between",
+      padding: 16,
       borderRadius: 12,
-      borderWidth: 2,
-      borderColor: colors.primary,
+      backgroundColor: colors.surface,
+      borderWidth: 1,
+      borderColor: colors.border,
+    },
+
+    leftContent: {
+      flexDirection: "row",
       alignItems: "center",
-      justifyContent: "center",
-      marginRight: 12,
+      gap: 12,
     },
-    selectedRadio: {
-      borderColor: colors.primary,
+
+    flag: {
+      fontSize: 24,
     },
-    radioInner: {
-      height: 12,
-      width: 12,
-      borderRadius: 6,
-      backgroundColor: colors.primary,
-    },
+
     languageText: {
       fontSize: 16,
       color: colors.textPrimary,
+      fontWeight: "500",
+    },
+
+    radioCircle: {
+      width: 20,
+      height: 20,
+      borderRadius: 10,
+      borderWidth: 2,
+      borderColor: colors.mutedText,
+      alignItems: "center",
+      justifyContent: "center",
+    },
+
+    selectedRadio: {
+      borderColor: colors.primary,
+    },
+
+    radioInner: {
+      width: 10,
+      height: 10,
+      borderRadius: 5,
+      backgroundColor: colors.primary,
     },
   });

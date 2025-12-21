@@ -76,5 +76,10 @@
     "paymentMethod": "Payment Method",
     "last4": "Last 4 digits",
     "expiry": "Expiry Date"
+  },
+  "theme": {
+    "chooseYourTheme": "Choose your preferred theme",
+    "dark": "Dark",
+    "light": "Light"
   }
 }

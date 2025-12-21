@@ -11,19 +11,62 @@ const ThemeScreen = () => {
   const { t } = useTranslation();
   const { theme, setTheme } = useThemeController();
 
-  const toggleTheme = () => {
-    const nextTheme = theme === "light" ? "dark" : "light";
+  const toggleTheme = (nextTheme: "dark" | "light") => {
+    if (theme === nextTheme) return;
     setTheme(nextTheme);
   };
 
   return (
     <Screen showBackButton title={t("settings.theme")}>
-      <View style={styles.container}>
-        <TouchableOpacity style={styles.themeButton} onPress={toggleTheme}>
-          <Text style={styles.themeButtonText}>
-            {theme === "light" ? t("settings.dark") : t("settings.light")}
-          </Text>
-        </TouchableOpacity>
+      <View style={styles.screenContainer}>
+        <Text style={styles.headerText}>{t("theme.chooseYourTheme")}</Text>
+        <View style={styles.container}>
+          <View style={styles.themeButtonWrapper}>
+            <TouchableOpacity
+              style={[
+                styles.darkContainer,
+                theme === "dark" && { borderColor: colors.selectedColor },
+              ]}
+              onPress={() => toggleTheme("dark")}
+            >
+              <View style={styles.row}>
+                <View style={styles.darkSquare} />
+                <View style={styles.darkRectangle} />
+              </View>
+              <View style={styles.row}>
+                <View style={styles.darkSquare} />
+                <View style={styles.darkRectangle} />
+              </View>
+              <View style={styles.row}>
+                <View style={styles.darkButton} />
+              </View>
+            </TouchableOpacity>
+            <Text style={styles.themeText}>{t("theme.dark")}</Text>
+          </View>
+
+          <View style={styles.themeButtonWrapper}>
+            <TouchableOpacity
+              style={[
+                styles.lightContainer,
+                theme === "light" && { borderColor: colors.selectedColor },
+              ]}
+              onPress={() => toggleTheme("light")}
+            >
+              <View style={styles.row}>
+                <View style={styles.lightSquare} />
+                <View style={styles.lightRectangle} />
+              </View>
+              <View style={styles.row}>
+                <View style={styles.lightSquare} />
+                <View style={styles.lightRectangle} />
+              </View>
+              <View style={styles.row}>
+                <View style={styles.lightButton} />
+              </View>
+            </TouchableOpacity>
+            <Text style={styles.themeText}>{t("theme.light")}</Text>
+          </View>
+        </View>
       </View>
     </Screen>
   );
