@@ -18,7 +18,7 @@ export const shops: Shop[] = [
     },
     latitude: 32.1,
     longitude: 36.09,
-    image: require("../../assets/supermarket.png"),
+    image: require("../assets/supermarket.png"),
     rating: 4.8,
     reviews: 120,
     distance: "100m",
@@ -36,7 +36,7 @@ export const shops: Shop[] = [
     },
     latitude: 32.1002,
     longitude: 36.0905,
-    image: require("../../assets/supermarket2.png"),
+    image: require("../assets/supermarket2.png"),
     rating: 4.5,
     reviews: 98,
     distance: "150m",
@@ -54,7 +54,7 @@ export const shops: Shop[] = [
     },
     latitude: 32.0998,
     longitude: 36.0895,
-    image: require("../../assets/supermarket3.png"),
+    image: require("../assets/supermarket3.png"),
     rating: 4.9,
     reviews: 50,
     distance: "200m",
@@ -72,7 +72,7 @@ export const shops: Shop[] = [
     },
     latitude: 32.1001,
     longitude: 36.091,
-    image: require("../../assets/supermarket2.png"),
+    image: require("../assets/supermarket2.png"),
     rating: 4.6,
     reviews: 80,
     distance: "250m",
@@ -91,7 +91,7 @@ export const orders: Order[] = [
     status: { ar: "تم التوصيل", en: "Delivered" },
     price: 5.5,
     quantity: 2,
-    image: require("../../assets/PizzaMargherita.jpg"),
+    image: require("../assets/PizzaMargherita.jpg"),
   },
   {
     id: 2,
@@ -100,7 +100,7 @@ export const orders: Order[] = [
     status: { ar: "قيد الانتظار", en: "Pending" },
     price: 3.2,
     quantity: 1,
-    image: require("../../assets/ChickenBurger.jpg"),
+    image: require("../assets/ChickenBurger.jpg"),
   },
   {
     id: 3,
@@ -109,7 +109,7 @@ export const orders: Order[] = [
     status: { ar: "ملغى", en: "Cancelled" },
     price: 2.8,
     quantity: 1,
-    image: require("../../assets/GreekSalad.jpg"),
+    image: require("../assets/GreekSalad.jpg"),
   },
 ];
 
@@ -119,21 +119,21 @@ export const favorites: Favorite[] = [
     name: { ar: "دكان أبو محمد", en: "Abu Mohammed Shop" },
     rating: 4.8,
     distance: "100m",
-    image: require("../../assets/supermarket.png"),
+    image: require("../assets/supermarket.png"),
   },
   {
     id: 2,
     name: { ar: "دكان أبو حسن", en: "Abu Hassan Shop" },
     rating: 4.9,
     distance: "200m",
-    image: require("../../assets/supermarket3.png"),
+    image: require("../assets/supermarket3.png"),
   },
   {
     id: 3,
     name: { ar: "دكان المدينة", en: "Al-Madina Shop" },
     rating: 4.6,
     distance: "250m",
-    image: require("../../assets/supermarket2.png"),
+    image: require("../assets/supermarket2.png"),
   },
 ];
 
@@ -149,16 +149,19 @@ export const savedAddresses: SavedAddress[] = [
     id: 1,
     name: { ar: "المنزل", en: "Home" },
     address: "شارع الملكة رانيا، عمان",
+    isDefault: true,
   },
   {
     id: 2,
     name: { ar: "العمل", en: "Work" },
     address: "شارع المدينة، عمان",
+    isDefault: false,
   },
   {
     id: 3,
     name: { ar: "الجامعة", en: "University" },
     address: "شارع الجامعة، عمان",
+    isDefault: false,
   },
 ];
 
@@ -166,6 +169,8 @@ export const paymentMethods: PaymentMethod[] = [
   { id: 1, type: "Visa", last4: "1234", expiry: "12/25" },
   { id: 2, type: "MasterCard", last4: "5678", expiry: "03/26" },
   { id: 3, type: "PayPal", last4: "abcd", expiry: "N/A" },
+  { id: 4, type: "CliQ", last4: "9876", expiry: "N/A" },
+  { id: 5, type: "ApplePay", last4: "4321", expiry: "N/A" },
 ];
 
 // Receipts

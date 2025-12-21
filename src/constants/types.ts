@@ -44,6 +44,7 @@ export interface SavedAddress {
   id: number;
   name: TranslatedString;
   address: string;
+  isDefault: boolean
 }
 
 export interface PaymentMethod {

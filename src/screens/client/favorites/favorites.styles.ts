@@ -3,7 +3,6 @@ import { StyleSheet } from "react-native";
 export const getStyles = (colors: any) =>
   StyleSheet.create({
     list: {
-      flex: 1,
       paddingHorizontal: 16,
       paddingBottom: 16,
     },

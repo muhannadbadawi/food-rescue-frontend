@@ -74,8 +74,10 @@
   },
   "payment": {
     "paymentMethod": "Payment Method",
+    "default": "Default",
     "last4": "Last 4 digits",
-    "expiry": "Expiry Date"
+    "expiry": "Expiry",
+    "addNew": "Add New"
   },
   "theme": {
     "chooseYourTheme": "Choose your preferred theme",
@@ -85,5 +87,17 @@
   "earn": {
     "totalEarnings": "Total Earnings",
     "daily": "Daily earning"
+  },
+  "receipts": {
+    "totalReceipts": "Total Receipts",
+    "noReceipts": "No receipts available",
+    "date": "Date",
+    "description": "Description",
+    "amount": "Amount"
+  },
+  "savedAddresses": {
+    "default": "Default",
+    "edit": "Edit",
+    "delete": "Delete"
   }
 }

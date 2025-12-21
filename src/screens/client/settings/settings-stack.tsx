@@ -8,6 +8,7 @@ import PaymentMethod from "./payment-method/payment-method";
 import LanguageScreen from "./language-screen/language-screen";
 import ThemeScreen from "./theme-screen/theme-screen";
 import Profile from "./profile/profile";
+import Country from "./country/country";
 
 export type SettingsStackParamList = {
   SettingsMain: undefined;
@@ -17,6 +18,7 @@ export type SettingsStackParamList = {
   PaymentMethod: undefined;
   LanguageScreen: undefined;
   ThemeScreen: undefined;
+  Country: undefined;
 };
 
 const Stack = createNativeStackNavigator<SettingsStackParamList>();
@@ -29,6 +31,7 @@ export default function SettingsStack() {
       <Stack.Screen name="Receipts" component={Receipts} />
       <Stack.Screen name="SavedAddresses" component={SavedAddresses} />
       <Stack.Screen name="PaymentMethod" component={PaymentMethod} />
+      <Stack.Screen name="Country" component={Country} />
       <Stack.Screen name="LanguageScreen" component={LanguageScreen} />
       <Stack.Screen name="ThemeScreen" component={ThemeScreen} />
     </Stack.Navigator>

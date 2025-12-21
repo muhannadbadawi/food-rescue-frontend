@@ -41,16 +41,10 @@ RootStack
 ```
 
 
-
 ```
 food-rescue
 ├─ app.json
 ├─ App.tsx
-├─ assets
-│  ├─ FoodRescueLogo.png
-│  ├─ supermarket.png
-│  ├─ supermarket2.png
-│  └─ supermarket3.png
 ├─ babel.config.js
 ├─ eas.json
 ├─ package.json
@@ -62,8 +56,24 @@ food-rescue
 ├─ src
 │  ├─ api
 │  │  └─ user-service.ts
+│  ├─ assets
+│  │  ├─ cards
+│  │  │  ├─ CliQ.png
+│  │  │  ├─ Mastercard.jpg
+│  │  │  ├─ PayPal.jpg
+│  │  │  └─ Visa.jpg
+│  │  ├─ ChickenBurger.jpg
+│  │  ├─ FoodRescueLogo.png
+│  │  ├─ GreekSalad.jpg
+│  │  ├─ PizzaMargherita.jpg
+│  │  ├─ supermarket.png
+│  │  ├─ supermarket2.png
+│  │  └─ supermarket3.png
 │  ├─ constants
-│  │  └─ Colors.ts
+│  │  ├─ Colors.ts
+│  │  ├─ Fonts.ts
+│  │  ├─ mockData.ts
+│  │  └─ types.ts
 │  ├─ localization
 │  │  ├─ ar.json
 │  │  ├─ en.json
@@ -105,12 +115,18 @@ food-rescue
 │  │     │  ├─ orders.styles.ts
 │  │     │  └─ orders.tsx
 │  │     └─ settings
+│  │        ├─ country
+│  │        │  ├─ country.styles.ts
+│  │        │  └─ country.tsx
 │  │        ├─ language-screen
 │  │        │  ├─ language-screen.styles.ts
 │  │        │  └─ language-screen.tsx
 │  │        ├─ payment-method
 │  │        │  ├─ payment-method.styles.ts
 │  │        │  └─ payment-method.tsx
+│  │        ├─ profile
+│  │        │  ├─ profile.styles.ts
+│  │        │  └─ profile.tsx
 │  │        ├─ receipts
 │  │        │  ├─ receipts.styles.ts
 │  │        │  └─ receipts.tsx
@@ -129,6 +145,7 @@ food-rescue
 │  │  │  ├─ avatar.styles.ts
 │  │  │  └─ avatar.tsx
 │  │  ├─ bottom-sheet
+│  │  │  ├─ bottom-sheet.styles.ts
 │  │  │  └─ bottom-sheet.tsx
 │  │  ├─ empty
 │  │  │  ├─ empty.styles.ts

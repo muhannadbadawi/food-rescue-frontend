@@ -1,10 +1,32 @@
-// src/screens/client/settings/receipts/receipts.styles.ts
 import { StyleSheet } from "react-native";
 
 export const getStyles = (colors: any) =>
   StyleSheet.create({
     list: {
       padding: 16,
+    },
+    totalContainer: {
+      backgroundColor: colors.cardBackground,
+      margin: 16,
+      padding: 16,
+      borderRadius: 12,
+      alignItems: "center",
+      justifyContent: "center",
+      shadowColor: "#000",
+      shadowOffset: { width: 0, height: 1 },
+      shadowOpacity: 0.1,
+      shadowRadius: 3,
+      elevation: 2,
+    },
+    totalLabel: {
+      fontSize: 14,
+      color: colors.textMuted,
+    },
+    totalAmount: {
+      fontSize: 22,
+      fontWeight: "bold",
+      color: colors.primary,
+      marginTop: 4,
     },
     card: {
       backgroundColor: colors.cardBackground,
@@ -17,6 +39,11 @@ export const getStyles = (colors: any) =>
       shadowRadius: 3,
       elevation: 2,
     },
+    row: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+    },
     date: {
       fontSize: 14,
       color: colors.textPrimary,
@@ -26,7 +53,6 @@ export const getStyles = (colors: any) =>
       fontSize: 16,
       fontWeight: "500",
       color: colors.textMuted,
-      marginBottom: 4,
     },
     amount: {
       fontSize: 16,

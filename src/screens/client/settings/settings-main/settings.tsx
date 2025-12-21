@@ -44,6 +44,9 @@ const ProfileScreen = () => {
   const goToThemeScreen = () => {
     localNavigation.navigate(SettingScreens.ThemeScreen);
   };
+  const goToCountry = () => {
+    localNavigation.navigate(SettingScreens.Country);
+  };
 
   const onLogout = () => {
     logout(false);
@@ -80,7 +83,9 @@ const ProfileScreen = () => {
       id: 3,
       title: t("settings.country"),
       icon: <Ionicons name={"globe-outline"} size={24} style={styles.icon} />,
-      onClick: () => {},
+      onClick: () => {
+        goToCountry();
+      },
     },
     {
       id: 4,

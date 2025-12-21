@@ -74,8 +74,10 @@
   },
   "payment": {
     "paymentMethod": "طريقة الدفع",
+    "default": "الافتراضية",
     "last4": "آخر 4 أرقام",
-    "expiry": "تاريخ الانتهاء"
+    "expiry": "تاريخ الانتهاء",
+    "addNew": "إضافة طريقة جديدة"
   },
   "theme": {
     "chooseYourTheme": "اختر المظهر المفضل لديك",
@@ -85,5 +87,17 @@
   "earn": {
     "totalEarnings": "إجمالي الأرباح",
     "daily": "الأرباح اليومية"
+  },
+  "receipts": {
+    "totalReceipts": "إجمالي الإيصالات",
+    "noReceipts": "لا توجد إيصالات",
+    "date": "التاريخ",
+    "description": "الوصف",
+    "amount": "المبلغ"
+  },
+  "savedAddresses": {
+    "default": "افتراضي",
+    "edit": "تعديل",
+    "delete": "حذف"
   }
 }

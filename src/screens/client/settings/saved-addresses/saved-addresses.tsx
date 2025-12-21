@@ -1,4 +1,3 @@
-// src/screens/client/settings/saved-addresses/saved-addresses.tsx
 import React from "react";
 import { View, Text, FlatList, TouchableOpacity } from "react-native";
 import { useTheme } from "@/src/theme/theme-context";
@@ -7,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import Screen from "@/src/shared/screen/screen";
 import EmptyScreen from "@/src/shared/empty/empty";
 import { savedAddresses } from "@/src/constants/mockData";
+import { MaterialIcons } from "@expo/vector-icons";
 
 const SavedAddressesScreen = () => {
   const colors = useTheme();
@@ -15,9 +15,38 @@ const SavedAddressesScreen = () => {
   const currentLang = i18n.language as "ar" | "en";
 
   const renderItem = ({ item }: any) => (
-    <TouchableOpacity style={styles.card}>
-      <Text style={styles.name}>{item.name[currentLang]}</Text>
-      <Text style={styles.address}>{item.address}</Text>
+    <TouchableOpacity activeOpacity={0.8}>
+      <View style={styles.card}>
+        <MaterialIcons
+          name="location-on"
+          size={24}
+          color={colors.primary}
+          style={styles.locationIcon}
+        />
+
+        <View style={styles.infoContainer}>
+          <View style={styles.nameRow}>
+            <Text style={styles.name}>{item.name[currentLang]}</Text>
+            {item.isDefault && (
+              <View style={styles.defaultBadge}>
+                <Text style={styles.defaultBadgeText}>
+                  {t("savedAddresses.default")}
+                </Text>
+              </View>
+            )}
+          </View>
+          <Text style={styles.address}>{item.address}</Text>
+        </View>
+
+        <View style={styles.actions}>
+          <TouchableOpacity style={styles.iconButton}>
+            <MaterialIcons name="edit" size={20} color={colors.primary} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.iconButton}>
+            <MaterialIcons name="delete" size={20} color={colors.error} />
+          </TouchableOpacity>
+        </View>
+      </View>
     </TouchableOpacity>
   );
 
@@ -31,6 +60,7 @@ const SavedAddressesScreen = () => {
           keyExtractor={(item) => item.id.toString()}
           renderItem={renderItem}
           contentContainerStyle={styles.list}
+          ItemSeparatorComponent={() => <View style={{ height: 12 }} />}
         />
       )}
     </Screen>
