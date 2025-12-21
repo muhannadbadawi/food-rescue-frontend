@@ -11,38 +11,35 @@ const LanguageScreen = () => {
   const styles = getStyles(colors);
   const { t, i18n } = useTranslation();
 
-  const languages = [
+  const languages: Array<{ code: "ar" | "en"; label: string }> = [
     { code: "en", label: "English" },
     { code: "ar", label: "العربية" },
   ];
 
-  const toggleLanguage = () => {
-    const nextLang = i18n.language === "ar" ? "en" : "ar";
-    changeLanguage(nextLang);
+  const handleChangeLanguage = (code: "ar" | "en") => {
+    if (i18n.language !== code) {
+      changeLanguage(code);
+    }
   };
 
   return (
     <Screen showBackButton title={t("settings.language")}>
       <View style={styles.container}>
-        {languages.map((lang) => (
-          <TouchableOpacity
-            key={lang.code}
-            style={[
-              styles.languageButton,
-              i18n.language === lang.code && styles.selectedLanguage,
-            ]}
-            onPress={() => toggleLanguage()}
-          >
-            <Text
-              style={[
-                styles.languageText,
-                i18n.language === lang.code && styles.selectedLanguageText,
-              ]}
+        {languages.map((lang) => {
+          const isSelected = i18n.language === lang.code;
+          return (
+            <TouchableOpacity
+              key={lang.code}
+              style={styles.languageRow}
+              onPress={() => handleChangeLanguage(lang.code)}
             >
-              {lang.label}
-            </Text>
-          </TouchableOpacity>
-        ))}
+              <View style={[styles.radioCircle, isSelected && styles.selectedRadio]}>
+                {isSelected && <View style={styles.radioInner} />}
+              </View>
+              <Text style={styles.languageText}>{lang.label}</Text>
+            </TouchableOpacity>
+          );
+        })}
       </View>
     </Screen>
   );

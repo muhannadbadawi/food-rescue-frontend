@@ -13,14 +13,14 @@ export const getStyles = (colors: any) =>
     title: {
       fontSize: 22,
       fontWeight: "600",
-      color: colors.text,
+      color: colors.textPrimary,
       textAlign: "center",
       marginBottom: 8,
     },
 
     subtitle: {
       fontSize: 14,
-      color: colors.text,
+      color: colors.textPrimary,
       textAlign: "center",
       marginBottom: 32,
       opacity: 0.7,
@@ -42,7 +42,7 @@ export const getStyles = (colors: any) =>
     pinCodeText: {
       fontSize: 20,
       fontWeight: "600",
-      color: colors.text,
+      color: colors.textPrimary,
     },
 
     button: {
@@ -73,7 +73,7 @@ export const getStyles = (colors: any) =>
     },
     forgotText: {
       fontSize: 14,
-      color: colors.text,
+      color: colors.textPrimary,
       fontWeight: "bold",
     },
 

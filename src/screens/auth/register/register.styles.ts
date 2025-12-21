@@ -13,7 +13,7 @@ export const getStyles = (colors: any) =>
       fontSize: 28,
       fontWeight: "bold",
       marginBottom: 4,
-      color: colors.text, 
+      color: colors.textPrimary, 
     },
     subtitle: {
       fontSize: 16,
@@ -27,7 +27,7 @@ export const getStyles = (colors: any) =>
       borderRadius: 8,
       paddingHorizontal: 15,
       fontSize: 16,
-      color: colors.text, 
+      color: colors.textPrimary, 
       marginBottom: 16,
     },
     button: {
@@ -50,7 +50,7 @@ export const getStyles = (colors: any) =>
     },
     loginText: {
       fontSize: 14,
-      color: colors.text, 
+      color: colors.textPrimary, 
     },
     loginLink: {
       fontSize: 14,

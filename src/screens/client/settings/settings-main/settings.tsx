@@ -119,7 +119,7 @@ const ProfileScreen = () => {
             <Text style={styles.avatarName}>John Doe</Text>
           </View>
           <TouchableOpacity>
-            <Ionicons name="pencil-outline" size={24} color={colors.text} />
+            <Ionicons name="pencil-outline" size={24} color={colors.textPrimary} />
           </TouchableOpacity>
         </View>
 

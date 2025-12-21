@@ -13,7 +13,7 @@ export const getStyles = (colors: any) =>
     },
     themeButtonText: {
       fontSize: 16,
-      color: colors.text,
+      color: colors.textPrimary,
       fontWeight: "bold",
     },
   });

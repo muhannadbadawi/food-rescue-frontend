@@ -10,7 +10,7 @@ export const getStyles = (colors: any) =>
     },
     title: {
       fontSize: 28,
-      color: colors.text,
+      color: colors.textPrimary,
       fontWeight: "bold",
       marginBottom: 4,
     },
@@ -27,7 +27,7 @@ export const getStyles = (colors: any) =>
       paddingHorizontal: 15,
       fontSize: 16,
       marginBottom: 16,
-      color: colors.text,
+      color: colors.textPrimary,
     },
     button: {
       backgroundColor: colors.primary,
@@ -51,7 +51,7 @@ export const getStyles = (colors: any) =>
     },
     forgotText: {
       fontSize: 14,
-      color: colors.text,
+      color: colors.textPrimary,
       fontWeight: "bold",
     },
   });

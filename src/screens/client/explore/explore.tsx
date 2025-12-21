@@ -1,35 +1,34 @@
+// src/screens/client/explore/explore.tsx
 import React, { useEffect, useState } from "react";
-import {
-  StyleSheet,
-  View,
-  Dimensions,
-  ActivityIndicator,
-  Alert,
-  Text,
-} from "react-native";
+import { View, ActivityIndicator, Text, Alert } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
+import { useTranslation } from "react-i18next";
+
 import GenericBottomSheet from "@/src/shared/bottom-sheet/bottom-sheet";
 import Screen from "@/src/shared/screen/screen";
 import { useTheme } from "@/src/theme/theme-context";
 import { getStyles } from "./explore.styles";
+import { shops as mockShops } from "@/src/constants/mockData";
+import { Shop } from "@/src/constants/types";
 
 export default function Explore() {
   const [location, setLocation] = useState<Location.LocationObject | null>(
     null
   );
   const [sheetOpen, setSheetOpen] = useState(false);
+  const [selectedShop, setSelectedShop] = useState<Shop | null>(null);
+
   const colors = useTheme();
   const styles = getStyles(colors);
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language as "ar" | "en";
 
   useEffect(() => {
     (async () => {
       const { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {
-        Alert.alert(
-          "Permission Denied",
-          "Enable location services to use this feature."
-        );
+        Alert.alert(t("explore.permissionDenied"), t("explore.enableLocation"));
         return;
       }
       const loc = await Location.getCurrentPositionAsync({});
@@ -40,39 +39,12 @@ export default function Explore() {
   if (!location) {
     return (
       <View style={styles.loader}>
-        <ActivityIndicator size="large" color="#007AFF" />
+        <ActivityIndicator size="large" color={colors.primary} />
       </View>
     );
   }
 
   const { latitude, longitude } = location.coords;
-
-  const shops = [
-    {
-      id: 1,
-      name: "دكان ابو محمد",
-      description: "24 ساعة مفتوح",
-      latitude: latitude + 0.001,
-      longitude: longitude + 0.001,
-      image: require("../../../../assets/supermarket.png"),
-    },
-    {
-      id: 2,
-      name: "دكان ابو علي",
-      description: "12 ساعة مفتوح",
-      latitude: latitude + 0.007,
-      longitude: longitude + 0.001,
-      image: require("../../../../assets/supermarket2.png"),
-    },
-    {
-      id: 3,
-      name: "دكان ابو حسن",
-      description: "5 ساعة مفتوح",
-      latitude: latitude + 0.001,
-      longitude: longitude + 0.009,
-      image: require("../../../../assets/supermarket3.png"),
-    },
-  ];
 
   return (
     <Screen>
@@ -86,16 +58,19 @@ export default function Explore() {
           longitudeDelta: 0.01,
         }}
       >
-        <Marker coordinate={{ latitude, longitude }} title="أنت هنا" />
-
-        {shops.map((shop) => (
+        <Marker
+          coordinate={{ latitude, longitude }}
+          title={t("explore.youAreHere")}
+        />
+        {mockShops.map((shop) => (
           <Marker
             key={shop.id}
             coordinate={{ latitude: shop.latitude, longitude: shop.longitude }}
-            title={shop.name}
-            description={shop.description}
+            title={shop.name[currentLang]}
+            description={shop.description[currentLang]}
             image={shop.image}
             onPress={() => {
+              setSelectedShop(shop);
               setSheetOpen(true);
             }}
           />
@@ -103,27 +78,38 @@ export default function Explore() {
       </MapView>
 
       <GenericBottomSheet
-        height={400}
+        height={260}
         isOpen={sheetOpen}
         onClose={() => setSheetOpen(false)}
       >
-        <Text style={{ fontSize: 18, fontWeight: "bold" }}>
-          Hello from the bottom sheet!
-        </Text>
-        <Text>Put any content you want here.</Text>
+        {selectedShop ? (
+          <View style={styles.sheetContent}>
+            <Text style={styles.shopName}>
+              {selectedShop.name[currentLang]}
+            </Text>
+            <Text style={styles.shopDescription}>
+              {selectedShop.description[currentLang]}
+            </Text>
+            <Text style={styles.rating}>
+              ⭐ {selectedShop.rating} ({selectedShop.reviews}
+              {t("explore.reviews")})
+            </Text>
+            <Text style={styles.distance}>
+              📍 {t("explore.distance")}: {selectedShop.distance}
+            </Text>
+            <Text style={styles.offersTitle}>{t("explore.offers")}</Text>
+            {selectedShop.offers.map(
+              (offer: { ar: string; en: string }, idx) => (
+                <Text key={idx} style={styles.offerItem}>
+                  • {offer[currentLang]}
+                </Text>
+              )
+            )}
+          </View>
+        ) : (
+          <Text style={styles.emptyText}>{t("explore.noShopSelected")}</Text>
+        )}
       </GenericBottomSheet>
     </Screen>
   );
 }
-
-const styles = StyleSheet.create({
-  map: {
-    width: Dimensions.get("window").width,
-    height: Dimensions.get("window").height,
-  },
-  loader: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});

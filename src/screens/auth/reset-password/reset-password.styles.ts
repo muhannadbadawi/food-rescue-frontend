@@ -23,14 +23,14 @@ export const getStyles = (colors: any) =>
     title: {
       fontSize: 22,
       fontWeight: "600",
-      color: colors.text,
+      color: colors.textPrimary,
       textAlign: "center",
       marginBottom: 8,
     },
 
     subtitle: {
       fontSize: 14,
-      color: colors.text,
+      color: colors.textPrimary,
       textAlign: "center",
       marginBottom: 24,
       opacity: 0.7,
@@ -44,7 +44,7 @@ export const getStyles = (colors: any) =>
       paddingVertical: 12,
       fontSize: 16,
       marginBottom: 16,
-      color: colors.text,
+      color: colors.textPrimary,
     },
 
     button: {
@@ -90,7 +90,7 @@ export const getStyles = (colors: any) =>
       flex: 1,
       height: 50,
       fontSize: 16,
-      color: colors.text,
+      color: colors.textPrimary,
     },
     eyeIcon: {
       padding: 8,

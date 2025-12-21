@@ -13,7 +13,7 @@ export const getStyles = (colors: any) =>
       padding: 20,
     },
     headerTitle: {
-      color: colors.text,
+      color: colors.textPrimary,
       fontSize: 18,
       fontWeight: "bold",
       textAlign: "center",

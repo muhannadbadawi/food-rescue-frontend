@@ -1,6 +1,11 @@
+import { useTheme } from "@/src/theme/theme-context";
 import React, { useEffect } from "react";
 import { Dimensions, StyleSheet, View } from "react-native";
-import { Gesture, GestureDetector } from "react-native-gesture-handler";
+import {
+  Gesture,
+  GestureDetector,
+  ScrollView,
+} from "react-native-gesture-handler";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -9,6 +14,7 @@ import Animated, {
   Extrapolate,
   runOnJS,
 } from "react-native-reanimated";
+import { getStyles } from "./bottom-sheet.styles";
 
 const { height: SCREEN_HEIGHT } = Dimensions.get("window");
 
@@ -27,14 +33,16 @@ export default function GenericBottomSheet({
   onOpen,
   children,
 }: BottomSheetProps) {
-  const translateY = useSharedValue(height); 
+  const translateY = useSharedValue(height);
   const startY = useSharedValue(0);
+  const colors = useTheme();
+  const styles = getStyles(colors);
 
   useEffect(() => {
     translateY.value = withSpring(isOpen ? 0 : height, {
       damping: 50,
-      stiffness: 80, 
-      mass: 0.8, 
+      stiffness: 80,
+      mass: 0.8,
     });
   }, [isOpen]);
 
@@ -82,37 +90,12 @@ export default function GenericBottomSheet({
     <View style={styles.wrapper} pointerEvents="box-none">
       <Animated.View style={[styles.sheet, { height }, animatedStyle]}>
         <GestureDetector gesture={panGesture}>
-          <View style={styles.handle} />
+          <View style={styles.handleContainer}>
+            <View style={styles.handle} />
+          </View>
         </GestureDetector>
-        {children}
+        <ScrollView>{children}</ScrollView>
       </Animated.View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  wrapper: {
-    ...StyleSheet.absoluteFillObject,
-    justifyContent: "flex-end",
-  },
-  sheet: {
-    backgroundColor: "#FFF",
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    paddingTop: 12,
-    paddingHorizontal: 16,
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: -4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 8,
-    elevation: 12,
-  },
-  handle: {
-    width: 44,
-    height: 5,
-    borderRadius: 3,
-    backgroundColor: "#CCC",
-    alignSelf: "center",
-    marginBottom: 12,
-  },
-});

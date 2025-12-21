@@ -41,6 +41,7 @@ RootStack
 ```
 
 
+
 ```
 food-rescue
 ├─ app.json
@@ -50,8 +51,13 @@ food-rescue
 │  ├─ supermarket.png
 │  ├─ supermarket2.png
 │  └─ supermarket3.png
+├─ babel.config.js
 ├─ eas.json
 ├─ package.json
+├─ plop-templates
+│  ├─ component.styles.ts.hbs
+│  └─ component.tsx.hbs
+├─ plopfile.js
 ├─ README.md
 ├─ src
 │  ├─ api
@@ -66,7 +72,7 @@ food-rescue
 │  │  ├─ app-screens.ts
 │  │  ├─ app-stack.tsx
 │  │  ├─ auth-stack.tsx
-│  │  └─ profile-screens.ts
+│  │  └─ setting-screens.ts
 │  ├─ screens
 │  │  ├─ auth
 │  │  │  ├─ auth-context.tsx
@@ -86,25 +92,38 @@ food-rescue
 │  │  │     ├─ reset-password.styles.ts
 │  │  │     └─ reset-password.tsx
 │  │  └─ client
+│  │     ├─ earn
+│  │     │  ├─ earn.styles.ts
+│  │     │  └─ earn.tsx
 │  │     ├─ explore
 │  │     │  ├─ explore.styles.ts
 │  │     │  └─ explore.tsx
-│  │     ├─ layout
-│  │     │  └─ layout.tsx
-│  │     └─ profile
+│  │     ├─ favorites
+│  │     │  ├─ favorites.styles.ts
+│  │     │  └─ favorites.tsx
+│  │     ├─ orders
+│  │     │  ├─ orders.styles.ts
+│  │     │  └─ orders.tsx
+│  │     └─ settings
+│  │        ├─ language-screen
+│  │        │  ├─ language-screen.styles.ts
+│  │        │  └─ language-screen.tsx
 │  │        ├─ payment-method
 │  │        │  ├─ payment-method.styles.ts
 │  │        │  └─ payment-method.tsx
-│  │        ├─ profile-main
-│  │        │  ├─ profile.styles.ts
-│  │        │  └─ profile.tsx
-│  │        ├─ profile-stack.tsx
 │  │        ├─ receipts
 │  │        │  ├─ receipts.styles.ts
 │  │        │  └─ receipts.tsx
-│  │        └─ saved-addresses
-│  │           ├─ saved-addresses.styles.ts
-│  │           └─ saved-addresses.tsx
+│  │        ├─ saved-addresses
+│  │        │  ├─ saved-addresses.styles.ts
+│  │        │  └─ saved-addresses.tsx
+│  │        ├─ settings-main
+│  │        │  ├─ settings.styles.ts
+│  │        │  └─ settings.tsx
+│  │        ├─ settings-stack.tsx
+│  │        └─ theme-screen
+│  │           ├─ theme-screen.styles.ts
+│  │           └─ theme-screen.tsx
 │  ├─ shared
 │  │  ├─ avatar
 │  │  │  ├─ avatar.styles.ts
@@ -114,6 +133,9 @@ food-rescue
 │  │  ├─ empty
 │  │  │  ├─ empty.styles.ts
 │  │  │  └─ empty.tsx
+│  │  ├─ screen
+│  │  │  ├─ screen.styles.ts
+│  │  │  └─ screen.tsx
 │  │  └─ text
 │  ├─ stores
 │  │  └─ useStoreLocations.ts

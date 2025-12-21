@@ -5,22 +5,32 @@ export const getStyles = (colors: any) =>
     container: {
       padding: 20,
     },
-    languageButton: {
-      padding: 15,
-      borderRadius: 8,
-      backgroundColor: colors.card,
-      marginBottom: 10,
+    languageRow: {
+      flexDirection: "row",
+      alignItems: "center",
+      marginBottom: 20,
     },
-    selectedLanguage: {
+    radioCircle: {
+      height: 24,
+      width: 24,
+      borderRadius: 12,
+      borderWidth: 2,
+      borderColor: colors.primary,
+      alignItems: "center",
+      justifyContent: "center",
+      marginRight: 12,
+    },
+    selectedRadio: {
+      borderColor: colors.primary,
+    },
+    radioInner: {
+      height: 12,
+      width: 12,
+      borderRadius: 6,
       backgroundColor: colors.primary,
     },
     languageText: {
       fontSize: 16,
-      color: colors.text,
-      textAlign: "center",
-    },
-    selectedLanguageText: {
-      color: "#fff",
-      fontWeight: "bold",
+      color: colors.textPrimary,
     },
   });

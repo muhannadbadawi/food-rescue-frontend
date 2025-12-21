@@ -62,5 +62,19 @@
     "subtitle": "When you have content, it will appear here",
     "darkMode": "Dark Mode",
     "lightMode": "Light Mode"
+  },
+  "explore": {
+    "permissionDenied": "Permission Denied",
+    "enableLocation": "Enable location services to use this feature.",
+    "youAreHere": "You are here",
+    "distance": "Distance",
+    "offers": "Offers",
+    "reviews": "reviews",
+    "noShopSelected": "No shop selected"
+  },
+  "payment": {
+    "paymentMethod": "Payment Method",
+    "last4": "Last 4 digits",
+    "expiry": "Expiry Date"
   }
 }

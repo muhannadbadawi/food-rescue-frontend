@@ -18,7 +18,7 @@ export const getStyles = (colors: any) =>
     title: {
       fontSize: 18,
       fontWeight: "600",
-      color: colors.text,
+      color: colors.textPrimary,
       marginBottom: 8,
       textAlign: "center",
     },

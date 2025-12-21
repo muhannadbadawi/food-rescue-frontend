@@ -1,35 +1,60 @@
-/**
- * App default colors for light and dark theme
- */
-
 const tintColorLight = "#4aaf5bff";
 const tintColorDark = "#ffffff";
 
 export const DefaultColors = {
   light: {
-    primary: "#4aaf5bff", // Buttons, highlights
-    primaryText: "#ffffff", // Text on primary background
-    secondaryText: "#6e6e6eff", // Secondary text
-    background: "#ffffff", // Screen background
-    text: "#11181C", // Main text
+    primary: "#4aaf5bff",
+    primaryText: "#ffffff",
+
+    background: "#ffffff",
+    surface: "#f9f9f9ff",
+
+    textPrimary: "#11181C",
+    secondaryText: "#6e6e6eff",
     mutedText: "#9ca3aaff",
-    tint: tintColorLight, // Accent color
-    border: "#e2e2e2ff", // Input borders, dividers
-    icon: "#687076", // Icons
-    tabIconDefault: "#687076", // Tab inactive
-    tabIconSelected: tintColorLight, // Tab active
+
+    border: "#e2e2e2ff",
+    divider: "#f0f0f0ff",
+
+    icon: "#687076",
+    tint: tintColorLight,
+
+    tabIconDefault: "#687076",
+    tabIconSelected: tintColorLight,
+
+    success: "#22c55eff",
+    warning: "#f59e0bff",
+    error: "#FF3B30",
+    errorText: "#ffffff",
+
+    overlay: "rgba(0,0,0,0.4)",
   },
+
   dark: {
     primary: "#4aaf5bff",
     primaryText: "#ffffff",
-    secondaryText: "#9e9e9eff",
+
     background: "#121212",
-    text: "#ECEDEE",
-    tint: tintColorDark,
+    surface: "#1e1e1eff",
+
+    textPrimary: "#ECEDEE",
+    secondaryText: "#9e9e9eff",
     mutedText: "#6b7280ff",
+
     border: "#1c1c1eff",
+    divider: "#2a2a2aff",
+
     icon: "#9BA1A6",
+    tint: tintColorDark,
+
     tabIconDefault: "#9BA1A6",
     tabIconSelected: tintColorDark,
+
+    success: "#22c55eff",
+    warning: "#fbbf24ff",
+    error: "#ff453aff",
+    errorText: "#ffffff",
+
+    overlay: "rgba(0,0,0,0.6)",
   },
 } as const;

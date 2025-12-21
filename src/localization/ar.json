@@ -62,5 +62,19 @@
     "subtitle": "سيظهر المحتوى هنا عند توفره",
     "darkMode": "الوضع الداكن",
     "lightMode": "الوضع الفاتح"
+  },
+  "explore": {
+    "permissionDenied": "تم رفض الإذن",
+    "enableLocation": "يرجى تفعيل خدمات الموقع لاستخدام هذه الميزة",
+    "youAreHere": "أنت هنا",
+    "distance": "المسافة",
+    "offers": "العروض",
+    "reviews": "تقييم",
+    "noShopSelected": "لا يوجد متجر محدد"
+  },
+  "payment": {
+    "paymentMethod": "طريقة الدفع",
+    "last4": "آخر 4 أرقام",
+    "expiry": "تاريخ الانتهاء"
   }
 }
