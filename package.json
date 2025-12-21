@@ -9,6 +9,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
+    "g": "plop component",
     "reinstallNM-and-run": "rm -rf node_modules && npm install && npx expo start --clear"
   },
   "dependencies": {
@@ -43,6 +44,7 @@
     "@babel/core": "^7.20.0",
     "@types/react": "~19.1.0",
     "@types/react-navigation": "^3.0.8",
+    "plop": "^4.0.4",
     "typescript": "^5.3.3"
   }
 }

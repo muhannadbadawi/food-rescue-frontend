@@ -1,0 +1,20 @@
+import React from "react";
+import { Text } from "react-native";
+import { useTheme } from "@/src/theme/theme-context";
+import { getStyles } from "./{{name}}.styles";
+import { useTranslation } from "react-i18next";
+import Screen from "@/src/shared/screen/screen";
+
+const {{pascalCase name}} = () => {
+  const colors = useTheme();
+  const styles = getStyles(colors);
+  const { t } = useTranslation();
+
+  return (
+    <Screen>
+      <Text>{{pascalCase name}} works 🚀</Text>
+    </Screen>
+  );
+};
+
+export default {{pascalCase name}};

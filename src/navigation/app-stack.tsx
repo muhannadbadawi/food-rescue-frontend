@@ -7,6 +7,9 @@ import Explore from "@/src/screens/client/explore/explore";
 import { Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import SettingsStack from "../screens/client/settings/settings-stack";
+import Favorites from "../screens/client/favorites/favorites";
+import Orders from "../screens/client/orders/orders";
+import Earn from "../screens/client/earn/earn";
 
 type AppTabParamList = {
   Explore: undefined;
@@ -49,7 +52,7 @@ export default function AppStack() {
 
       <Tab.Screen
         name="Favorites"
-        component={() => <Dummy label="Favorites" />}
+        component={() => <Favorites />}
         options={{
           tabBarLabel: t("tabs.favorites"),
           tabBarIcon: ({ color, size }) => (
@@ -60,7 +63,7 @@ export default function AppStack() {
 
       <Tab.Screen
         name="Orders"
-        component={() => <Dummy label="Orders" />}
+        component={() => <Orders />}
         options={{
           tabBarLabel: t("tabs.orders"),
           tabBarIcon: ({ color, size }) => (
@@ -71,7 +74,7 @@ export default function AppStack() {
 
       <Tab.Screen
         name="Earn"
-        component={() => <Dummy label="Earn" />}
+        component={() => <Earn />}
         options={{
           tabBarLabel: t("tabs.earn"),
           tabBarIcon: ({ color, size }) => (
