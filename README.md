@@ -15,6 +15,7 @@ The project follows a clean, scalable architecture suitable for real-world produ
 ## ✨ Features
 
 ### 🔐 Authentication
+
 - Login
 - Register
 - Forgot Password
@@ -22,6 +23,7 @@ The project follows a clean, scalable architecture suitable for real-world produ
 - Reset Password
 
 ### 📱 Main Application
+
 - Explore food offers
 - Favorites
 - Orders history
@@ -29,6 +31,7 @@ The project follows a clean, scalable architecture suitable for real-world produ
 - User profile and settings
 
 ### ⚙️ Settings
+
 - Profile management
 - Saved addresses
 - Payment methods
@@ -41,28 +44,37 @@ The project follows a clean, scalable architecture suitable for real-world produ
 
 ## 🧭 Navigation Structure
 ```
-RootStack
- ├── AuthStack
- │    ├── Login
- │    ├── Register
- │    ├── ForgotPassword
- │    └── OTP / Reset
- │
- └── AppStack
-      └── Tabs
-           ├── Explore
-           ├── Favorites
-           ├── Orders
-           ├── Earn
-           └── SettingsStack
-                ├── Profile             // Shared
-                ├── SettingsMain        // Client
-                ├── Receipts            // Client
-                ├── SavedAddresses      // Client
-                ├── PaymentMethod       // Client
-                ├── Country             // Client
-                ├── Theme               // Shared
-                └── Language            // Shared
+RootNavigator
+├── AuthStack
+│    ├── Login
+│    ├── Register
+│    ├── ForgotPassword
+│    ├── OTPScreen
+│    └── ResetPassword
+│
+├── ClientStack
+│    ├── Explore
+│    ├── Favorites
+│    ├── Orders
+│    ├── Earn
+│    └── SettingsStack
+│         ├── SettingsMain      // Client only
+│         ├── Receipts          // Client only
+│         ├── SavedAddresses    // Client only
+│         ├── PaymentMethod     // Client only
+│         ├── Country           // Client only
+│         ├── Profile           // Shared
+│         ├── Theme             // Shared
+│         └── Language          // Shared
+│
+└── MerchantStack
+     ├── Orders
+     ├── Products
+     ├── Analytics
+     └── SettingsStack
+          ├── Profile           // Shared
+          ├── Theme             // Shared
+          └── Language          // Shared
 
 ```
 
@@ -84,6 +96,7 @@ food-rescue
 │  │  └─ user-service.ts
 │  ├─ assets
 │  │  ├─ cards
+│  │  │  ├─ ApplePay.jpg
 │  │  │  ├─ CliQ.png
 │  │  │  ├─ Mastercard.jpg
 │  │  │  ├─ PayPal.jpg
@@ -105,10 +118,14 @@ food-rescue
 │  │  ├─ en.json
 │  │  └─ i18n.ts
 │  ├─ navigation
-│  │  ├─ app-screens.ts
-│  │  ├─ app-stack.tsx
-│  │  ├─ auth-stack.tsx
-│  │  └─ setting-screens.ts
+│  │  ├─ root-navigator.tsx
+│  │  ├─ screens-type
+│  │  │  ├─ auth-screens.ts
+│  │  │  └─ setting-screens.ts
+│  │  └─ stacks
+│  │     ├─ auth-stack.tsx
+│  │     ├─ client-stack.tsx
+│  │     └─ merchant-stack.tsx
 │  ├─ screens
 │  │  ├─ auth
 │  │  │  ├─ auth-context.tsx
@@ -122,6 +139,10 @@ food-rescue
 │  │  │  │  ├─ otp.styles.ts
 │  │  │  │  └─ otp.tsx
 │  │  │  ├─ register
+│  │  │  │  ├─ fields
+│  │  │  │  │  └─ shop-owner-fields
+│  │  │  │  │     ├─ fields.styles.ts
+│  │  │  │  │     └─ shop-owner-fields.tsx
 │  │  │  │  ├─ register.styles.ts
 │  │  │  │  └─ register.tsx
 │  │  │  └─ reset-password

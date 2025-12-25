@@ -18,8 +18,8 @@ import { useTheme } from "@/src/theme/theme-context";
 import { getStyles } from "./login.styles";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "../auth-context";
-import { AuthStackParamList } from "@/src/navigation/auth-stack";
-import { AuthScreen } from "@/src/navigation/auth-screens";
+import { AuthStackParamList } from "@/src/navigation/stacks/auth-stack";
+import { AuthScreen } from "@/src/navigation/screens-type/auth-screens";
 import i18n from "@/src/localization/i18n";
 
 type LoginScreenNavigationProp = NativeStackNavigationProp<
@@ -39,7 +39,7 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = () => {
-    login();
+    login("client");
     Alert.alert(
       t("login-screen.loginPressed"),
       `${t("login-screen.email")}: ${email}\n${t(

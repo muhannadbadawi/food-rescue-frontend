@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 import i18n, { changeLanguage } from "@/src/localization/i18n";
 import { SettingsStackParamList } from "../settings-stack";
 import { useAuth } from "@/src/screens/auth/auth-context";
-import { SettingScreens } from "@/src/navigation/setting-screens";
+import { SettingScreens } from "@/src/navigation/screens-type/setting-screens";
 import Screen from "@/src/shared/screen/screen";
 
 type LocalNavigationProp = NativeStackNavigationProp<
