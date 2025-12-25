@@ -2,9 +2,8 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@/src/theme/theme-context";
-
 import Explore from "@/src/screens/client/explore/explore";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import { useTranslation } from "react-i18next";
 import SettingsStack from "../screens/client/settings/settings-stack";
 import Favorites from "../screens/client/favorites/favorites";
@@ -16,14 +15,10 @@ type AppTabParamList = {
   Favorites: undefined;
   Orders: undefined;
   Earn: undefined;
-  Profile: undefined;
+  Settings: undefined;
 };
 
 const Tab = createBottomTabNavigator<AppTabParamList>();
-
-const Dummy = ({ label }: { label: string }) => (
-  <Text style={{ marginTop: 50, textAlign: "center" }}>{label}</Text>
-);
 
 export default function AppStack() {
   const colors = useTheme();
@@ -52,7 +47,7 @@ export default function AppStack() {
 
       <Tab.Screen
         name="Favorites"
-        component={() => <Favorites />}
+        component={Favorites}
         options={{
           tabBarLabel: t("tabs.favorites"),
           tabBarIcon: ({ color, size }) => (
@@ -63,7 +58,7 @@ export default function AppStack() {
 
       <Tab.Screen
         name="Orders"
-        component={() => <Orders />}
+        component={Orders}
         options={{
           tabBarLabel: t("tabs.orders"),
           tabBarIcon: ({ color, size }) => (
@@ -74,7 +69,7 @@ export default function AppStack() {
 
       <Tab.Screen
         name="Earn"
-        component={() => <Earn />}
+        component={Earn}
         options={{
           tabBarLabel: t("tabs.earn"),
           tabBarIcon: ({ color, size }) => (
@@ -84,7 +79,7 @@ export default function AppStack() {
       />
 
       <Tab.Screen
-        name="Profile"
+        name="Settings"
         component={SettingsStack}
         options={{
           tabBarLabel: t("tabs.settings"),

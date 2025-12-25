@@ -11,14 +11,28 @@
     "loginPressed": "تم الضغط على تسجيل الدخول"
   },
   "register-screen": {
-    "title": "سجل في فود ريسكيو",
-    "subtitle": "انضم إلى مجتمعنا للمساعدة في إنقاذ الطعام",
+    "title": "إنشاء حساب",
+    "subtitle": "انضم إلينا اليوم",
+    "userType": "نوع الحساب",
+    "customer": "عميل",
+    "shopOwner": "صاحب محل",
     "email": "البريد الإلكتروني",
     "phoneNumber": "رقم الهاتف",
     "password": "كلمة المرور",
-    "signUp": "تسجيل",
-    "alreadyHaveAccount": "هل لديك حساب بالفعل؟ ",
-    "login": "تسجيل الدخول"
+    "shopDetails": "تفاصيل المحل",
+    "shopName": "اسم المحل",
+    "shopAddress": "عنوان المحل",
+    "taxNumber": "الرقم الضريبي",
+    "signUp": "إنشاء حساب",
+    "registerShop": "تسجيل المحل",
+    "alreadyHaveAccount": "لديك حساب بالفعل؟",
+    "login": "تسجيل الدخول",
+    "confirm": "تأكيد",
+    "cancel": "الغاء",
+    "pickLocation": "اختر الموقع",
+    "pickImage": "اختر صورة",
+    "openCamera": "افتح الكاميرا",
+    "tapToChangePic": "انقر لتغيير الصورة"
   },
   "forgot-password-screen": {
     "title": "نسيت كلمة المرور",

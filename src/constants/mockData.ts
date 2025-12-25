@@ -8,6 +8,7 @@ import {
   PaymentMethod,
 } from "@/src/constants/types";
 
+/* ----------  Shops (now with taxNumber) ---------- */
 export const shops: Shop[] = [
   {
     id: 1,
@@ -26,6 +27,7 @@ export const shops: Shop[] = [
       { ar: "خصم 10%", en: "10% off" },
       { ar: "اشترِ 2 واحصل على 1 مجانًا", en: "Buy 2 get 1 free" },
     ],
+    taxNumber: "123456789", // <— جديد
   },
   {
     id: 2,
@@ -44,6 +46,7 @@ export const shops: Shop[] = [
       { ar: "خصم 15% على الخضار", en: "15% off on vegetables" },
       { ar: "توصيل مجاني فوق 20$", en: "Free delivery over $20" },
     ],
+    taxNumber: "987654321",
   },
   {
     id: 3,
@@ -62,6 +65,7 @@ export const shops: Shop[] = [
       { ar: "منتجات عضوية طازجة", en: "Fresh organic products" },
       { ar: "خصم 5% على الطلب الأول", en: "5% off first order" },
     ],
+    taxNumber: "111222333",
   },
   {
     id: 4,
@@ -80,9 +84,11 @@ export const shops: Shop[] = [
       { ar: "خصم على منتجات الألبان", en: "Dairy products discount" },
       { ar: "اشترِ أكثر ووفر أكثر", en: "Buy more, save more" },
     ],
+    taxNumber: "444555666",
   },
 ];
 
+/* --------------  Everything below stays the same -------------- */
 export const orders: Order[] = [
   {
     id: 1,
@@ -173,7 +179,6 @@ export const paymentMethods: PaymentMethod[] = [
   { id: 5, type: "ApplePay", last4: "4321", expiry: "N/A" },
 ];
 
-// Receipts
 export const receipts = [
   {
     id: 1,

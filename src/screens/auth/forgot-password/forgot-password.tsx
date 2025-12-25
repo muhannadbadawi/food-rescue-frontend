@@ -15,8 +15,9 @@ import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@/src/theme/theme-context";
 import { getStyles } from "./forgot-password.styles";
 import { useTranslation } from "react-i18next";
-import { AppScreens } from "@/src/navigation/app-screens";
+import { AuthScreen } from "@/src/navigation/auth-screens";
 import { AuthStackParamList } from "@/src/navigation/auth-stack";
+import i18n from "@/src/localization/i18n";
 
 type LoginScreenNavigationProp = NativeStackNavigationProp<
   AuthStackParamList,
@@ -32,7 +33,7 @@ const ForgotPassword = () => {
   const [email, setEmail] = useState("");
 
   const handleLogin = () => {
-    navigation.navigate(AppScreens.OTPScreen);
+    navigation.navigate(AuthScreen.OTPScreen);
   };
 
   return (
@@ -54,6 +55,7 @@ const ForgotPassword = () => {
             style={styles.input}
             keyboardType="email-address"
             value={email}
+            textAlign={i18n.language === "ar" ? "right" : "left"}
             onChangeText={setEmail}
           />
 

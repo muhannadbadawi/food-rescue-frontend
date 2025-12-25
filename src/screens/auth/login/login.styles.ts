@@ -44,12 +44,12 @@ export const getStyles = (colors: any) =>
       marginTop: 16,
     },
     buttonText: {
-      color: colors.primaryText,
+      color: colors.textPrimary,
       fontSize: 18,
       fontWeight: "bold",
     },
     forgotText: {
-      color: colors.tint,
+      color: colors.primary,
       fontSize: 14,
     },
     registerContainer: {
@@ -62,7 +62,7 @@ export const getStyles = (colors: any) =>
     },
     registerLink: {
       fontSize: 14,
-      color: colors.tint,
+      color: colors.primary,
       fontWeight: "bold",
     },
     passwordContainer: {

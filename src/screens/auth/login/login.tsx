@@ -19,7 +19,8 @@ import { getStyles } from "./login.styles";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "../auth-context";
 import { AuthStackParamList } from "@/src/navigation/auth-stack";
-import { AppScreens } from "@/src/navigation/app-screens";
+import { AuthScreen } from "@/src/navigation/auth-screens";
+import i18n from "@/src/localization/i18n";
 
 type LoginScreenNavigationProp = NativeStackNavigationProp<
   AuthStackParamList,
@@ -38,7 +39,7 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = () => {
-    login()
+    login();
     Alert.alert(
       t("login-screen.loginPressed"),
       `${t("login-screen.email")}: ${email}\n${t(
@@ -74,6 +75,7 @@ export default function Login() {
             placeholderTextColor={colors.textSecondary}
             style={styles.input}
             keyboardType="email-address"
+            textAlign={i18n.language === "ar" ? "right" : "left"}
             value={email}
             onChangeText={setEmail}
           />
@@ -84,6 +86,7 @@ export default function Login() {
               placeholderTextColor={colors.textSecondary}
               style={styles.passwordInput}
               secureTextEntry={!showPassword}
+              textAlign={i18n.language === "ar" ? "right" : "left"}
               value={password}
               onChangeText={setPassword}
             />
@@ -102,7 +105,7 @@ export default function Login() {
 
           <View style={{ width: "100%" }}>
             <TouchableOpacity
-              onPress={() => navigation.navigate(AppScreens.ForgotPassword)}
+              onPress={() => navigation.navigate(AuthScreen.ForgotPassword)}
             >
               <Text style={styles.forgotText}>
                 {t("login-screen.forgot-password")}

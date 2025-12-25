@@ -1,20 +1,45 @@
-# food_rescue
+# 🍽️ Food Rescue App
 
-A new Flutter project.
+Food Rescue is a mobile application built with **React Native and Expo**, designed to help reduce food waste by connecting users with restaurants and stores offering discounted surplus food.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 🚀 Overview
 
-A few resources to get you started if this is your first Flutter project:
+The application provides a complete user journey, starting from authentication and onboarding to browsing food offers, managing orders, earning rewards, and customizing user settings.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+The project follows a clean, scalable architecture suitable for real-world production applications.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---
 
+## ✨ Features
+
+### 🔐 Authentication
+- Login
+- Register
+- Forgot Password
+- OTP Verification
+- Reset Password
+
+### 📱 Main Application
+- Explore food offers
+- Favorites
+- Orders history
+- Earn rewards
+- User profile and settings
+
+### ⚙️ Settings
+- Profile management
+- Saved addresses
+- Payment methods
+- Receipts
+- Country selection
+- Language (English / Arabic)
+- Theme (Light / Dark)
+
+---
+
+## 🧭 Navigation Structure
 ```
 RootStack
  ├── AuthStack
@@ -30,17 +55,18 @@ RootStack
            ├── Orders
            ├── Earn
            └── SettingsStack
-                ├── SettingsMain
-                ├── Receipts
-                ├── SavedAddresses
-                ├── PaymentMethod
-                ├── Country
-                ├── Theme
-                └── Language
+                ├── Profile             // Shared
+                ├── SettingsMain        // Client
+                ├── Receipts            // Client
+                ├── SavedAddresses      // Client
+                ├── PaymentMethod       // Client
+                ├── Country             // Client
+                ├── Theme               // Shared
+                └── Language            // Shared
 
 ```
 
-
+## 🧭 Project Structure
 ```
 food-rescue
 ├─ app.json

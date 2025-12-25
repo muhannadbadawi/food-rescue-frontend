@@ -39,7 +39,7 @@ export const getStyles = (colors: any) =>
       marginTop: 16,
     },
     buttonText: {
-      color: colors.primaryText,
+      color: colors.textPrimary,
       fontSize: 18,
       fontWeight: "bold",
     },

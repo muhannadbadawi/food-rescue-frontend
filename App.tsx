@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Platform, StatusBar, View } from "react-native";
+import { ActivityIndicator, Platform, StatusBar, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-
-import { ThemeProvider, useTheme } from "@/src/theme/theme-context";
+import { ThemeProvider, useTheme, useThemeController } from "@/src/theme/theme-context";
 import { initI18n } from "@/src/localization/i18n";
-
 import AuthStack from "@/src/navigation/auth-stack";
 import AppStack from "@/src/navigation/app-stack";
 import { AuthProvider, useAuth } from "./src/screens/auth/auth-context";
@@ -17,8 +15,13 @@ export default function App() {
     initI18n().then(() => setReady(true));
   }, []);
 
-  if (!ready) return <View />;
-
+  if (!ready) {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
+  }
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <ThemeProvider>
@@ -32,15 +35,14 @@ export default function App() {
 
 function AppContent() {
   const colors = useTheme();
+  const { theme } = useThemeController();
   const { isLoggedIn } = useAuth();
 
   return (
     <>
       <StatusBar
-        barStyle={
-          colors.background === "#ffffff" ? "dark-content" : "light-content"
-        }
         backgroundColor={colors.background}
+        barStyle={theme === "dark" ? "light-content" : "dark-content"}
         translucent={Platform.OS === "android"}
       />
       <NavigationContainer>

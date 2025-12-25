@@ -15,13 +15,13 @@ export const getStyles = (colors: any) =>
     },
 
     summaryLabel: {
-      color: colors.primaryText,
+      color: colors.textPrimary,
       fontSize: 14,
       opacity: 0.9,
     },
 
     summaryAmount: {
-      color: colors.primaryText,
+      color: colors.textPrimary,
       fontSize: 28,
       fontWeight: "bold",
       marginTop: 6,

@@ -6,14 +6,15 @@ export interface TranslatedString {
 export interface Shop {
   id: number;
   name: TranslatedString;
-  description: TranslatedString;
-  image: any;
+  description?: TranslatedString;
+  image?: any;
   latitude: number;
   longitude: number;
-  rating: number;
-  reviews: number;
-  distance: string;
-  offers: TranslatedString[];
+  rating?: number;
+  reviews?: number;
+  distance?: string;
+  offers?: TranslatedString[];
+  taxNumber: string;
 }
 
 export interface Order {

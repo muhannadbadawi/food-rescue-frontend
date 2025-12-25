@@ -16,7 +16,7 @@ import { OtpInput } from "react-native-otp-entry";
 import { getStyles } from "./otp.styles";
 import { useTheme } from "@/src/theme/theme-context";
 import { Ionicons } from "@expo/vector-icons";
-import { AppScreens } from "@/src/navigation/app-screens";
+import { AuthScreen } from "@/src/navigation/auth-screens";
 import { AuthStackParamList } from "@/src/navigation/auth-stack";
 
 type OTPScreenNavigationProp = NativeStackNavigationProp<
@@ -34,7 +34,7 @@ const OtpScreen = () => {
 
   const onVerify = () => {
     if (otp.length !== 6) return;
-    navigation.navigate(AppScreens.ResetPassword);
+    navigation.navigate(AuthScreen.ResetPassword);
   };
 
   return (

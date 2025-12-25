@@ -1,4 +1,4 @@
-export const AppScreens = {
+export const AuthScreen = {
   Login: "Login",
   Register: "Register",
   ForgotPassword: "ForgotPassword",
@@ -8,4 +8,4 @@ export const AppScreens = {
 } as const;
 
 export type AppScreenName =
-  typeof AppScreens[keyof typeof AppScreens];
+  typeof AuthScreen[keyof typeof AuthScreen];

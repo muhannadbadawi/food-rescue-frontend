@@ -16,8 +16,9 @@ import {
 } from "react-native";
 import { useTheme } from "@/src/theme/theme-context";
 import { Ionicons } from "@expo/vector-icons";
-import { AppScreens } from "@/src/navigation/app-screens";
+import { AuthScreen } from "@/src/navigation/auth-screens";
 import { AuthStackParamList } from "@/src/navigation/auth-stack";
+import i18n from "@/src/localization/i18n";
 
 type ResetPasswordNavigationProp = NativeStackNavigationProp<
   AuthStackParamList,
@@ -42,7 +43,7 @@ const ResetPassword = () => {
       return;
     }
     console.log("Password reset:", password);
-    navigation.navigate(AppScreens.Login);
+    navigation.navigate(AuthScreen.Login);
   };
 
   return (
@@ -76,6 +77,7 @@ const ResetPassword = () => {
               placeholderTextColor={colors.textSecondary}
               style={styles.passwordInput}
               secureTextEntry={!showPassword}
+              textAlign={i18n.language === "ar" ? "right" : "left"}
               value={password}
               onChangeText={setPassword}
             />
@@ -97,6 +99,7 @@ const ResetPassword = () => {
               placeholderTextColor={colors.textSecondary}
               style={styles.passwordInput}
               secureTextEntry={!showConfirmPassword}
+              textAlign={i18n.language === "ar" ? "right" : "left"}
               value={confirmPassword}
               onChangeText={setConfirmPassword}
             />
