@@ -7,9 +7,9 @@ import {
   useThemeController,
 } from "@/src/theme/theme-context";
 import { initI18n } from "@/src/localization/i18n";
-import { AuthProvider, useAuth } from "./src/screens/auth/auth-context";
+import { AuthProvider } from "./src/screens/auth/auth-context";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-import RootStack from "./src/navigation/root-navigator";
+import RootNavigator from "./src/navigation/root-navigator";
 
 export default function App() {
   const [ready, setReady] = useState(false);
@@ -47,7 +47,7 @@ function AppContent() {
         barStyle={theme === "dark" ? "light-content" : "dark-content"}
         translucent={Platform.OS === "android"}
       />
-      <RootStack />
+      <RootNavigator />
     </NavigationContainer>
   );
 }

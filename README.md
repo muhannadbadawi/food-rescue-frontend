@@ -127,80 +127,84 @@ food-rescue
 │  │     ├─ client-stack.tsx
 │  │     └─ merchant-stack.tsx
 │  ├─ screens
-│  │  ├─ auth
-│  │  │  ├─ auth-context.tsx
-│  │  │  ├─ forgot-password
-│  │  │  │  ├─ forgot-password.styles.ts
-│  │  │  │  └─ forgot-password.tsx
-│  │  │  ├─ login
-│  │  │  │  ├─ login.styles.ts
-│  │  │  │  └─ login.tsx
-│  │  │  ├─ otp
-│  │  │  │  ├─ otp.styles.ts
-│  │  │  │  └─ otp.tsx
-│  │  │  ├─ register
-│  │  │  │  ├─ fields
-│  │  │  │  │  └─ shop-owner-fields
-│  │  │  │  │     ├─ fields.styles.ts
-│  │  │  │  │     └─ shop-owner-fields.tsx
-│  │  │  │  ├─ register.styles.ts
-│  │  │  │  └─ register.tsx
-│  │  │  └─ reset-password
-│  │  │     ├─ reset-password.styles.ts
-│  │  │     └─ reset-password.tsx
-│  │  └─ client
-│  │     ├─ earn
-│  │     │  ├─ earn.styles.ts
-│  │     │  └─ earn.tsx
-│  │     ├─ explore
-│  │     │  ├─ explore.styles.ts
-│  │     │  └─ explore.tsx
-│  │     ├─ favorites
-│  │     │  ├─ favorites.styles.ts
-│  │     │  └─ favorites.tsx
-│  │     ├─ orders
-│  │     │  ├─ orders.styles.ts
-│  │     │  └─ orders.tsx
-│  │     └─ settings
-│  │        ├─ country
-│  │        │  ├─ country.styles.ts
-│  │        │  └─ country.tsx
-│  │        ├─ language-screen
-│  │        │  ├─ language-screen.styles.ts
-│  │        │  └─ language-screen.tsx
-│  │        ├─ payment-method
-│  │        │  ├─ payment-method.styles.ts
-│  │        │  └─ payment-method.tsx
-│  │        ├─ profile
-│  │        │  ├─ profile.styles.ts
-│  │        │  └─ profile.tsx
-│  │        ├─ receipts
-│  │        │  ├─ receipts.styles.ts
-│  │        │  └─ receipts.tsx
-│  │        ├─ saved-addresses
-│  │        │  ├─ saved-addresses.styles.ts
-│  │        │  └─ saved-addresses.tsx
-│  │        ├─ settings-main
-│  │        │  ├─ settings.styles.ts
-│  │        │  └─ settings.tsx
-│  │        ├─ settings-stack.tsx
-│  │        └─ theme-screen
-│  │           ├─ theme-screen.styles.ts
-│  │           └─ theme-screen.tsx
-│  ├─ shared
-│  │  ├─ avatar
-│  │  │  ├─ avatar.styles.ts
-│  │  │  └─ avatar.tsx
-│  │  ├─ bottom-sheet
-│  │  │  ├─ bottom-sheet.styles.ts
-│  │  │  └─ bottom-sheet.tsx
-│  │  ├─ empty
-│  │  │  ├─ empty.styles.ts
-│  │  │  └─ empty.tsx
-│  │  ├─ screen
-│  │  │  ├─ screen.styles.ts
-│  │  │  └─ screen.tsx
-│  │  └─ text
+│  │  ├─ app
+│  │  │  ├─ client
+│  │  │  │  ├─ earn
+│  │  │  │  │  ├─ earn.styles.ts
+│  │  │  │  │  └─ earn.tsx
+│  │  │  │  ├─ explore
+│  │  │  │  │  ├─ explore.styles.ts
+│  │  │  │  │  └─ explore.tsx
+│  │  │  │  ├─ favorites
+│  │  │  │  │  ├─ favorites.styles.ts
+│  │  │  │  │  └─ favorites.tsx
+│  │  │  │  └─ orders
+│  │  │  │     ├─ orders.styles.ts
+│  │  │  │     └─ orders.tsx
+│  │  │  ├─ merchant
+│  │  │  └─ shared
+│  │  │     ├─ components
+│  │  │     │  ├─ avatar
+│  │  │     │  │  ├─ avatar.styles.ts
+│  │  │     │  │  └─ avatar.tsx
+│  │  │     │  ├─ bottom-sheet
+│  │  │     │  │  ├─ bottom-sheet.styles.ts
+│  │  │     │  │  └─ bottom-sheet.tsx
+│  │  │     │  ├─ empty
+│  │  │     │  │  ├─ empty.styles.ts
+│  │  │     │  │  └─ empty.tsx
+│  │  │     │  ├─ screen
+│  │  │     │  │  ├─ screen.styles.ts
+│  │  │     │  │  └─ screen.tsx
+│  │  │     │  └─ text
+│  │  │     └─ screens
+│  │  │        └─ settings
+│  │  │           ├─ country
+│  │  │           │  ├─ country.styles.ts
+│  │  │           │  └─ country.tsx
+│  │  │           ├─ language-screen
+│  │  │           │  ├─ language-screen.styles.ts
+│  │  │           │  └─ language-screen.tsx
+│  │  │           ├─ payment-method
+│  │  │           │  ├─ payment-method.styles.ts
+│  │  │           │  └─ payment-method.tsx
+│  │  │           ├─ profile
+│  │  │           │  ├─ profile.styles.ts
+│  │  │           │  └─ profile.tsx
+│  │  │           ├─ receipts
+│  │  │           │  ├─ receipts.styles.ts
+│  │  │           │  └─ receipts.tsx
+│  │  │           ├─ saved-addresses
+│  │  │           │  ├─ saved-addresses.styles.ts
+│  │  │           │  └─ saved-addresses.tsx
+│  │  │           ├─ settings-main
+│  │  │           │  ├─ settings.styles.ts
+│  │  │           │  └─ settings.tsx
+│  │  │           ├─ settings-stack.tsx
+│  │  │           └─ theme-screen
+│  │  │              ├─ theme-screen.styles.ts
+│  │  │              └─ theme-screen.tsx
+│  │  └─ auth
+│  │     ├─ auth-context.tsx
+│  │     ├─ forgot-password
+│  │     │  ├─ forgot-password.styles.ts
+│  │     │  └─ forgot-password.tsx
+│  │     ├─ login
+│  │     │  ├─ login.styles.ts
+│  │     │  └─ login.tsx
+│  │     ├─ otp
+│  │     │  ├─ otp.styles.ts
+│  │     │  └─ otp.tsx
+│  │     ├─ register
+│  │     │  ├─ fields
+│  │     │  │  └─ shop-owner-fields
+│  │     │  │     ├─ fields.styles.ts
+│  │     │  │     └─ shop-owner-fields.tsx
+│  │     │  ├─ register.styles.ts
+│  │     │  └─ register.tsx
+│  │     └─ reset-password
+│  │        ├─ reset-password.styles.ts
+│  │        └─ reset-password.tsx
 │  ├─ stores
 │  │  └─ useStoreLocations.ts
 │  └─ theme

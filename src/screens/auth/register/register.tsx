@@ -71,7 +71,7 @@ export default function Register() {
             size={24}
             color={
               userType === "customer"
-                ? colors.textPrimary
+                ? colors.onPrimary
                 : colors.textSecondary
             }
           />

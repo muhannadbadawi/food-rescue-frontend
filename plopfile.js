@@ -7,16 +7,21 @@ module.exports = function (plop) {
         name: "name",
         message: "Component name?",
       },
+      {
+        type: "input",
+        name: "path",
+        message: "Component path?",
+      },
     ],
     actions: [
       {
         type: "add",
-        path: "src/screens/client/{{name}}/{{name}}.tsx",
+        path: "src/screens/{{path}}/{{name}}/{{name}}.tsx",
         templateFile: "plop-templates/component.tsx.hbs",
       },
       {
         type: "add",
-        path: "src/screens/client/{{name}}/{{name}}.styles.ts",
+        path: "src/screens/{{path}}/{{name}}/{{name}}.styles.ts",
         templateFile: "plop-templates/component.styles.ts.hbs",
       },
     ],

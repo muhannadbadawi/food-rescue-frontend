@@ -4,7 +4,7 @@ import AuthStack from "./stacks/auth-stack";
 import ClientStack from "./stacks/client-stack";
 import MerchantStack from "./stacks/merchant-stack";
 
-export default function RootStack() {
+export default function RootNavigator() {
   const { isLoggedIn, userRole } = useAuth();
 
   if (!isLoggedIn) {

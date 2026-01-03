@@ -7,11 +7,11 @@ import { useTranslation } from "react-i18next";
 import { useTheme } from "@/src/theme/theme-context";
 
 // Screens
-import Explore from "@/src/screens/client/explore/explore";
-import Favorites from "@/src/screens/client/favorites/favorites";
-import Orders from "@/src/screens/client/orders/orders";
-import Earn from "@/src/screens/client/earn/earn";
-import SettingsStack from "../../screens/client/settings/settings-stack";
+import Explore from "@/src/screens/app/client/explore/explore";
+import Favorites from "@/src/screens/app/client/favorites/favorites";
+import Orders from "@/src/screens/app/client/orders/orders";
+import Earn from "@/src/screens/app/client/earn/earn";
+import SettingsNavigator from "@/src/screens/app/shared/screens/settings/settings-navigator";
 
 type ClientTabParamList = {
   Explore: undefined;
@@ -69,7 +69,7 @@ export default function ClientStack() {
       />
       <Tab.Screen
         name="Settings"
-        component={SettingsStack}
+        component={SettingsNavigator}
         options={{
           tabBarLabel: t("tabs.settings"),
           tabBarIcon: ({ color, size }) => <Ionicons name="settings-outline" size={size} color={color} />,

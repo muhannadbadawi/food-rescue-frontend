@@ -60,7 +60,7 @@ export const getStyles = (colors: any) =>
     },
 
     buttonText: {
-      color: colors.textPrimary,
+      color: colors.onPrimary,
       fontSize: 18,
       fontWeight: "bold",
     },

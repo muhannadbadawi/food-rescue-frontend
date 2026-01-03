@@ -63,7 +63,7 @@ export const getStyles = (colors: any) =>
       marginLeft: 8,
     },
     userTypeButtonTextActive: {
-      color: colors.textPrimary,
+      color: colors.onPrimary,
     },
     shopOwnerContainer: {
       width: "100%",
@@ -96,7 +96,7 @@ export const getStyles = (colors: any) =>
       marginTop: 16,
     },
     buttonText: {
-      color: colors.textPrimary,
+      color: colors.onPrimary,
       fontSize: 18,
       fontWeight: "bold",
     },
