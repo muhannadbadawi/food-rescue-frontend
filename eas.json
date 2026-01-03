@@ -12,15 +12,7 @@
       "distribution": "internal"
     },
     "production": {
-      "android": {
-        "workflow": "managed",
-        "buildType": "apk",
-        "autoIncrement": true
-      },
-      "ios": {
-        "workflow": "managed",
-        "autoIncrement": true
-      }
+      "autoIncrement": true
     }
   },
   "submit": {
