@@ -9,34 +9,46 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1. Checkout repository
       - uses: actions/checkout@v3
 
+      # 2. Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 20
 
+      # 3. Install dependencies
       - name: Install dependencies
         run: npm install
 
+      # 4. Install EAS CLI
       - name: Install EAS CLI
         run: npm install -g eas-cli
 
+      # 5. Set Expo token
       - name: Set Expo token
         run: echo "EXPO_TOKEN=${{ secrets.EXPO_TOKEN }}" >> $GITHUB_ENV
 
+      # 6. Build Android APK (app bundle)
       - name: Build Android APK
         run: |
           eas build --platform android --profile production --non-interactive --output-json > build.json
 
+      # 7. Extract APK URL from build.json
       - name: Get APK URL
         id: get_apk
         run: |
           APK_URL=$(jq -r '.artifacts.buildUrl' build.json)
           echo "APK_URL=$APK_URL" >> $GITHUB_ENV
 
+      # 8. Download APK from Expo build
+      - name: Download APK
+        run: curl -L ${{ env.APK_URL }} -o app.apk
+
+      # 9. Upload APK to GitHub Release
       - name: Upload APK to Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: ${{ env.APK_URL }}
+          artifacts: app.apk
           tag_name: ${{ github.ref_name }}
