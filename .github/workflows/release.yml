@@ -1,4 +1,4 @@
-name: Build and Upload Android APK
+name: Build and Upload Expo APK
 
 on:
   release:
@@ -6,35 +6,32 @@ on:
 
 jobs:
   build-android:
-    name: Build Android APK
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 20
 
-      - name: Setup Java
-        uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '17'
-
       - name: Install dependencies
         run: npm install
 
-      - name: Build APK
-        run: |
-          chmod +x android/gradlew
-          cd android
-          ./gradlew assembleRelease
+      - name: Install EAS CLI
+        run: npm install -g eas-cli
+
+      - name: Login to Expo
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        run: eas login --token $EXPO_TOKEN
+
+      - name: Build Android APK
+        run: eas build --platform android --profile production --non-interactive
 
       - name: Upload APK to Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: android/app/build/outputs/apk/release/app-release.apk
+          artifacts: $(find ./build -name "*.apk")
           tag_name: ${{ github.ref_name }}
