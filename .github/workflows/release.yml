@@ -7,6 +7,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     strategy:
       matrix:
         platform: [android, ios]
@@ -29,18 +30,14 @@ jobs:
       - name: Install EAS CLI
         run: npm install -g eas-cli
 
-      # 5️⃣ Login to Expo
-      - name: Login to Expo
+      # 5️⃣ Build APK/IPA on Expo cloud
+      - name: Build App
         env:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
-        run: eas login --token $EXPO_TOKEN
-
-      # 6️⃣ Build APK/IPA on Expo cloud
-      - name: Build App
         run: |
           eas build --platform ${{ matrix.platform }} --profile production --non-interactive --output-json > build.json
 
-      # 7️⃣ Download artifact (APK or IPA)
+      # 6️⃣ Download artifact (APK or IPA)
       - name: Download Artifact
         run: |
           FILE_URL=$(jq -r '.buildUrl' build.json)
@@ -50,7 +47,7 @@ jobs:
             curl -L $FILE_URL --output app-release.ipa
           fi
 
-      # 8️⃣ Upload to GitHub Release
+      # 7️⃣ Upload to GitHub Release
       - name: Upload to Release
         uses: ncipollo/release-action@v1
         with:
