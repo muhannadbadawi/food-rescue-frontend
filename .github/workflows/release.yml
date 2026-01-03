@@ -6,58 +6,38 @@ on:
 
 jobs:
   build-android:
-    name: Build Android APK
     runs-on: ubuntu-latest
 
     env:
       EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
 
     steps:
-      # 1️⃣ Checkout project
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      # 2️⃣ Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 20
 
-      # 3️⃣ Install project dependencies
       - name: Install dependencies
         run: npm install
 
-      # 4️⃣ Install EAS CLI globally
       - name: Install EAS CLI
         run: npm install -g eas-cli
 
-      # 5️⃣ Install Expo CLI globally
       - name: Install Expo CLI
         run: npm install -g expo-cli
 
-      # 6️⃣ Show Expo & EAS info (debug)
-      - name: Expo & EAS info
-        run: |
-          expo --version
-          eas --version
-          eas whoami
-
-      # 7️⃣ Build Android APK
       - name: Build Android APK
-        id: eas_build
-        run: |
-          eas build --platform android --profile production --non-interactive --output-json | tee build.json
+        run: eas build --platform android --profile production --non-interactive
 
-      # 8️⃣ Extract APK URL from build.json
-      - name: Extract APK URL
-        id: get_apk
+      - name: Download APK
         run: |
-          apk_url=$(jq -r '.artifacts.buildUrl' build.json)
-          echo "APK_URL=$apk_url" >> $GITHUB_ENV
+          BUILD_ID=$(eas build:list --platform android --status finished --limit 1 --json | jq -r '.[0].id')
+          eas build:artifact:get --platform android --build-id $BUILD_ID --type apk
 
-      # 9️⃣ Upload APK to GitHub Release
       - name: Upload APK to Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: ${{ env.APK_URL }}
+          artifacts: ./*.apk
           tag_name: ${{ github.ref_name }}
