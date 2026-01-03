@@ -1,20 +1,21 @@
-name: Build and Upload Expo APK & IPA
+name: Build and Upload Expo APK
 
 on:
   release:
     types: [published]
 
 jobs:
-  build:
+  build-android:
+    name: Build Android APK
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        platform: [android, ios]
+    env:
+      EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
 
     steps:
-      # 1️⃣ Checkout repository
-      - uses: actions/checkout@v3
+      # 1️⃣ Checkout project
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
       # 2️⃣ Setup Node.js
       - name: Setup Node.js
@@ -22,34 +23,37 @@ jobs:
         with:
           node-version: 20
 
-      # 3️⃣ Install dependencies
+      # 3️⃣ Install project dependencies
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      # 4️⃣ Install EAS CLI
+      # 4️⃣ Install EAS CLI globally
       - name: Install EAS CLI
         run: npm install -g eas-cli
 
-      # 5️⃣ Build APK/IPA on Expo cloud
-      - name: Build App
-        env:
-          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+      # 5️⃣ Show EAS & Expo info (debug)
+      - name: Expo & EAS info
         run: |
-          eas build --platform ${{ matrix.platform }} --profile production --non-interactive --output-json > build.json
+          expo --version
+          eas --version
+          eas whoami
 
-      # 6️⃣ Download artifact (APK or IPA)
-      - name: Download Artifact
+      # 6️⃣ Build Android APK
+      - name: Build Android APK
+        id: eas_build
         run: |
-          FILE_URL=$(jq -r '.buildUrl' build.json)
-          if [ "${{ matrix.platform }}" = "android" ]; then
-            curl -L $FILE_URL --output app-release.apk
-          else
-            curl -L $FILE_URL --output app-release.ipa
-          fi
+          eas build --platform android --profile production --non-interactive --output-json | tee build.log
 
-      # 7️⃣ Upload to GitHub Release
-      - name: Upload to Release
+      # 7️⃣ Extract APK path from build.json
+      - name: Extract APK URL
+        id: get_apk
+        run: |
+          apk_url=$(jq -r '.artifacts.buildUrl' build.json)
+          echo "APK_URL=$apk_url" >> $GITHUB_ENV
+
+      # 8️⃣ Upload APK to GitHub Release
+      - name: Upload APK to Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: ${{ matrix.platform == 'android' && 'app-release.apk' || 'app-release.ipa' }}
+          artifacts: ${{ env.APK_URL }}
           tag_name: ${{ github.ref_name }}
