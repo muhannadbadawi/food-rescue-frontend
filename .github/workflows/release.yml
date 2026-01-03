@@ -1,12 +1,15 @@
-name: Build and Upload Expo APK
+name: Build and Upload Expo APK & IPA
 
 on:
   release:
     types: [published]
 
 jobs:
-  build-android:
+  build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform: [android, ios]
 
     steps:
       # 1️⃣ Checkout repository
@@ -32,20 +35,24 @@ jobs:
           EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
         run: eas login --token $EXPO_TOKEN
 
-      # 6️⃣ Build APK on Expo cloud
-      - name: Build Android APK
+      # 6️⃣ Build APK/IPA on Expo cloud
+      - name: Build App
         run: |
-          eas build --platform android --profile production --non-interactive --output-json > build.json
+          eas build --platform ${{ matrix.platform }} --profile production --non-interactive --output-json > build.json
 
-      # 7️⃣ Download APK from Expo
-      - name: Download APK
+      # 7️⃣ Download artifact (APK or IPA)
+      - name: Download Artifact
         run: |
-          APK_URL=$(jq -r '.buildUrl' build.json)
-          curl -L $APK_URL --output app-release.apk
+          FILE_URL=$(jq -r '.buildUrl' build.json)
+          if [ "${{ matrix.platform }}" = "android" ]; then
+            curl -L $FILE_URL --output app-release.apk
+          else
+            curl -L $FILE_URL --output app-release.ipa
+          fi
 
-      # 8️⃣ Upload APK to GitHub Release
-      - name: Upload APK to Release
+      # 8️⃣ Upload to GitHub Release
+      - name: Upload to Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: app-release.apk
+          artifacts: ${{ matrix.platform == 'android' && 'app-release.apk' || 'app-release.ipa' }}
           tag_name: ${{ github.ref_name }}
