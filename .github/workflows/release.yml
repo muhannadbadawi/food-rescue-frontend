@@ -1,4 +1,4 @@
-name: Build and Upload Expo APK
+name: Build and Upload Expo Android APK
 
 on:
   release:
@@ -7,9 +7,6 @@ on:
 jobs:
   build-android:
     runs-on: ubuntu-latest
-
-    env:
-      EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
 
     steps:
       - uses: actions/checkout@v3
@@ -25,19 +22,21 @@ jobs:
       - name: Install EAS CLI
         run: npm install -g eas-cli
 
-      - name: Install Expo CLI
-        run: npm install -g expo-cli
+      - name: Set Expo token
+        run: echo "EXPO_TOKEN=${{ secrets.EXPO_TOKEN }}" >> $GITHUB_ENV
 
       - name: Build Android APK
-        run: eas build --platform android --profile production --non-interactive
-
-      - name: Download APK
         run: |
-          BUILD_ID=$(eas build:list --platform android --status finished --limit 1 --json | jq -r '.[0].id')
-          eas build:artifact:get --platform android --build-id $BUILD_ID --type apk
+          eas build --platform android --profile production --non-interactive --output-json > build.json
+
+      - name: Get APK URL
+        id: get_apk
+        run: |
+          APK_URL=$(jq -r '.artifacts.buildUrl' build.json)
+          echo "APK_URL=$APK_URL" >> $GITHUB_ENV
 
       - name: Upload APK to Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: ./*.apk
+          artifacts: ${{ env.APK_URL }}
           tag_name: ${{ github.ref_name }}
