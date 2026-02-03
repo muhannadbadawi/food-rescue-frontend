@@ -18,6 +18,7 @@ The project follows a clean, scalable architecture suitable for real-world produ
 
 - Login
 - Register
+- Log in with Face ID
 - Forgot Password
 - OTP Verification
 - Reset Password
