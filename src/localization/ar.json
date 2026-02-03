@@ -8,7 +8,8 @@
     "have-account": "ليس لديك حساب؟ ",
     "register": "تسجيل",
     "login": "تسجيل الدخول",
-    "loginPressed": "تم الضغط على تسجيل الدخول"
+    "loginPressed": "تم الضغط على تسجيل الدخول",
+    "loginWithFaceId": "تسجيل الدخول باستخدام معرف الوجه"
   },
   "register-screen": {
     "title": "إنشاء حساب",
@@ -111,7 +112,12 @@
   },
   "savedAddresses": {
     "default": "افتراضي",
-    "edit": "تعديل",
-    "delete": "حذف"
+    "details": "التفاصيل",
+    "delete": "حذف",
+    "type": {
+      "home": "المنزل",
+      "work": "العمل",
+      "apartment": "الشقة"
+    }
   }
 }

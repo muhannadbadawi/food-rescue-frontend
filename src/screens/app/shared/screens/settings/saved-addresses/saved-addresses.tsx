@@ -1,5 +1,11 @@
 import React from "react";
-import { View, Text, FlatList, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  ListRenderItem,
+} from "react-native";
 import { useTheme } from "@/src/theme/theme-context";
 import { getStyles } from "./saved-addresses.styles";
 import { useTranslation } from "react-i18next";
@@ -7,18 +13,38 @@ import Screen from "@/src/screens/app/shared/components/screen/screen";
 import EmptyScreen from "@/src/screens/app/shared/components/empty/empty";
 import { savedAddresses } from "@/src/constants/mockData";
 import { MaterialIcons } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
+import { ClientSettingsStackParamList } from "../client-settings-stack";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { SavedAddress } from "@/src/constants/types";
+
+type NavigationProp = NativeStackNavigationProp<
+  ClientSettingsStackParamList,
+  "SettingsMain"
+>;
 
 const SavedAddressesScreen = () => {
   const colors = useTheme();
   const styles = getStyles(colors);
-  const { t, i18n } = useTranslation();
-  const currentLang = i18n.language as "ar" | "en";
+  const { t } = useTranslation();
+  const navigation = useNavigation<NavigationProp>();
 
-  const renderItem = ({ item }: any) => (
-    <TouchableOpacity activeOpacity={0.8}>
+  const renderItem: ListRenderItem<SavedAddress> = ({ item }) => (
+    <TouchableOpacity
+      activeOpacity={0.8}
+      onPress={() => {
+        navigation.navigate("Details", { address: item });
+      }}
+    >
       <View style={styles.card}>
         <MaterialIcons
-          name="location-on"
+          name={
+            item.type === "house"
+              ? "home"
+              : item.type === "apartment"
+                ? "apartment"
+                : "work"
+          }
           size={24}
           color={colors.primary}
           style={styles.locationIcon}
@@ -26,7 +52,7 @@ const SavedAddressesScreen = () => {
 
         <View style={styles.infoContainer}>
           <View style={styles.nameRow}>
-            <Text style={styles.name}>{item.name[currentLang]}</Text>
+            <Text style={styles.name}>{item.addressLabel}</Text>
             {item.isDefault && (
               <View style={styles.defaultBadge}>
                 <Text style={styles.defaultBadgeText}>
@@ -35,16 +61,7 @@ const SavedAddressesScreen = () => {
               </View>
             )}
           </View>
-          <Text style={styles.address}>{item.address}</Text>
-        </View>
-
-        <View style={styles.actions}>
-          <TouchableOpacity style={styles.iconButton}>
-            <MaterialIcons name="edit" size={20} color={colors.primary} />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.iconButton}>
-            <MaterialIcons name="delete" size={20} color={colors.error} />
-          </TouchableOpacity>
+          <Text style={styles.address}>{item.streetName}</Text>
         </View>
       </View>
     </TouchableOpacity>

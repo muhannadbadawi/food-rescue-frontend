@@ -14,6 +14,7 @@ import {
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
+import Entypo from "@expo/vector-icons/Entypo";
 import { useTheme } from "@/src/theme/theme-context";
 import { getStyles } from "./login.styles";
 import { useTranslation } from "react-i18next";
@@ -21,6 +22,8 @@ import { useAuth } from "../auth-context";
 import { AuthStackParamList } from "@/src/navigation/stacks/auth-stack";
 import { AuthScreen } from "@/src/navigation/screens-type/auth-screens";
 import i18n from "@/src/localization/i18n";
+import * as LocalAuthentication from "expo-local-authentication";
+import * as SecureStore from "expo-secure-store";
 
 type LoginScreenNavigationProp = NativeStackNavigationProp<
   AuthStackParamList,
@@ -39,13 +42,36 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = () => {
-    login("merchant");
+    login("client");
     Alert.alert(
       t("login-screen.loginPressed"),
       `${t("login-screen.email")}: ${email}\n${t(
-        "login-screen.password"
-      )}: ${password}`
+        "login-screen.password",
+      )}: ${password}`,
     );
+  };
+
+  const handleBiometricLogin = async () => {
+    const hasHardware = await LocalAuthentication.hasHardwareAsync();
+    if (!hasHardware) {
+      Alert.alert(t("common.error"), "Biometrics not supported");
+      return;
+    }
+
+    const isEnrolled = await LocalAuthentication.isEnrolledAsync();
+    if (!isEnrolled) {
+      Alert.alert(t("common.error"), "No Face ID / Fingerprint enrolled");
+      return;
+    }
+
+    const result = await LocalAuthentication.authenticateAsync({
+      promptMessage: t("login-screen.loginWithFaceId"),
+      fallbackLabel: t("login-screen.usePassword"),
+    });
+
+    if (result.success) {
+      login("client");
+    }
   };
 
   return (
@@ -69,63 +95,74 @@ export default function Login() {
           <Text style={styles.subtitle}>
             {t("login-screen.loginToFoodRescue")}
           </Text>
-
-          <TextInput
-            placeholder={t("login-screen.email")}
-            placeholderTextColor={colors.textSecondary}
-            style={styles.input}
-            keyboardType="email-address"
-            textAlign={i18n.language === "ar" ? "right" : "left"}
-            value={email}
-            onChangeText={setEmail}
-          />
-
-          <View style={styles.passwordContainer}>
+          <View style={styles.card}>
             <TextInput
-              placeholder={t("login-screen.password")}
+              placeholder={t("login-screen.email")}
               placeholderTextColor={colors.textSecondary}
-              style={styles.passwordInput}
-              secureTextEntry={!showPassword}
+              style={styles.input}
+              keyboardType="email-address"
               textAlign={i18n.language === "ar" ? "right" : "left"}
-              value={password}
-              onChangeText={setPassword}
+              value={email}
+              onChangeText={setEmail}
             />
 
-            <TouchableOpacity
-              onPress={() => setShowPassword(!showPassword)}
-              style={styles.eyeIcon}
-            >
-              <Ionicons
-                name={showPassword ? "eye-off" : "eye"}
-                size={20}
-                color={colors.icon}
+            <View style={styles.passwordContainer}>
+              <TextInput
+                placeholder={t("login-screen.password")}
+                placeholderTextColor={colors.textSecondary}
+                style={styles.passwordInput}
+                secureTextEntry={!showPassword}
+                textAlign={i18n.language === "ar" ? "right" : "left"}
+                value={password}
+                onChangeText={setPassword}
               />
-            </TouchableOpacity>
-          </View>
 
-          <View style={{ width: "100%" }}>
+              <TouchableOpacity
+                onPress={() => setShowPassword(!showPassword)}
+                style={styles.eyeIcon}
+              >
+                <Ionicons
+                  name={showPassword ? "eye-off" : "eye"}
+                  size={20}
+                  color={colors.icon}
+                />
+              </TouchableOpacity>
+            </View>
+
+            <View style={{ width: "100%" }}>
+              <TouchableOpacity
+                onPress={() => navigation.navigate(AuthScreen.ForgotPassword)}
+              >
+                <Text style={styles.forgotText}>
+                  {t("login-screen.forgot-password")}
+                </Text>
+              </TouchableOpacity>
+            </View>
+
+            <TouchableOpacity style={styles.button} onPress={handleLogin}>
+              <Text style={styles.buttonText}>{t("login-screen.login")}</Text>
+            </TouchableOpacity>
+
             <TouchableOpacity
-              onPress={() => navigation.navigate(AuthScreen.ForgotPassword)}
+              style={styles.button}
+              onPress={handleBiometricLogin}
             >
-              <Text style={styles.forgotText}>
-                {t("login-screen.forgot-password")}
+              <Text style={styles.buttonText}>
+                {t("login-screen.loginWithFaceId")}
               </Text>
+              <Entypo name="fingerprint" size={18} color={colors.onPrimary} />
             </TouchableOpacity>
-          </View>
 
-          <TouchableOpacity style={styles.button} onPress={handleLogin}>
-            <Text style={styles.buttonText}>{t("login-screen.login")}</Text>
-          </TouchableOpacity>
-
-          <View style={styles.registerContainer}>
-            <Text style={styles.registerText}>
-              {t("login-screen.have-account")}
-            </Text>
-            <TouchableOpacity onPress={() => navigation.navigate("Register")}>
-              <Text style={styles.registerLink}>
-                {t("login-screen.register")}
+            <View style={styles.registerContainer}>
+              <Text style={styles.registerText}>
+                {t("login-screen.have-account")}
               </Text>
-            </TouchableOpacity>
+              <TouchableOpacity onPress={() => navigation.navigate("Register")}>
+                <Text style={styles.registerLink}>
+                  {t("login-screen.register")}
+                </Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </ScrollView>
       </TouchableWithoutFeedback>

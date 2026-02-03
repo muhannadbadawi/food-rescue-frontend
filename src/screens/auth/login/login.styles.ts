@@ -14,28 +14,31 @@ export const getStyles = (colors: any) =>
       marginBottom: 30,
     },
     title: {
-      fontSize: 28,
+      fontSize: 25,
       color: colors.textPrimary,
       fontWeight: "bold",
       marginBottom: 4,
     },
     subtitle: {
-      fontSize: 16,
+      fontSize: 15,
       color: colors.textSecondary,
       marginBottom: 24,
     },
     input: {
       width: "100%",
       height: 50,
-      backgroundColor: colors.border,
+      backgroundColor: colors.background,
       borderRadius: 8,
       paddingHorizontal: 15,
-      fontSize: 16,
+      fontSize: 15,
       marginBottom: 16,
       color: colors.textPrimary,
     },
     button: {
-      backgroundColor: colors.primary,
+      backgroundColor: colors.primary, // 80% opacity
+      gap: 8,
+      flexDirection: "row",
+      justifyContent: "center",
       paddingVertical: 14,
       borderRadius: 8,
       width: "100%",
@@ -45,7 +48,7 @@ export const getStyles = (colors: any) =>
     },
     buttonText: {
       color: colors.onPrimary,
-      fontSize: 18,
+      fontSize: 14,
       fontWeight: "bold",
     },
     forgotText: {
@@ -69,7 +72,7 @@ export const getStyles = (colors: any) =>
       width: "100%",
       flexDirection: "row",
       alignItems: "center",
-      backgroundColor: colors.border,
+      backgroundColor: colors.background,
       borderRadius: 8,
       marginBottom: 16,
       paddingHorizontal: 10,
@@ -77,10 +80,22 @@ export const getStyles = (colors: any) =>
     passwordInput: {
       flex: 1,
       height: 50,
-      fontSize: 16,
+      fontSize: 15,
       color: colors.textPrimary,
     },
     eyeIcon: {
       padding: 8,
+    },
+
+    card: {
+      width: "100%",
+      backgroundColor: colors.card+"bb",
+      borderRadius: 12,
+      padding: 20,
+      shadowColor: colors.shadow,
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.1,
+      shadowRadius: 8,
+      elevation: 5,
     },
   });

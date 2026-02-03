@@ -9,7 +9,7 @@ export const DefaultColors = {
     /* ===== Backgrounds ===== */
     background: "#FFFFFF",
     surface: "#F9FAFB",
-
+    card: "#E5E7EB",
     /* ===== Text ===== */
     textPrimary: "#111827",
     textSecondary: "#6B7280",
@@ -41,6 +41,7 @@ export const DefaultColors = {
     /* ===== Backgrounds ===== */
     background: "#121212",
     surface: "#1E1E1E",
+    card: "#434344",
 
     /* ===== Text ===== */
     textPrimary: "#E5E7EB",

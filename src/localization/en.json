@@ -8,7 +8,8 @@
     "have-account": "Don't have an account? ",
     "register": "Register",
     "login": "Login",
-    "loginPressed": "Login Pressed"
+    "loginPressed": "Login Pressed",
+    "loginWithFaceId": "Login with Face ID"
   },
   "register-screen": {
     "title": "Create Account",
@@ -111,7 +112,12 @@
   },
   "savedAddresses": {
     "default": "Default",
-    "edit": "Edit",
-    "delete": "Delete"
+    "details": "Details",
+    "delete": "Delete",
+    "type": {
+      "home": "Home",
+      "work": "Work",
+      "apartment": "Apartment"
+    }
   }
 }

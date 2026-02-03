@@ -9,12 +9,15 @@ import LanguageScreen from "./language-screen/language-screen";
 import ThemeScreen from "./theme-screen/theme-screen";
 import Profile from "./profile/profile";
 import Country from "./country/country";
+import Details from "./saved-addresses/details/details";
+import { SavedAddress } from "@/src/constants/types";
 
 export type ClientSettingsStackParamList = {
   SettingsMain: undefined;
   Profile: undefined;
   Receipts: undefined;
   SavedAddresses: undefined;
+  Details: { address: SavedAddress };
   PaymentMethod: undefined;
   LanguageScreen: undefined;
   ThemeScreen: undefined;
@@ -30,6 +33,7 @@ export default function ClientSettingsStack() {
       <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="Receipts" component={Receipts} />
       <Stack.Screen name="SavedAddresses" component={SavedAddresses} />
+      <Stack.Screen name="Details" component={Details} />
       <Stack.Screen name="PaymentMethod" component={PaymentMethod} />
       <Stack.Screen name="Country" component={Country} />
       <Stack.Screen name="LanguageScreen" component={LanguageScreen} />
