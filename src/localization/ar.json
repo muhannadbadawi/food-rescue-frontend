@@ -1,4 +1,7 @@
 {
+  "common": {
+    "error": "خطأ"
+  },
   "login-screen": {
     "welcome": "أهلاً وسهلاً",
     "loginToFoodRescue": "تسجيل الدخول إلى فود ريسكيو",
@@ -9,7 +12,9 @@
     "register": "تسجيل",
     "login": "تسجيل الدخول",
     "loginPressed": "تم الضغط على تسجيل الدخول",
-    "loginWithFaceId": "تسجيل الدخول باستخدام معرف الوجه"
+    "loginWithFaceId": "تسجيل الدخول باستخدام معرف الوجه",
+    "or": "أو",
+    "usePassword": "استخدام كلمة المرور"
   },
   "register-screen": {
     "title": "إنشاء حساب",

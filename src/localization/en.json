@@ -1,4 +1,7 @@
 {
+  "common": {
+    "error": "Error"
+  },
   "login-screen": {
     "welcome": "Welcome",
     "loginToFoodRescue": "Login to Food Rescue",
@@ -9,7 +12,9 @@
     "register": "Register",
     "login": "Login",
     "loginPressed": "Login Pressed",
-    "loginWithFaceId": "Login with Face ID"
+    "loginWithFaceId": "Login with Face ID",
+    "or": "Or",
+    "usePassword": "Use password"
   },
   "register-screen": {
     "title": "Create Account",

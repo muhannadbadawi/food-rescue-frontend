@@ -1,12 +1,14 @@
 import { StyleSheet } from "react-native";
 export const getStyles = (colors: any) =>
   StyleSheet.create({
+    scrollContainer: {
+      flexGrow: 1,
+      padding: 20,
+    },
     container: {
       flexGrow: 1,
       justifyContent: "center",
-      backgroundColor: colors.background,
       alignItems: "center",
-      padding: 20,
     },
     logo: {
       width: "50%",
@@ -86,10 +88,28 @@ export const getStyles = (colors: any) =>
     eyeIcon: {
       padding: 8,
     },
-
+    topBar: {
+      width: "100%",
+      flexDirection: "row",
+    },
+    orText: {
+      color: colors.textSecondary,
+      textAlign: "center",
+      fontSize: 20,
+    },
+    linksRow: {
+      width: "100%",
+      flexDirection: "row",
+      justifyContent: "space-between",
+      marginBottom: 10,
+    },
+    safeArea: {
+      flex: 1,
+      backgroundColor: colors.background,
+    },
     card: {
       width: "100%",
-      backgroundColor: colors.card+"bb",
+      backgroundColor: colors.card + "5A",
       borderRadius: 12,
       padding: 20,
       shadowColor: colors.shadow,
@@ -97,5 +117,11 @@ export const getStyles = (colors: any) =>
       shadowOpacity: 0.1,
       shadowRadius: 8,
       elevation: 5,
+    },
+    languageToggle: {
+      fontSize: 18,
+      color: colors.primary,
+      fontWeight: "bold",
+      marginBottom: 20,
     },
   });
