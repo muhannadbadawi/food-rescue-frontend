@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -10,6 +10,9 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Alert,
+  Image,
+  StyleSheet,
+  Dimensions,
 } from "react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
@@ -25,6 +28,13 @@ import i18n, { changeLanguage } from "@/src/localization/i18n";
 import * as LocalAuthentication from "expo-local-authentication";
 import * as SecureStore from "expo-secure-store";
 import { SafeAreaView } from "react-native-safe-area-context";
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withRepeat,
+  withTiming,
+  Easing,
+} from "react-native-reanimated";
 
 type LoginScreenNavigationProp = NativeStackNavigationProp<
   AuthStackParamList,
@@ -32,6 +42,8 @@ type LoginScreenNavigationProp = NativeStackNavigationProp<
 >;
 
 export default function Login() {
+  const { width, height } = Dimensions.get("window");
+
   const navigation = useNavigation<LoginScreenNavigationProp>();
   const colors = useTheme();
   const styles = getStyles(colors);
@@ -41,6 +53,21 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+
+  const translateX = useSharedValue(0);
+
+  useEffect(() => {
+    translateX.value = withRepeat(
+      withTiming(20, { duration: 6000, easing: Easing.inOut(Easing.ease) }),
+      -1,
+      true,
+    );
+  }, []);
+
+  const animatedBackgroundStyle = useAnimatedStyle(() => ({
+    transform: [{ translateX: translateX.value }, { scale: 1.2 }],
+    opacity: 0.1,
+  }));
 
   const languages = i18n.language === "en" ? "ع" : "E";
 
@@ -213,6 +240,20 @@ export default function Login() {
                 </View> */}
               </View>
             </View>
+            <Animated.Image
+              source={require("../../../assets/FoodRescueLogo.png")} // مسار اللوجو
+              style={[
+                {
+                  width: width,
+                  height: width,
+                  position: "absolute",
+                  top: 350,
+                  left: 0,
+                },
+                animatedBackgroundStyle,
+              ]}
+              resizeMode="contain"
+            />
           </ScrollView>
         </TouchableWithoutFeedback>
       </KeyboardAvoidingView>

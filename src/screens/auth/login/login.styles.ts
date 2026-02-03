@@ -109,7 +109,7 @@ export const getStyles = (colors: any) =>
     },
     card: {
       width: "100%",
-      backgroundColor: colors.card + "5A",
+      backgroundColor: colors.card + "AA",
       borderRadius: 12,
       padding: 20,
       shadowColor: colors.shadow,
