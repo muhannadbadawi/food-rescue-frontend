@@ -17,7 +17,7 @@ export type ClientSettingsStackParamList = {
   Profile: undefined;
   Receipts: undefined;
   SavedAddresses: undefined;
-  Details: { address: SavedAddress };
+  Details: { address?: SavedAddress };
   PaymentMethod: undefined;
   LanguageScreen: undefined;
   ThemeScreen: undefined;

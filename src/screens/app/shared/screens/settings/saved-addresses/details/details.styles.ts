@@ -25,6 +25,9 @@ export const getStyles = (colors: any, isRTL: boolean) =>
       marginBottom: 12,
     },
 
+    fieldContainer: {
+      marginTop: 16,
+    },
     input: {
       borderWidth: 1,
       borderColor: colors.border,

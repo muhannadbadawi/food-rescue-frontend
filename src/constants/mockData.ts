@@ -156,6 +156,7 @@ export const savedAddresses: SavedAddress[] = [
     addressLabel: "المنزل",
     streetName: "شارع الملكة رانيا، عمان",
     phoneNumber: "0790000001",
+    houseName: "بيت العائلة",
     type: "house",
     latitude: 32.1001,
     longitude: 36.091,

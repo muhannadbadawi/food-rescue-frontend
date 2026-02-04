@@ -9,17 +9,19 @@ import { useNavigation, NavigationProp } from "@react-navigation/native";
 type ScreenProps = {
   title?: string;
   showBackButton?: boolean;
+  rightSideComponent?: React.ReactNode;
   children?: React.ReactNode;
 };
 
 const Screen: React.FC<ScreenProps> = ({
   title,
   showBackButton = false,
+  rightSideComponent,
   children,
 }) => {
   const colors = useTheme();
   const styles = getStyles(colors);
-  const navigation = useNavigation<NavigationProp<any>>(); 
+  const navigation = useNavigation<NavigationProp<any>>();
   const isRTL = I18nManager.isRTL;
 
   return (
@@ -41,7 +43,9 @@ const Screen: React.FC<ScreenProps> = ({
 
           {title && <Text style={styles.headerTitle}>{title}</Text>}
 
-          <View style={{ width: 24 }} />
+          <View style={{ width: 24 }}>
+            {rightSideComponent ? rightSideComponent : null}
+          </View>
         </View>
       )}
 

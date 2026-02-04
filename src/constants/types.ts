@@ -72,20 +72,16 @@ type OfficeAddress = BaseAddress & {
 
 export type SavedAddress = HouseAddress | ApartmentAddress | OfficeAddress;
 
-// export interface SavedAddress {
-//   id: number;
-//   addressLabel: string;
-//   houseName?: string;
-//   buildingName?: string;
-//   floorNumber?: string;
-//   aptNumber?: string;
-//   companyName?: string;
-//   streetName: string;
-//   phoneNumber: string;
-//   directionNotes?: string;
-//   type: AddressType;
-//   isDefault: boolean;
-// }
+export type EditableAddressField =
+  | "type"
+  | "addressLabel"
+  | "streetName"
+  | "phoneNumber"
+  | "houseName"
+  | "buildingName"
+  | "aptNumber"
+  | "floorNumber"
+  | "companyName";
 
 export interface PaymentMethod {
   id: number;

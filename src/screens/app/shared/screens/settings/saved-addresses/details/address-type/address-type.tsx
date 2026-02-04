@@ -5,8 +5,15 @@ import { getStyles } from "./address-type.styles";
 import { useTranslation } from "react-i18next";
 import { MaterialIcons } from "@expo/vector-icons";
 import Chip from "@/src/screens/app/shared/components/chip/chip";
+import { EditableAddressField } from "@/src/constants/types";
 
-const AddressType = ({ type }: { type: string }) => {
+const AddressType = ({
+  type,
+  onChangeAddressField,
+}: {
+  type: string;
+  onChangeAddressField: (field: EditableAddressField, value: string) => void;
+}) => {
   const colors = useTheme();
   const { i18n, t } = useTranslation();
   const isRTL = i18n.language !== "en";
@@ -49,7 +56,13 @@ const AddressType = ({ type }: { type: string }) => {
   return (
     <View style={styles.row}>
       {addressType.map((t) => (
-        <Chip key={t.id} text={t.name} Icon={t.icon} selected={type === t.id} />
+        <Chip
+          key={t.id}
+          text={t.name}
+          Icon={t.icon}
+          selected={type === t.id}
+          onPress={() => onChangeAddressField("type", t.id)}
+        />
       ))}
     </View>
   );
