@@ -1,57 +1,61 @@
 {
   "common": {
-    "error": "خطأ"
-  },
-  "login-screen": {
-    "welcome": "أهلاً وسهلاً",
-    "loginToFoodRescue": "تسجيل الدخول إلى فود ريسكيو",
-    "email": "البريد الإلكتروني",
-    "password": "كلمة المرور",
-    "forgot-password": "نسيت كلمة المرور؟",
-    "have-account": "ليس لديك حساب؟ ",
-    "register": "تسجيل",
-    "login": "تسجيل الدخول",
-    "loginPressed": "تم الضغط على تسجيل الدخول",
-    "loginWithFaceId": "تسجيل الدخول باستخدام معرف الوجه",
-    "or": "أو",
-    "usePassword": "استخدام كلمة المرور"
-  },
-  "register-screen": {
-    "title": "إنشاء حساب",
-    "subtitle": "انضم إلينا اليوم",
-    "userType": "نوع الحساب",
-    "customer": "عميل",
-    "shopOwner": "صاحب محل",
-    "email": "البريد الإلكتروني",
-    "phoneNumber": "رقم الهاتف",
-    "password": "كلمة المرور",
-    "shopDetails": "تفاصيل المحل",
-    "shopName": "اسم المحل",
-    "shopAddress": "عنوان المحل",
-    "taxNumber": "الرقم الضريبي",
-    "signUp": "إنشاء حساب",
-    "registerShop": "تسجيل المحل",
-    "alreadyHaveAccount": "لديك حساب بالفعل؟",
-    "login": "تسجيل الدخول",
+    "error": "خطأ",
     "confirm": "تأكيد",
-    "cancel": "الغاء",
-    "pickLocation": "اختر الموقع",
-    "pickImage": "اختر صورة",
-    "openCamera": "افتح الكاميرا",
-    "tapToChangePic": "انقر لتغيير الصورة"
+    "cancel": "إلغاء",
+    "back": "رجوع"
   },
-  "forgot-password-screen": {
-    "title": "نسيت كلمة المرور",
-    "subtitle": "لا تقلق، سنرسل لك تعليمات إعادة التعيين",
-    "enter-email": "أدخل بريدك الإلكتروني",
-    "reset-password": "إعادة تعيين كلمة المرور",
-    "back": "العودة إلى تسجيل الدخول"
-  },
-  "otp": {
-    "title": "تأكيد رمز التحقق",
-    "subtitle": "أدخل الرمز المكوّن من 6 أرقام المرسل إلى بريدك الإلكتروني",
-    "verify": "تأكيد",
-    "back": "عودة"
+  "auth": {
+    "email": "البريد الإلكتروني",
+    "password": "كلمة المرور",
+    "login": "تسجيل الدخول",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "phoneNumber": "رقم الهاتف",
+    "login-screen": {
+      "welcome": "أهلاً وسهلاً",
+      "loginToFoodRescue": "تسجيل الدخول إلى فود ريسكيو",
+      "forgot-password": "نسيت كلمة المرور؟",
+      "have-account": "ليس لديك حساب؟ ",
+      "register": "تسجيل",
+      "loginPressed": "تم الضغط على تسجيل الدخول",
+      "loginWithFaceId": "تسجيل الدخول باستخدام معرف الوجه",
+      "or": "أو",
+      "usePassword": "استخدام كلمة المرور"
+    },
+    "register-screen": {
+      "title": "إنشاء حساب",
+      "subtitle": "انضم إلينا اليوم",
+      "userType": "نوع الحساب",
+      "customer": "عميل",
+      "shopOwner": "صاحب محل",
+      "shopDetails": "تفاصيل المحل",
+      "shopName": "اسم المحل",
+      "shopAddress": "عنوان المحل",
+      "taxNumber": "الرقم الضريبي",
+      "signUp": "إنشاء حساب",
+      "registerShop": "تسجيل المحل",
+      "alreadyHaveAccount": "لديك حساب بالفعل؟",
+      "pickLocation": "اختر الموقع",
+      "pickImage": "اختر صورة",
+      "openCamera": "افتح الكاميرا",
+      "tapToChangePic": "انقر لتغيير الصورة"
+    },
+    "otp": {
+      "title": "تأكيد رمز التحقق",
+      "subtitle": "أدخل الرمز المكوّن من 6 أرقام المرسل إلى بريدك الإلكتروني",
+      "verify": "تأكيد"
+    },
+    "reset-password-screen": {
+      "title": "إعادة تعيين كلمة المرور",
+      "subtitle": "أدخل كلمة المرور الجديدة أدناه",
+      "reset": "إعادة تعيين كلمة المرور"
+    },
+    "forgot-password-screen": {
+      "title": "نسيت كلمة المرور",
+      "subtitle": "لا تقلق، سنرسل لك تعليمات إعادة التعيين",
+      "enter-email": "أدخل بريدك الإلكتروني",
+      "reset-password": "إعادة تعيين كلمة المرور"
+    }
   },
   "tabs": {
     "explore": "استكشاف",
@@ -63,20 +67,12 @@
   "settings": {
     "receipts": "الإيصالات",
     "paymentMethod": "طريقة الدفع",
-    "savedAddresses": "العناوين المحفوظة",
     "search": "بحث",
+    "savedAddresses": "العناوين المحفوظة",
     "country": "الدولة",
     "theme": "المظهر",
     "language": "اللغة",
     "logout": "تسجيل الخروج"
-  },
-  "reset-password-screen": {
-    "title": "إعادة تعيين كلمة المرور",
-    "subtitle": "أدخل كلمة المرور الجديدة أدناه",
-    "password": "كلمة المرور",
-    "confirmPassword": "تأكيد كلمة المرور",
-    "reset": "إعادة تعيين كلمة المرور",
-    "back": "عودة"
   },
   "empty": {
     "title": "لا يوجد محتوى بعد",

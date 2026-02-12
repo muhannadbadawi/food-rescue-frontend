@@ -1,52 +1,64 @@
 {
   "common": {
-    "error": "Error"
-  },
-  "login-screen": {
-    "welcome": "Welcome",
-    "loginToFoodRescue": "Login to Food Rescue",
-    "email": "Email",
-    "password": "Password",
-    "forgot-password": "Forgot Password?",
-    "have-account": "Don't have an account? ",
-    "register": "Register",
-    "login": "Login",
-    "loginPressed": "Login Pressed",
-    "loginWithFaceId": "Login with Face ID",
-    "or": "Or",
-    "usePassword": "Use password"
-  },
-  "register-screen": {
-    "title": "Create Account",
-    "subtitle": "Join us today",
-    "userType": "Account Type",
-    "customer": "Customer",
-    "shopOwner": "Shop Owner",
-    "email": "Email",
-    "phoneNumber": "Phone Number",
-    "password": "Password",
-    "shopDetails": "Shop Details",
-    "shopName": "Shop Name",
-    "shopAddress": "Shop Address",
-    "taxNumber": "Tax Number",
-    "signUp": "Create Account",
-    "registerShop": "Register Shop",
-    "alreadyHaveAccount": "Already have an account?",
-    "login": "Login",
+    "error": "Error",
     "confirm": "Confirm",
     "cancel": "Cancel",
-    "pickLocation": "Pick Location",
-    "pickImage": "Pick Image",
-    "openCamera": "Open Camera",
-    "tapToChangePic": "Tap To Change Pic"
+    "back": "Back"
   },
-  "forgot-password-screen": {
-    "title": "Forgot Password",
-    "subtitle": "Don't worry, we'll send you instructions to reset your password",
-    "enter-email": "Enter your email",
-    "reset-password": "Reset Password",
-    "back": "Back to login"
+  "auth": {
+    "email": "Email",
+    "password": "Password",
+    "login": "Login",
+    "phoneNumber": "Phone Number",
+
+    "confirmPassword": "Confirm Password",
+    "login-screen": {
+      "welcome": "Welcome",
+      "loginToFoodRescue": "Login to Food Rescue",
+      "forgot-password": "Forgot Password?",
+      "have-account": "Don't have an account? ",
+      "register": "Register",
+      "loginPressed": "Login Pressed",
+      "loginWithFaceId": "Login with Face ID",
+      "or": "Or",
+      "usePassword": "Use password"
+    },
+    "register-screen": {
+      "title": "Create Account",
+      "subtitle": "Join us today",
+      "userType": "Account Type",
+      "customer": "Customer",
+      "shopOwner": "Shop Owner",
+      "shopDetails": "Shop Details",
+      "shopName": "Shop Name",
+      "shopAddress": "Shop Address",
+      "taxNumber": "Tax Number",
+      "signUp": "Create Account",
+      "registerShop": "Register Shop",
+      "alreadyHaveAccount": "Already have an account?",
+      "pickLocation": "Pick Location",
+      "pickImage": "Pick Image",
+      "openCamera": "Open Camera",
+      "tapToChangePic": "Tap To Change Pic"
+    },
+    "otp": {
+      "title": "Verify OTP",
+      "subtitle": "Enter the 6-digit code sent to your email",
+      "verify": "Verify"
+    },
+    "reset-password-screen": {
+      "title": "Reset Password",
+      "subtitle": "Enter your new password below",
+      "reset": "Reset Password"
+    },
+    "forgot-password-screen": {
+      "title": "Forgot Password",
+      "subtitle": "Don't worry, we'll send you instructions to reset your password",
+      "enter-email": "Enter your email",
+      "reset-password": "Reset Password"
+    }
   },
+
   "tabs": {
     "explore": "Explore",
     "favorites": "Favorites",
@@ -63,20 +75,6 @@
     "theme": "Theme",
     "language": "Language",
     "logout": "Logout"
-  },
-  "otp": {
-    "title": "Verify OTP",
-    "subtitle": "Enter the 6-digit code sent to your email",
-    "verify": "Verify",
-    "back": "Back"
-  },
-  "reset-password-screen": {
-    "title": "Reset Password",
-    "subtitle": "Enter your new password below",
-    "password": "Password",
-    "confirmPassword": "Confirm Password",
-    "reset": "Reset Password",
-    "back": "Back"
   },
   "empty": {
     "title": "Nothing here yet",

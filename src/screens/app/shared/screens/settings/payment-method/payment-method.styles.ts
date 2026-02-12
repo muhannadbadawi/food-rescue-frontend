@@ -39,17 +39,6 @@ export const getStyles = (colors: any) =>
       height: 30,
     },
     addButton: {
-      backgroundColor: colors.primary,
-      padding: 14,
       marginHorizontal: 16,
-      borderRadius: 12,
-      alignItems: "center",
-      marginTop: 8,
-      marginBottom: 16,
-    },
-    addButtonText: {
-      color: "#fff",
-      fontWeight: "bold",
-      fontSize: 16,
     },
   });

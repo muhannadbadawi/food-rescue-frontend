@@ -1,6 +1,6 @@
 module.exports = function (plop) {
   plop.setGenerator("component", {
-    description: "Create component with styles",
+    description: "Create a screen or a component",
     prompts: [
       {
         type: "input",
@@ -10,21 +10,33 @@ module.exports = function (plop) {
       {
         type: "input",
         name: "path",
-        message: "Component path?",
-      },
-    ],
-    actions: [
-      {
-        type: "add",
-        path: "src/screens/{{path}}/{{name}}/{{name}}.tsx",
-        templateFile: "plop-templates/component.tsx.hbs",
+        message: "Component path? src/screens/",
       },
       {
-        type: "add",
-        path: "src/screens/{{path}}/{{name}}/{{name}}.styles.ts",
-        templateFile: "plop-templates/component.styles.ts.hbs",
+        type: "list",
+        name: "type",
+        message: "Do you want a Screen or Component?",
+        choices: ["Screen", "Component"],
       },
     ],
+    actions: function (answers) {
+      const templateFile =
+        answers.type === "Screen"
+          ? "plop-templates/screen.tsx.hbs"
+          : "plop-templates/component.tsx.hbs";
+
+      return [
+        {
+          type: "add",
+          path: "src/screens/{{path}}/{{name}}/{{name}}.tsx",
+          templateFile,
+        },
+        {
+          type: "add",
+          path: "src/screens/{{path}}/{{name}}/{{name}}.styles.ts",
+          templateFile: "plop-templates/component.styles.ts.hbs",
+        },
+      ];
+    },
   });
 };
-// npm install -D plop

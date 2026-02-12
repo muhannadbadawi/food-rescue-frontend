@@ -19,6 +19,8 @@ import { Ionicons } from "@expo/vector-icons";
 import { AuthScreen } from "@/src/navigation/screens-type/auth-screens";
 import { AuthStackParamList } from "@/src/navigation/stacks/auth-stack";
 import i18n from "@/src/localization/i18n";
+import Button from "../../app/shared/components/button/button";
+import Password from "../../app/shared/components/password/password";
 
 type ResetPasswordNavigationProp = NativeStackNavigationProp<
   AuthStackParamList,
@@ -30,8 +32,8 @@ const ResetPassword = () => {
   const colors = useTheme();
   const styles = getStyles(colors);
   const { t } = useTranslation();
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  // const [showPassword, setShowPassword] = useState(false);
+  // const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -62,82 +64,47 @@ const ResetPassword = () => {
           </View>
 
           <Text style={styles.title}>
-            {t("reset-password-screen.title", "Reset Password")}
+            {t("auth.reset-password-screen.title")}
           </Text>
 
           <Text style={styles.subtitle}>
-            {t(
-              "reset-password-screen.subtitle",
-              "Enter your new password below"
-            )}
+            {t("auth.reset-password-screen.subtitle")}
           </Text>
-          <View style={styles.passwordContainer}>
-            <TextInput
-              placeholder={t("reset-password-screen.password")}
-              placeholderTextColor={colors.textSecondary}
-              style={styles.passwordInput}
-              secureTextEntry={!showPassword}
-              textAlign={i18n.language === "ar" ? "right" : "left"}
-              value={password}
-              onChangeText={setPassword}
-            />
-
-            <TouchableOpacity
-              onPress={() => setShowPassword(!showPassword)}
-              style={styles.eyeIcon}
-            >
-              <Ionicons
-                name={showPassword ? "eye-off" : "eye"}
-                size={20}
-                color={colors.icon}
-              />
-            </TouchableOpacity>
-          </View>
-          <View style={styles.passwordContainer}>
-            <TextInput
-              placeholder={t("reset-password-screen.confirmPassword")}
-              placeholderTextColor={colors.textSecondary}
-              style={styles.passwordInput}
-              secureTextEntry={!showConfirmPassword}
-              textAlign={i18n.language === "ar" ? "right" : "left"}
-              value={confirmPassword}
-              onChangeText={setConfirmPassword}
-            />
-
-            <TouchableOpacity
-              onPress={() => setShowConfirmPassword(!showConfirmPassword)}
-              style={styles.eyeIcon}
-            >
-              <Ionicons
-                name={showConfirmPassword ? "eye-off" : "eye"}
-                size={20}
-                color={colors.icon}
-              />
-            </TouchableOpacity>
-          </View>
-
-          <TouchableOpacity
+          <Password
+            placeholder={t("auth.password")}
+            passwordContainerStyle={styles.passwordContainer}
+            passwordInputStyle={styles.passwordInput}
+            passwordValue={password}
+            setPasswordValue={setPassword}
+          />
+          <Password
+            placeholder={t("auth.confirmPassword")}
+            passwordContainerStyle={styles.passwordContainer}
+            passwordInputStyle={styles.passwordInput}
+            passwordValue={confirmPassword}
+            setPasswordValue={setConfirmPassword}
+          />
+          <Button
             style={[
               styles.button,
               (!password || !confirmPassword) && styles.buttonDisabled,
             ]}
             disabled={!password || !confirmPassword}
             onPress={onReset}
-          >
-            <Text style={styles.buttonText}>
-              {t("reset-password-screen.reset", "Reset Password")}
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.backButton}
+            text={t("auth.reset-password-screen.reset")}
+          />
+          <Button
+            style={styles.backButtonContainer}
             onPress={() => navigation.goBack()}
-          >
-            <Ionicons name="arrow-back" size={20} color={colors.primary} />
-            <Text style={styles.backText}>
-              {t("reset-password-screen.back", "Back")}
-            </Text>
-          </TouchableOpacity>
+            children={
+              <>
+                <Ionicons name="arrow-back" size={20} color={colors.primary} />
+                <Text style={styles.backButtonText}>
+                  {t("common.back")}
+                </Text>
+              </>
+            }
+          />
         </ScrollView>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>

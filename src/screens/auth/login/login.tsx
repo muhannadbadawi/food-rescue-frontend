@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -10,8 +10,6 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Alert,
-  Dimensions,
-  ActivityIndicator,
 } from "react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
@@ -28,6 +26,7 @@ import * as LocalAuthentication from "expo-local-authentication";
 import * as SecureStore from "expo-secure-store";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Button from "@/src/screens/app/shared/components/button/button";
+import Password from "../../app/shared/components/password/password";
 
 type LoginScreenNavigationProp = NativeStackNavigationProp<
   AuthStackParamList,
@@ -35,8 +34,6 @@ type LoginScreenNavigationProp = NativeStackNavigationProp<
 >;
 
 export default function Login() {
-  const { width, height } = Dimensions.get("window");
-
   const navigation = useNavigation<LoginScreenNavigationProp>();
   const colors = useTheme();
   const styles = getStyles(colors);
@@ -45,15 +42,13 @@ export default function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
 
   const languages = i18n.language === "en" ? "ع" : "E";
 
   const handleChangeLanguage = () => {
-    // if (i18n.language !== code) {
     changeLanguage(i18n.language === "en" ? "ar" : "en");
-    // }
   };
+
   const handleLogin = async () => {
     try {
       await login({ email, password });
@@ -87,8 +82,8 @@ export default function Login() {
     }
 
     const result = await LocalAuthentication.authenticateAsync({
-      promptMessage: t("login-screen.loginWithFaceId"),
-      fallbackLabel: t("login-screen.usePassword"),
+      promptMessage: t("auth.login-screen.loginWithFaceId"),
+      fallbackLabel: t("auth.login-screen.usePassword"),
     });
 
     if (result.success) {
@@ -126,13 +121,13 @@ export default function Login() {
                 size={80}
                 color={colors.primary}
               />
-              <Text style={styles.title}>{t("login-screen.welcome")}</Text>
+              <Text style={styles.title}>{t("auth.login-screen.welcome")}</Text>
               <Text style={styles.subtitle}>
-                {t("login-screen.loginToFoodRescue")}
+                {t("auth.login-screen.loginToFoodRescue")}
               </Text>
               <View style={styles.card}>
                 <TextInput
-                  placeholder={t("login-screen.email")}
+                  placeholder={t("auth.email")}
                   placeholderTextColor={colors.textSecondary}
                   style={styles.input}
                   keyboardType="email-address"
@@ -141,69 +136,53 @@ export default function Login() {
                   onChangeText={setEmail}
                 />
 
-                <View style={styles.passwordContainer}>
-                  <TextInput
-                    placeholder={t("login-screen.password")}
-                    placeholderTextColor={colors.textSecondary}
-                    style={styles.passwordInput}
-                    secureTextEntry={!showPassword}
-                    textAlign={i18n.language === "ar" ? "right" : "left"}
-                    value={password}
-                    onChangeText={setPassword}
-                  />
-
-                  <TouchableOpacity
-                    onPress={() => setShowPassword(!showPassword)}
-                    style={styles.eyeIcon}
-                  >
-                    <Ionicons
-                      name={showPassword ? "eye-off" : "eye"}
-                      size={20}
-                      color={colors.icon}
-                    />
-                  </TouchableOpacity>
-                </View>
-
+                <Password
+                  placeholder={t("auth.password")}
+                  setPasswordValue={setPassword}
+                  passwordValue={password}
+                  passwordContainerStyle={styles.passwordContainer}
+                  passwordInputStyle={styles.passwordInput}
+                />
                 <View style={styles.linksRow}>
-                  <TouchableOpacity
+                  <Button
                     onPress={() =>
                       navigation.navigate(AuthScreen.ForgotPassword)
                     }
-                  >
-                    <Text style={styles.forgotText}>
-                      {t("login-screen.forgot-password")}
-                    </Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
+                    text={t("auth.login-screen.forgot-password")}
+                    style={styles.linkButton}
+                    textStyle={styles.linkButtonText}
+                  />
+                  <Button
                     onPress={() => navigation.navigate("Register")}
-                  >
-                    <Text style={styles.registerLink}>
-                      {t("login-screen.register")}
-                    </Text>
-                  </TouchableOpacity>
+                    text={t("auth.login-screen.register")}
+                    style={{ backgroundColor: "transparent" }}
+                    textStyle={styles.linkButtonText}
+                  />
                 </View>
-                <Button
-                  text={t("login-screen.login")}
-                  onPress={handleLogin}
-                />
+                <View style={styles.buttonsContainer}>
+                  <Button
+                    text={t("auth.login")}
+                    onPress={handleLogin}
+                  />
 
-                <Text style={styles.orText}>{t("login-screen.or")}</Text>
+                  <Text style={styles.orText}>{t("auth.login-screen.or")}</Text>
 
-                <Button
-                  children={
-                    <>
-                      <Text style={styles.buttonText}>
-                        {t("login-screen.loginWithFaceId")}
-                      </Text>
-                      <Entypo
-                        name="fingerprint"
-                        size={18}
-                        color={colors.onPrimary}
-                      />
-                    </>
-                  }
-                  onPress={handleBiometricLogin}
-                />
+                  <Button
+                    children={
+                      <>
+                        <Text style={styles.buttonText}>
+                          {t("auth.login-screen.loginWithFaceId")}
+                        </Text>
+                        <Entypo
+                          name="fingerprint"
+                          size={18}
+                          color={colors.onPrimary}
+                        />
+                      </>
+                    }
+                    onPress={handleBiometricLogin}
+                  />
+                </View>
               </View>
             </View>
           </ScrollView>

@@ -78,7 +78,7 @@ const ShopOwnerFields = () => {
   return (
     <View style={styles.shopOwnerContainer}>
       <Text style={styles.sectionTitle}>
-        {t("register-screen.shopDetails")}
+        {t("auth.register-screen.shopDetails")}
       </Text>
       <View style={styles.card}>
         <View style={{ alignItems: "center", marginBottom: 16 }}>
@@ -95,10 +95,10 @@ const ShopOwnerFields = () => {
               )}
             </View>
           </TouchableOpacity>
-          <Text style={styles.hint}>{t("register-screen.tapToChangePic")}</Text>
+          <Text style={styles.hint}>{t("auth.register-screen.tapToChangePic")}</Text>
         </View>
         <TextInput
-          placeholder={t("register-screen.shopName")}
+          placeholder={t("auth.register-screen.shopName")}
           placeholderTextColor={colors.textSecondary}
           style={styles.input}
           value={shopName}
@@ -114,12 +114,12 @@ const ShopOwnerFields = () => {
               ? `${shopCoords.latitude.toFixed(
                   5
                 )}, ${shopCoords.longitude.toFixed(5)}`
-              : t("register-screen.pickLocation")}
+              : t("auth.register-screen.pickLocation")}
           </Text>
         </TouchableOpacity>
 
         <TextInput
-          placeholder={t("register-screen.taxNumber")}
+          placeholder={t("auth.register-screen.taxNumber")}
           placeholderTextColor={colors.textSecondary}
           style={styles.input}
           value={taxNumber}
@@ -152,7 +152,7 @@ const ShopOwnerFields = () => {
                     onPress={() => setMapVisible(false)}
                   >
                     <Text style={styles.mapBtnTxt}>
-                      {t("register-screen.cancel")}
+                      {t("common.cancel")}
                     </Text>
                   </TouchableOpacity>
                   <TouchableOpacity
@@ -160,7 +160,7 @@ const ShopOwnerFields = () => {
                     onPress={confirmCoords}
                   >
                     <Text style={[styles.mapBtnTxt, styles.mapBtnTxtLight]}>
-                      {t("register-screen.confirm")}
+                      {t("common.confirm")}
                     </Text>
                   </TouchableOpacity>
                 </View>

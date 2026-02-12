@@ -41,10 +41,7 @@ export const getStyles = (colors: any) =>
       fontSize: 14,
       fontWeight: "bold",
     },
-    forgotText: {
-      color: colors.primary,
-      fontSize: 14,
-    },
+
     registerContainer: {
       flexDirection: "row",
       marginTop: 10,
@@ -57,6 +54,14 @@ export const getStyles = (colors: any) =>
       fontSize: 14,
       color: colors.primary,
       fontWeight: "bold",
+    },
+    linkButton: {
+      backgroundColor: "transparent",
+    },
+    linkButtonText: {
+      color: colors.primary,
+      fontWeight: "medium",
+      fontSize: 14,
     },
     passwordContainer: {
       width: "100%",
@@ -90,6 +95,9 @@ export const getStyles = (colors: any) =>
       flexDirection: "row",
       justifyContent: "space-between",
       marginBottom: 10,
+    },
+    buttonsContainer: {
+      gap: 8,
     },
     safeArea: {
       flex: 1,

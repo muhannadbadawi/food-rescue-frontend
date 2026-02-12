@@ -8,6 +8,7 @@ import {
   Platform,
   TouchableWithoutFeedback,
   Keyboard,
+  View,
 } from "react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
@@ -45,31 +46,41 @@ const ForgotPassword = () => {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <ScrollView contentContainerStyle={styles.container}>
           <Ionicons name="paper-plane" size={80} color={colors.primary} />
-          <Text style={styles.title}>{t("forgot-password-screen.title")}</Text>
+          <Text style={styles.title}>{t("auth.forgot-password-screen.title")}</Text>
           <Text style={styles.subtitle}>
-            {t("forgot-password-screen.subtitle")}
+            {t("auth.forgot-password-screen.subtitle")}
           </Text>
-
-          <TextInput
-            placeholder={t("forgot-password-screen.enter-email")}
-            placeholderTextColor={colors.textSecondary}
-            style={styles.input}
-            keyboardType="email-address"
-            value={email}
-            textAlign={i18n.language === "ar" ? "right" : "left"}
-            onChangeText={setEmail}
-          />
-          <Button text={t("forgot-password-screen.reset-password")} onPress={navigateToOTPScreen} />
-
-          <TouchableOpacity
-            style={styles.forgotContainer}
-            onPress={() => navigation.goBack()}
-          >
-            <Ionicons name="arrow-back" size={20} color={colors.primary} />
-            <Text style={styles.forgotText}>
-              {t("forgot-password-screen.back")}
-            </Text>
-          </TouchableOpacity>
+          <View style={styles.card}>
+            <TextInput
+              placeholder={t("auth.forgot-password-screen.enter-email")}
+              placeholderTextColor={colors.textSecondary}
+              style={styles.input}
+              keyboardType="email-address"
+              value={email}
+              textAlign={i18n.language === "ar" ? "right" : "left"}
+              onChangeText={setEmail}
+            />
+            <Button
+              text={t("auth.forgot-password-screen.reset-password")}
+              onPress={navigateToOTPScreen}
+            />
+            <Button
+              style={styles.backButtonContainer}
+              onPress={() => navigation.goBack()}
+              children={
+                <>
+                  <Ionicons
+                    name="arrow-back"
+                    size={20}
+                    color={colors.primary}
+                  />
+                  <Text style={styles.backButtonText}>
+                    {t("common.back")}
+                  </Text>
+                </>
+              }
+            />
+          </View>
         </ScrollView>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>

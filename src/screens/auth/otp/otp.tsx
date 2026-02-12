@@ -18,6 +18,7 @@ import { useTheme } from "@/src/theme/theme-context";
 import { Ionicons } from "@expo/vector-icons";
 import { AuthScreen } from "@/src/navigation/screens-type/auth-screens";
 import { AuthStackParamList } from "@/src/navigation/stacks/auth-stack";
+import Button from "../../app/shared/components/button/button";
 
 type OTPScreenNavigationProp = NativeStackNavigationProp<
   AuthStackParamList,
@@ -50,40 +51,44 @@ const OtpScreen = () => {
             color={colors.primary}
           />
 
-          <Text style={styles.title}>{t("otp.title")}</Text>
+          <Text style={styles.title}>{t("auth.otp.title")}</Text>
 
-          <Text style={styles.subtitle}>{t("otp.subtitle")}</Text>
-
-          <OtpInput
-            numberOfDigits={6}
-            focusColor={colors.primary}
-            onTextChange={setOtp}
-            onFilled={setOtp}
-            theme={{
-              containerStyle: styles.otpContainer,
-              pinCodeContainerStyle: styles.pinCodeContainer,
-              pinCodeTextStyle: styles.pinCodeText,
-              focusedPinCodeContainerStyle: {
-                borderColor: colors.primary,
-              },
-            }}
-          />
-
-          <TouchableOpacity
-            style={[styles.button, otp.length !== 6 && styles.buttonDisabled]}
-            disabled={otp.length !== 6}
-            onPress={onVerify}
-          >
-            <Text style={styles.buttonText}>{t("otp.verify")}</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.forgotContainer}
-            onPress={() => navigation.goBack()}
-          >
-            <Ionicons name="arrow-back" size={20} color={colors.primary} />
-            <Text style={styles.forgotText}>{t("otp.back")}</Text>
-          </TouchableOpacity>
+          <Text style={styles.subtitle}>{t("auth.otp.subtitle")}</Text>
+          <View style={styles.card}>
+            <OtpInput
+              numberOfDigits={6}
+              focusColor={colors.primary}
+              onTextChange={setOtp}
+              onFilled={setOtp}
+              theme={{
+                containerStyle: styles.otpContainer,
+                pinCodeContainerStyle: styles.pinCodeContainer,
+                pinCodeTextStyle: styles.pinCodeText,
+                focusedPinCodeContainerStyle: {
+                  borderColor: colors.primary,
+                },
+              }}
+            />
+            <Button
+              text={t("auth.otp.verify")}
+              style={[styles.button, otp.length !== 6 && styles.buttonDisabled]}
+              onPress={onVerify}
+            />
+            <Button
+              children={
+                <>
+                  <Ionicons
+                    name="arrow-back"
+                    size={20}
+                    color={colors.primary}
+                  />
+                  <Text style={styles.backButtonText}>{t("common.back")}</Text>
+                </>
+              }
+              style={styles.backButtonContainer}
+              onPress={() => navigation.goBack()}
+            />
+          </View>
         </ScrollView>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>

@@ -66,7 +66,7 @@ const PaymentMethodScreen = () => {
           contentContainerStyle={styles.list}
         />
       )}
-      <Button text={t("payment.addNew")} />
+      <Button text={t("payment.addNew")} style={styles.addButton} />
     </Screen>
   );
 };

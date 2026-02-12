@@ -20,6 +20,8 @@ import { useTranslation } from "react-i18next";
 import i18n from "@/src/localization/i18n";
 import { Ionicons } from "@expo/vector-icons";
 import ShopOwnerFields from "./fields/shop-owner-fields/shop-owner-fields";
+import Password from "../../app/shared/components/password/password";
+import Button from "../../app/shared/components/button/button";
 
 export default function Register() {
   const navigation = useNavigation();
@@ -29,7 +31,7 @@ export default function Register() {
 
   /* ---------- form state ---------- */
   const [userType, setUserType] = useState<"customer" | "shopOwner">(
-    "customer"
+    "customer",
   );
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
@@ -57,59 +59,66 @@ export default function Register() {
   /* ---------- render helpers ---------- */
   const renderUserTypeSelector = () => (
     <View style={styles.userTypeContainer}>
-      <Text style={styles.sectionTitle}>{t("register-screen.userType")}</Text>
+      <Text style={styles.sectionTitle}>
+        {t("auth.register-screen.userType")}
+      </Text>
       <View style={styles.userTypeButtons}>
-        <TouchableOpacity
+        <Button
           style={[
             styles.userTypeButton,
             userType === "customer" && styles.userTypeButtonActive,
           ]}
           onPress={() => setUserType("customer")}
-        >
-          <Ionicons
-            name="person"
-            size={24}
-            color={
-              userType === "customer"
-                ? colors.onPrimary
-                : colors.textSecondary
-            }
-          />
-          <Text
-            style={[
-              styles.userTypeButtonText,
-              userType === "customer" && styles.userTypeButtonTextActive,
-            ]}
-          >
-            {t("register-screen.customer")}
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
+          children={
+            <>
+              <Ionicons
+                name="person"
+                size={24}
+                color={
+                  userType === "customer"
+                    ? colors.onPrimary
+                    : colors.textSecondary
+                }
+              />
+              <Text
+                style={[
+                  styles.userTypeButtonText,
+                  userType === "customer" && styles.userTypeButtonTextActive,
+                ]}
+              >
+                {t("auth.register-screen.customer")}
+              </Text>
+            </>
+          }
+        />
+        <Button
           style={[
             styles.userTypeButton,
             userType === "shopOwner" && styles.userTypeButtonActive,
           ]}
           onPress={() => setUserType("shopOwner")}
-        >
-          <Ionicons
-            name="storefront"
-            size={24}
-            color={
-              userType === "shopOwner"
-                ? colors.textPrimary
-                : colors.textSecondary
-            }
-          />
-          <Text
-            style={[
-              styles.userTypeButtonText,
-              userType === "shopOwner" && styles.userTypeButtonTextActive,
-            ]}
-          >
-            {t("register-screen.shopOwner")}
-          </Text>
-        </TouchableOpacity>
+          children={
+            <>
+              <Ionicons
+                name="storefront"
+                size={24}
+                color={
+                  userType === "shopOwner"
+                    ? colors.onPrimary
+                    : colors.textSecondary
+                }
+              />
+              <Text
+                style={[
+                  styles.userTypeButtonText,
+                  userType === "shopOwner" && styles.userTypeButtonTextActive,
+                ]}
+              >
+                {t("auth.register-screen.shopOwner")}
+              </Text>
+            </>
+          }
+        />
       </View>
     </View>
   );
@@ -117,17 +126,18 @@ export default function Register() {
   const renderCommonFields = () => (
     <>
       <TextInput
-        placeholder={t("register-screen.email")}
+        placeholder={t("auth.email")}
         placeholderTextColor={colors.textSecondary}
         style={styles.input}
         keyboardType="email-address"
-        value={email}
-        onChangeText={setEmail}
         autoComplete="email"
         textAlign={i18n.language === "ar" ? "right" : "left"}
+        value={email}
+        onChangeText={setEmail}
       />
+
       <TextInput
-        placeholder={t("register-screen.phoneNumber")}
+        placeholder={t("auth.phoneNumber")}
         placeholderTextColor={colors.textSecondary}
         style={styles.input}
         value={phoneNumber}
@@ -136,15 +146,10 @@ export default function Register() {
         autoComplete="tel"
         textAlign={i18n.language === "ar" ? "right" : "left"}
       />
-      <TextInput
-        placeholder={t("register-screen.password")}
-        placeholderTextColor={colors.textSecondary}
-        style={styles.input}
-        secureTextEntry
-        value={password}
-        onChangeText={setPassword}
-        autoComplete="password"
-        textAlign={i18n.language === "ar" ? "right" : "left"}
+      <Password
+        placeholder={t("auth.password")}
+        passwordValue={password}
+        setPasswordValue={setPassword}
       />
     </>
   );
@@ -178,8 +183,10 @@ export default function Register() {
                 margin: 30,
               }}
             />
-            <Text style={styles.title}>{t("register-screen.title")}</Text>
-            <Text style={styles.subtitle}>{t("register-screen.subtitle")}</Text>
+            <Text style={styles.title}>{t("auth.register-screen.title")}</Text>
+            <Text style={styles.subtitle}>
+              {t("auth.register-screen.subtitle")}
+            </Text>
 
             {renderUserTypeSelector()}
             {renderCommonFields()}
@@ -188,19 +195,17 @@ export default function Register() {
             <TouchableOpacity style={styles.button} onPress={handleRegister}>
               <Text style={styles.buttonText}>
                 {userType === "customer"
-                  ? t("register-screen.signUp")
-                  : t("register-screen.registerShop")}
+                  ? t("auth.register-screen.signUp")
+                  : t("auth.register-screen.registerShop")}
               </Text>
             </TouchableOpacity>
 
             <View style={styles.loginContainer}>
               <Text style={styles.loginText}>
-                {t("register-screen.alreadyHaveAccount")}
+                {t("auth.register-screen.alreadyHaveAccount")}
               </Text>
               <TouchableOpacity onPress={() => navigation.goBack()}>
-                <Text style={styles.loginLink}>
-                  {t("register-screen.login")}
-                </Text>
+                <Text style={styles.loginLink}>{t("auth.login")}</Text>
               </TouchableOpacity>
             </View>
           </ScrollView>

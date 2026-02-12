@@ -64,18 +64,19 @@ export const getStyles = (colors: any) =>
       fontSize: 16,
       fontWeight: "600",
     },
-
-    backButton: {
+    backButtonContainer: {
       flexDirection: "row",
-      justifyContent: "center",
       alignItems: "center",
-      marginTop: 8,
+      justifyContent: "center",
+      backgroundColor: "transparent",
+      gap: 10,
+      marginTop: 10,
     },
 
-    backText: {
+    backButtonText: {
       fontSize: 14,
-      color: colors.primary,
-      marginLeft: 4,
+      color: colors.textPrimary,
+      fontWeight: "bold",
     },
     passwordContainer: {
       width: "100%",
@@ -93,6 +94,7 @@ export const getStyles = (colors: any) =>
       color: colors.textPrimary,
     },
     eyeIcon: {
+      backgroundColor: "transparent",
       padding: 8,
     },
   });

@@ -36,7 +36,7 @@ export const getStyles = (colors: any) =>
       width: 48,
       height: 56,
       borderColor: colors.border,
-      backgroundColor: colors.border,
+      backgroundColor: colors.background,
     },
 
     pinCodeText: {
@@ -65,27 +65,27 @@ export const getStyles = (colors: any) =>
       fontWeight: "bold",
     },
 
-    forgotContainer: {
+    backButtonContainer: {
       flexDirection: "row",
       alignItems: "center",
+      backgroundColor: "transparent",
       gap: 10,
       marginTop: 10,
     },
-    forgotText: {
+    backButtonText: {
       fontSize: 14,
       color: colors.textPrimary,
       fontWeight: "bold",
     },
-
-    backButton: {
-      flexDirection: "row",
-      alignItems: "center",
-      gap: 10,
-      marginTop: 10,
-    },
-
-    backText: {
-      fontSize: 14,
-      color: colors.primary,
+    card: {
+      width: "100%",
+      backgroundColor: colors.card + "AA",
+      borderRadius: 12,
+      padding: 20,
+      shadowColor: colors.shadow,
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.1,
+      shadowRadius: 8,
+      elevation: 5,
     },
   });

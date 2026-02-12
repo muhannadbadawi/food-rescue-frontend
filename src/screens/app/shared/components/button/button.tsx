@@ -15,6 +15,7 @@ interface IButton {
   style?: StyleProp<ViewStyle>;
   text?: string;
   textStyle?: StyleProp<TextStyle>;
+  disabled?: boolean;
   onPress?: () => void;
   children?: ReactNode;
   spinnerColor?: string;
@@ -25,6 +26,7 @@ const Button = ({
   style,
   text,
   textStyle,
+  disabled,
   onPress,
   children,
   spinnerColor,
@@ -34,22 +36,22 @@ const Button = ({
   const styles = getStyles(colors);
   const [loading, setLoading] = useState(false);
 
-  onPress = onPress
-    ? async () => {
-        setLoading(true);
-        try {
-          await onPress!();
-        } finally {
-          setLoading(false);
-        }
-      }
-    : undefined;
+  const handlePress = async () => {
+    if (!onPress) return;
+
+    setLoading(true);
+    try {
+      await onPress();
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <TouchableOpacity
       style={[styles.buttonContainer, style]}
-      onPress={onPress}
-      disabled={loading}
+      onPress={handlePress}
+      disabled={disabled || loading}
     >
       {!loading ? (
         (children ?? <Text style={[styles.buttonText, textStyle]}>{text}</Text>)
