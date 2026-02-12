@@ -18,6 +18,7 @@ import { useTranslation } from "react-i18next";
 import { AuthScreen } from "@/src/navigation/screens-type/auth-screens";
 import { AuthStackParamList } from "@/src/navigation/stacks/auth-stack";
 import i18n from "@/src/localization/i18n";
+import Button from "../../app/shared/components/button/button";
 
 type LoginScreenNavigationProp = NativeStackNavigationProp<
   AuthStackParamList,
@@ -32,7 +33,7 @@ const ForgotPassword = () => {
 
   const [email, setEmail] = useState("");
 
-  const handleLogin = () => {
+  const navigateToOTPScreen = () => {
     navigation.navigate(AuthScreen.OTPScreen);
   };
 
@@ -58,12 +59,7 @@ const ForgotPassword = () => {
             textAlign={i18n.language === "ar" ? "right" : "left"}
             onChangeText={setEmail}
           />
-
-          <TouchableOpacity style={styles.button} onPress={handleLogin}>
-            <Text style={styles.buttonText}>
-              {t("forgot-password-screen.reset-password")}
-            </Text>
-          </TouchableOpacity>
+          <Button text={t("forgot-password-screen.reset-password")} onPress={navigateToOTPScreen} />
 
           <TouchableOpacity
             style={styles.forgotContainer}

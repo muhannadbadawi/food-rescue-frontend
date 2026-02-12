@@ -27,3 +27,4 @@ module.exports = function (plop) {
     ],
   });
 };
+// npm install -D plop

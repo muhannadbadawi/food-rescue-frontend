@@ -24,7 +24,7 @@ type SettingsButton = {
   title: string;
   icon: React.ReactNode;
   onPress: () => void;
-  roles?: ("client" | "merchant")[];
+  roles?: ("User" | "merchant")[];
 };
 
 const ProfileScreen = () => {
@@ -46,14 +46,14 @@ const ProfileScreen = () => {
         title: t("settings.receipts"),
         icon: <Ionicons name="documents-sharp" size={24} style={styles.icon} />,
         onPress: navigateTo(SettingScreens.Receipts),
-        roles: ["client"],
+        roles: ["User"],
       },
       {
         id: 1,
         title: t("settings.paymentMethod"),
         icon: <MaterialIcons name="payment" size={24} style={styles.icon} />,
         onPress: navigateTo(SettingScreens.PaymentMethod),
-        roles: ["client"],
+        roles: ["User"],
       },
       {
         id: 2,
@@ -62,14 +62,14 @@ const ProfileScreen = () => {
           <Ionicons name="location-outline" size={24} style={styles.icon} />
         ),
         onPress: navigateTo(SettingScreens.SavedAddresses),
-        roles: ["client"],
+        roles: ["User"],
       },
       {
         id: 3,
         title: t("settings.country"),
         icon: <Ionicons name="globe-outline" size={24} style={styles.icon} />,
         onPress: navigateTo(SettingScreens.Country),
-        roles: ["client"],
+        roles: ["User"],
       },
       {
         id: 4,
@@ -82,7 +82,7 @@ const ProfileScreen = () => {
           />
         ),
         onPress: navigateTo(SettingScreens.ThemeScreen),
-        roles: ["client", "merchant"],
+        roles: ["User", "merchant"],
       },
       {
         id: 5,
@@ -91,14 +91,14 @@ const ProfileScreen = () => {
           <Ionicons name="language-outline" size={24} style={styles.icon} />
         ),
         onPress: navigateTo(SettingScreens.LanguageScreen),
-        roles: ["client", "merchant"],
+        roles: ["User", "merchant"],
       },
       {
         id: 6,
         title: t("settings.logout"),
         icon: <Ionicons name="log-out-outline" size={24} style={styles.icon} />,
         onPress: logout,
-        roles: ["client", "merchant"],
+        roles: ["User", "merchant"],
       },
     ],
     [t, styles.icon, navigateTo, logout]

@@ -1,5 +1,3 @@
-import { t } from "i18next";
-
 export interface TranslatedString {
   ar: string;
   en: string;
@@ -88,4 +86,23 @@ export interface PaymentMethod {
   type: string;
   last4: string;
   expiry: string;
+}
+
+export interface Response <data> {
+  data: data;
+  message: string;
+  isSuccess: boolean;
+  statusCode: number;
+}
+
+export interface LoginResponse {
+  accessToken: string;
+  expiresAt: string;
+  refreshTokenExpiresAt: string;
+  refreshToken: string;
+} 
+
+export interface LoginRequest {
+  email: string;
+  password: string;
 }

@@ -36,18 +36,6 @@ export const getStyles = (colors: any) =>
       marginBottom: 16,
       color: colors.textPrimary,
     },
-    button: {
-      backgroundColor: colors.primary, // 80% opacity
-      gap: 8,
-      flexDirection: "row",
-      justifyContent: "center",
-      paddingVertical: 14,
-      borderRadius: 8,
-      width: "100%",
-      alignItems: "center",
-      marginBottom: 16,
-      marginTop: 16,
-    },
     buttonText: {
       color: colors.onPrimary,
       fontSize: 14,

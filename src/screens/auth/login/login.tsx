@@ -10,9 +10,8 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Alert,
-  Image,
-  StyleSheet,
   Dimensions,
+  ActivityIndicator,
 } from "react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
@@ -28,6 +27,7 @@ import i18n, { changeLanguage } from "@/src/localization/i18n";
 import * as LocalAuthentication from "expo-local-authentication";
 import * as SecureStore from "expo-secure-store";
 import { SafeAreaView } from "react-native-safe-area-context";
+import Button from "@/src/screens/app/shared/components/button/button";
 
 type LoginScreenNavigationProp = NativeStackNavigationProp<
   AuthStackParamList,
@@ -55,15 +55,14 @@ export default function Login() {
     // }
   };
   const handleLogin = async () => {
-    login("client");
-    Alert.alert(
-      t("login-screen.loginPressed"),
-      `${t("login-screen.email")}: ${email}\n${t(
-        "login-screen.password",
-      )}: ${password}`,
-    );
-    await SecureStore.setItemAsync("userEmail", email);
-    await SecureStore.setItemAsync("userPassword", password);
+    try {
+      await login({ email, password });
+
+      await SecureStore.setItemAsync("userEmail", email);
+      await SecureStore.setItemAsync("userPassword", password);
+    } catch (error: any) {
+      Alert.alert(t("common.error"), error?.message || "Login failed");
+    }
   };
 
   const handleBiometricLogin = async () => {
@@ -93,7 +92,7 @@ export default function Login() {
     });
 
     if (result.success) {
-      login("client");
+      // login("client");
     }
   };
 
@@ -183,39 +182,28 @@ export default function Login() {
                     </Text>
                   </TouchableOpacity>
                 </View>
+                <Button
+                  text={t("login-screen.login")}
+                  onPress={handleLogin}
+                />
 
-                <TouchableOpacity style={styles.button} onPress={handleLogin}>
-                  <Text style={styles.buttonText}>
-                    {t("login-screen.login")}
-                  </Text>
-                </TouchableOpacity>
                 <Text style={styles.orText}>{t("login-screen.or")}</Text>
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={handleBiometricLogin}
-                >
-                  <Text style={styles.buttonText}>
-                    {t("login-screen.loginWithFaceId")}
-                  </Text>
-                  <Entypo
-                    name="fingerprint"
-                    size={18}
-                    color={colors.onPrimary}
-                  />
-                </TouchableOpacity>
 
-                {/* <View style={styles.registerContainer}>
-                  <Text style={styles.registerText}>
-                    {t("login-screen.have-account")}
-                  </Text>
-                  <TouchableOpacity
-                    onPress={() => navigation.navigate("Register")}
-                  >
-                    <Text style={styles.registerLink}>
-                      {t("login-screen.register")}
-                    </Text>
-                  </TouchableOpacity>
-                </View> */}
+                <Button
+                  children={
+                    <>
+                      <Text style={styles.buttonText}>
+                        {t("login-screen.loginWithFaceId")}
+                      </Text>
+                      <Entypo
+                        name="fingerprint"
+                        size={18}
+                        color={colors.onPrimary}
+                      />
+                    </>
+                  }
+                  onPress={handleBiometricLogin}
+                />
               </View>
             </View>
           </ScrollView>

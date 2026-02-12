@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import Screen from "@/src/screens/app/shared/components/screen/screen";
 import EmptyScreen from "@/src/screens/app/shared/components/empty/empty";
 import { paymentMethods } from "@/src/constants/mockData";
+import Button from "@/src/screens/app/shared/components/button/button";
 
 const cardIcons: Record<string, any> = {
   Visa: require("@/src/assets/cards/Visa.jpg"),
@@ -22,7 +23,7 @@ const PaymentMethodScreen = () => {
   const { t } = useTranslation();
 
   const [defaultCardId, setDefaultCardId] = useState<number | null>(
-    paymentMethods.length ? paymentMethods[0].id : null
+    paymentMethods.length ? paymentMethods[0].id : null,
   );
 
   const renderItem = ({ item }: any) => {
@@ -65,10 +66,7 @@ const PaymentMethodScreen = () => {
           contentContainerStyle={styles.list}
         />
       )}
-
-      <TouchableOpacity style={styles.addButton}>
-        <Text style={styles.addButtonText}>{t("payment.addNew")}</Text>
-      </TouchableOpacity>
+      <Button text={t("payment.addNew")} />
     </Screen>
   );
 };

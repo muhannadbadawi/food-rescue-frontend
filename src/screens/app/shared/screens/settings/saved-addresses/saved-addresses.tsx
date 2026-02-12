@@ -5,6 +5,7 @@ import {
   FlatList,
   TouchableOpacity,
   ListRenderItem,
+  Alert,
 } from "react-native";
 import { useTheme } from "@/src/theme/theme-context";
 import { getStyles } from "./saved-addresses.styles";
@@ -28,6 +29,25 @@ const SavedAddressesScreen = () => {
   const styles = getStyles(colors);
   const { t } = useTranslation();
   const navigation = useNavigation<NavigationProp>();
+  const handleDelete = (id: number) => {
+    Alert.alert(
+      t("savedAddresses.deleteAddress"),
+      t("savedAddresses.deleteConfirmation"),
+      [
+        { text: t("savedAddresses.cancel"), style: "cancel" },
+        {
+          text: t("savedAddresses.delete"),
+          onPress: () => {
+            console.log("Deleted address with id:", id);
+          },
+          style: "destructive",
+        },
+      ],
+    );
+  };
+  const handleSetDefault = (id: number) => {
+    console.log("Set default address with id:", id);
+  };
 
   const renderItem: ListRenderItem<SavedAddress> = ({ item }) => (
     <TouchableOpacity
@@ -35,6 +55,25 @@ const SavedAddressesScreen = () => {
       onPress={() => {
         navigation.navigate("Details", { address: item });
       }}
+      onLongPress={() =>
+        Alert.alert(
+          t("savedAddresses.actions"),
+          t("savedAddresses.chooseAction"),
+          [
+            { text: t("savedAddresses.cancel"), style: "cancel" },
+            {
+              text: t("savedAddresses.setDefault"),
+              onPress: () => handleSetDefault(item.id),
+              style: "default",
+            },
+            {
+              text: t("savedAddresses.delete"),
+              onPress: () => handleDelete(item.id),
+              style: "destructive",
+            },
+          ],
+        )
+      }
     >
       <View style={styles.card}>
         <MaterialIcons

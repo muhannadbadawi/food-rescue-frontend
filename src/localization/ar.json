@@ -64,6 +64,7 @@
     "receipts": "الإيصالات",
     "paymentMethod": "طريقة الدفع",
     "savedAddresses": "العناوين المحفوظة",
+    "search": "بحث",
     "country": "الدولة",
     "theme": "المظهر",
     "language": "اللغة",
@@ -127,6 +128,10 @@
     "addressLabel": "تسمية العنوان",
     "streetName": "اسم الشارع",
     "phoneNumber": "رقم الهاتف",
+    "setDefault": "تعيين كافتراضي",
+    "cancel": "إلغاء",
+    "actions": "الإجراءات",
+    "chooseAction": "اختر إجراءً",
     "type": {
       "home": "المنزل",
       "work": "العمل",

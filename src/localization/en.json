@@ -57,6 +57,7 @@
   "settings": {
     "receipts": "Receipts",
     "paymentMethod": "Payment Method",
+    "search": "Search",
     "savedAddresses": "Saved Addresses",
     "country": "Country",
     "theme": "Theme",
@@ -127,6 +128,10 @@
     "addressLabel": "Address Label",
     "streetName": "Street Name",
     "phoneNumber": "Phone Number",
+    "setDefault": "Set as Default",
+    "cancel": "Cancel",
+    "actions": "Actions",
+    "chooseAction": "Choose an action",
     "type": {
       "home": "Home",
       "work": "Work",
