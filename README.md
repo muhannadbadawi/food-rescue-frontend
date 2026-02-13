@@ -49,8 +49,9 @@ The project follows a clean, scalable architecture suitable for real-world produ
 ![Auth Flow](src/assets/Authentication%20Flow.png)
 
 ---
-
 ## 🧭 Navigation Structure
+<details>
+
 ```
 RootNavigator
 ├── AuthStack
@@ -85,6 +86,7 @@ RootNavigator
           └── Language          // Shared
 
 ```
+</details>
 
 ## 🧭 Project Structure
 ```
