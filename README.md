@@ -51,9 +51,8 @@ The project follows a clean, scalable architecture suitable for real-world produ
 
 ---
 
-<details>
 <summary>🧭 Navigation Structure</summary>
-
+```
 RootNavigator
 ├── AuthStack
 │    ├── Login
@@ -86,10 +85,9 @@ RootNavigator
           ├── Theme             // Shared
           └── Language          // Shared
 
-</details>
+```
 
-### 🧭 Project Structure
-<details>
+## 🧭 Project Structure
 ```
 food-rescue
 ├─ .env
@@ -107,11 +105,8 @@ food-rescue
 ├─ README.md
 ├─ src
 │  ├─ api
-│  │  ├─ api-client.ts
-│  │  ├─ auth-service.ts
 │  │  └─ user-service.ts
 │  ├─ assets
-│  │  ├─ Authentication Flow.png
 │  │  ├─ cards
 │  │  │  ├─ ApplePay.jpg
 │  │  │  ├─ CliQ.png
@@ -247,7 +242,6 @@ food-rescue
 └─ tsconfig.json
 
 ```
-</details>
 
 ---
 
