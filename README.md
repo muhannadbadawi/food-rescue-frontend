@@ -7,7 +7,6 @@ A mobile app built with **React Native & Expo** connecting users with restaurant
 ![React Native](https://img.shields.io/badge/React%20Native-0.71-blue)
 ![Expo](https://img.shields.io/badge/Expo-48.0.0-green)
 ![License](https://img.shields.io/badge/License-MIT-yellow)
-![Build](https://img.shields.io/github/actions/workflow/status/username/food-rescue/build.yml)
 
 ---
 
@@ -244,3 +243,15 @@ food-rescue
 └─ tsconfig.json
 
 ```
+
+## 🛠️ Setup & Run
+bash
+# Clone repository
+git clone https://github.com/username/food-rescue.git
+cd food-rescue
+
+# Install dependencies
+npm install
+
+# Start Expo
+npm run start
