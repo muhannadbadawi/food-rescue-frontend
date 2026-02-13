@@ -49,8 +49,8 @@ The project follows a clean, scalable architecture suitable for real-world produ
 ![Auth Flow](src/assets/Authentication%20Flow.png)
 
 ---
-## 🧭 Navigation Structure
 <details>
+<summary> 🧭 Navigation Structure </summary>
 
 ```
 RootNavigator
