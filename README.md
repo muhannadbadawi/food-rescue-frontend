@@ -247,7 +247,7 @@ food-rescue
 ## 🛠️ Setup & Run
 bash
 # Clone repository
-git clone https://github.com/username/food-rescue.git
+git clone https://github.com/muhannadbadawi/food-rescue-frontend
 cd food-rescue
 
 # Install dependencies
