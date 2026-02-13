@@ -246,12 +246,12 @@ food-rescue
 
 ## 🛠️ Setup & Run
 bash
-# Clone repository
+### Clone repository
 git clone https://github.com/muhannadbadawi/food-rescue-frontend
 cd food-rescue
 
-# Install dependencies
+### Install dependencies
 npm install
 
-# Start Expo
+### Start Expo
 npm run start
