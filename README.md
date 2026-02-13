@@ -88,7 +88,9 @@ RootNavigator
 ```
 </details>
 
-## 🧭 Project Structure
+<details>
+<summary> 🧭 Project Structure </summary>
+
 ```
 food-rescue
 ├─ .env
@@ -245,6 +247,8 @@ food-rescue
 └─ tsconfig.json
 
 ```
+
+</details>
 
 ## 🛠️ Setup & Run
 bash
