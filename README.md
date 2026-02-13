@@ -91,75 +91,6 @@ RootNavigator
 ```
 food-rescue
 ├─ .env
-├─ android
-│  ├─ app
-│  │  ├─ build.gradle
-│  │  ├─ proguard-rules.pro
-│  │  └─ src
-│  │     ├─ debug
-│  │     │  └─ AndroidManifest.xml
-│  │     ├─ debugOptimized
-│  │     │  └─ AndroidManifest.xml
-│  │     └─ main
-│  │        ├─ AndroidManifest.xml
-│  │        ├─ java
-│  │        │  └─ com
-│  │        │     └─ muhannadbadawi
-│  │        │        └─ FoodRescue
-│  │        │           ├─ MainActivity.kt
-│  │        │           └─ MainApplication.kt
-│  │        └─ res
-│  │           ├─ drawable
-│  │           │  ├─ ic_launcher_background.xml
-│  │           │  └─ rn_edit_text_material.xml
-│  │           ├─ drawable-hdpi
-│  │           │  └─ splashscreen_logo.png
-│  │           ├─ drawable-mdpi
-│  │           │  └─ splashscreen_logo.png
-│  │           ├─ drawable-xhdpi
-│  │           │  └─ splashscreen_logo.png
-│  │           ├─ drawable-xxhdpi
-│  │           │  └─ splashscreen_logo.png
-│  │           ├─ drawable-xxxhdpi
-│  │           │  └─ splashscreen_logo.png
-│  │           ├─ mipmap-anydpi-v26
-│  │           │  ├─ ic_launcher.xml
-│  │           │  └─ ic_launcher_round.xml
-│  │           ├─ mipmap-hdpi
-│  │           │  ├─ ic_launcher.webp
-│  │           │  ├─ ic_launcher_foreground.webp
-│  │           │  └─ ic_launcher_round.webp
-│  │           ├─ mipmap-mdpi
-│  │           │  ├─ ic_launcher.webp
-│  │           │  ├─ ic_launcher_foreground.webp
-│  │           │  └─ ic_launcher_round.webp
-│  │           ├─ mipmap-xhdpi
-│  │           │  ├─ ic_launcher.webp
-│  │           │  ├─ ic_launcher_foreground.webp
-│  │           │  └─ ic_launcher_round.webp
-│  │           ├─ mipmap-xxhdpi
-│  │           │  ├─ ic_launcher.webp
-│  │           │  ├─ ic_launcher_foreground.webp
-│  │           │  └─ ic_launcher_round.webp
-│  │           ├─ mipmap-xxxhdpi
-│  │           │  ├─ ic_launcher.webp
-│  │           │  ├─ ic_launcher_foreground.webp
-│  │           │  └─ ic_launcher_round.webp
-│  │           ├─ values
-│  │           │  ├─ colors.xml
-│  │           │  ├─ strings.xml
-│  │           │  └─ styles.xml
-│  │           └─ values-night
-│  │              └─ colors.xml
-│  ├─ build.gradle
-│  ├─ gradle
-│  │  └─ wrapper
-│  │     ├─ gradle-wrapper.jar
-│  │     └─ gradle-wrapper.properties
-│  ├─ gradle.properties
-│  ├─ gradlew
-│  ├─ gradlew.bat
-│  └─ settings.gradle
 ├─ app.json
 ├─ App.tsx
 ├─ babel.config.js
@@ -174,6 +105,8 @@ food-rescue
 ├─ README.md
 ├─ src
 │  ├─ api
+│  │  ├─ api-client.ts
+│  │  ├─ auth-service.ts
 │  │  └─ user-service.ts
 │  ├─ assets
 │  │  ├─ cards
