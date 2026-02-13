@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { jwtDecode } from "jwt-decode";
-import { login as apiLogin, logout as apiLogout } from "@/src/api/user-service";
+import { login as apiLogin, logout as apiLogout } from "@/src/api/auth-service";
 import { LoginRequest, LoginResponse, Response } from "@/src/constants/types";
 
 type UserRole = "User" | "merchant";

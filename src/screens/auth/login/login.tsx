@@ -53,8 +53,6 @@ export default function Login() {
     try {
       await login({ email, password });
 
-      await SecureStore.setItemAsync("userEmail", email);
-      await SecureStore.setItemAsync("userPassword", password);
     } catch (error: any) {
       Alert.alert(t("common.error"), error?.message || "Login failed");
     }
@@ -62,10 +60,9 @@ export default function Login() {
 
   const handleBiometricLogin = async () => {
     const hasHardware = await LocalAuthentication.hasHardwareAsync();
-    const userEmail = await SecureStore.getItemAsync("userEmail");
-    const userPassword = await SecureStore.getItemAsync("userPassword");
+    const storedAccessToken = await SecureStore.getItemAsync("ACCESS_TOKEN");
 
-    if (!userEmail || !userPassword) {
+    if (!storedAccessToken) {
       Alert.alert(t("common.error"), "No stored credentials found");
       return;
     }
