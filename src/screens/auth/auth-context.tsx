@@ -4,11 +4,14 @@ import React, {
   useState,
   useEffect,
   ReactNode,
+  useMemo,
+  useCallback,
 } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as SecureStore from "expo-secure-store";
 import { jwtDecode } from "jwt-decode";
 import { login as apiLogin, logout as apiLogout } from "@/src/api/auth-service";
 import { LoginRequest, LoginResponse, Response } from "@/src/constants/types";
+import Splash from "../app/shared/components/splash/splash";
 
 type UserRole = "User" | "merchant";
 
@@ -36,29 +39,32 @@ const ACCESS_TOKEN_KEY = "ACCESS_TOKEN";
 const REFRESH_TOKEN_KEY = "REFRESH_TOKEN";
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userRole, setUserRole] = useState<UserRole | undefined>(undefined);
-  const [accessToken, setAccessToken] = useState<string | undefined>(undefined);
-  const [refreshToken, setRefreshToken] = useState<string | undefined>(
-    undefined,
-  );
+  const [authState, setAuthState] = useState({
+    isLoggedIn: false,
+    userRole: undefined as UserRole | undefined,
+    accessToken: undefined as string | undefined,
+    refreshToken: undefined as string | undefined,
+  });
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadAuth = async () => {
       try {
-        const storedAccessToken = await AsyncStorage.getItem(ACCESS_TOKEN_KEY);
+        const storedAccessToken =
+          await SecureStore.getItemAsync(ACCESS_TOKEN_KEY);
         const storedRefreshToken =
-          await AsyncStorage.getItem(REFRESH_TOKEN_KEY);
+          await SecureStore.getItemAsync(REFRESH_TOKEN_KEY);
 
         if (storedAccessToken) {
-          setAccessToken(storedAccessToken);
-          setRefreshToken(storedRefreshToken || undefined);
-          setIsLoggedIn(true);
-
-          // decode JWT to get role
           const decoded: JwtPayload = jwtDecode(storedAccessToken);
-          setUserRole(decoded.role);
+
+          setAuthState({
+            isLoggedIn: true,
+            userRole: decoded.role,
+            accessToken: storedAccessToken,
+            refreshToken: storedRefreshToken || undefined,
+          });
         }
       } catch (err) {
         console.log("Error loading auth state:", err);
@@ -66,65 +72,75 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         setLoading(false);
       }
     };
+
     loadAuth();
   }, []);
 
-  const login = async (loginRequest: LoginRequest) => {
+  const login = useCallback(async (loginRequest: LoginRequest) => {
     try {
       const response: Response<LoginResponse> = await apiLogin(loginRequest);
       if (!response.isSuccess) {
         throw new Error(response.message || "Login failed");
       }
+
       const token = response.data.accessToken;
       const refresh = response.data.refreshToken;
-
-      setAccessToken(token);
-      setRefreshToken(refresh);
-      setIsLoggedIn(true);
-
-      // decode role from token
       const decoded: JwtPayload = jwtDecode(token);
-      console.log("decoded: ", decoded);
-      setUserRole(decoded.role);
 
-      // save to AsyncStorage
-      await AsyncStorage.setItem(ACCESS_TOKEN_KEY, token);
-      await AsyncStorage.setItem(REFRESH_TOKEN_KEY, refresh);
+      setAuthState({
+        isLoggedIn: true,
+        userRole: decoded.role,
+        accessToken: token,
+        refreshToken: refresh,
+      });
+      await SecureStore.setItemAsync(ACCESS_TOKEN_KEY, token);
+      await SecureStore.setItemAsync(REFRESH_TOKEN_KEY, refresh);
     } catch (err) {
       console.log("Login error:", err);
       throw err;
     }
-  };
+  }, []);
 
-  const logout = async () => {
-    apiLogout()
-      .then(async () => {
-        setIsLoggedIn(false);
-        setUserRole(undefined);
-        setAccessToken(undefined);
-        setRefreshToken(undefined);
-        await AsyncStorage.multiRemove([ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY]);
-      })
-      .catch((err) => {
-        console.log("Logout error:", err);
+  const logout = useCallback(async () => {
+    try {
+      await apiLogout();
+    } catch (err) {
+      console.log("Logout error:", err);
+    } finally {
+      setAuthState({
+        isLoggedIn: false,
+        userRole: undefined,
+        accessToken: undefined,
+        refreshToken: undefined,
       });
-  };
+      await Promise.all([
+        SecureStore.deleteItemAsync(ACCESS_TOKEN_KEY),
+        SecureStore.deleteItemAsync(REFRESH_TOKEN_KEY),
+      ]);
+    }
+  }, []);
 
-  if (loading) return null;
+  const contextValue = useMemo(
+    () => ({
+      ...authState,
+      login,
+      logout,
+      loading,
+    }),
+    [
+      authState.isLoggedIn,
+      authState.userRole,
+      authState.accessToken,
+      authState.refreshToken,
+      login,
+      logout,
+      loading,
+    ],
+  );
 
   return (
-    <AuthContext.Provider
-      value={{
-        isLoggedIn,
-        userRole,
-        accessToken,
-        refreshToken,
-        login,
-        logout,
-        loading,
-      }}
-    >
-      {children}
+    <AuthContext.Provider value={contextValue}>
+      {loading ? <Splash /> : children}
     </AuthContext.Provider>
   );
 };

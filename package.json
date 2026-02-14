@@ -26,6 +26,7 @@
     "expo-localization": "^17.0.8",
     "expo-location": "~19.0.7",
     "expo-secure-store": "^15.0.8",
+    "expo-splash-screen": "~31.0.13",
     "expo-status-bar": "~3.0.8",
     "framer-motion": "^12.31.0",
     "i18next": "^25.7.2",
