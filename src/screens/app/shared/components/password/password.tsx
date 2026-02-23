@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import {
   ColorValue,
   OpaqueColorValue,
@@ -40,7 +40,7 @@ const Password = ({
   iconSize,
 }: IPasswordProps) => {
   const colors = useTheme();
-  const styles = getStyles(colors);
+  const styles = useMemo(() => getStyles(colors), [colors]);
   const [showPassword, setShowPassword] = useState(false);
 
   return (

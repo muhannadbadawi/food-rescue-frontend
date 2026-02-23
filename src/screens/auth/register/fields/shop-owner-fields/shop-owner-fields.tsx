@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import {
   Text,
   TextInput,
@@ -19,7 +19,7 @@ import * as ImagePicker from "expo-image-picker";
 
 const ShopOwnerFields = () => {
   const colors = useTheme();
-  const styles = getStyles(colors);
+  const styles = useMemo(() => getStyles(colors), [colors]);
   const { t } = useTranslation();
 
   /* ---------- form state ---------- */

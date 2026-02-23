@@ -29,7 +29,7 @@ type SettingsButton = {
 
 const ProfileScreen = () => {
   const colors = useTheme();
-  const styles = getStyles(colors);
+  const styles = useMemo(() => getStyles(colors), [colors]);
   const navigation = useNavigation<NavigationProp>();
   const { logout, userRole } = useAuth();
   const { t } = useTranslation();

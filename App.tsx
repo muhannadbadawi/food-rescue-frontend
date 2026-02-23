@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { ActivityIndicator, Platform, StatusBar, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import {
@@ -16,7 +16,7 @@ import { getStyles } from "./App.Styles";
 export default function App() {
   const [ready, setReady] = useState(false);
   const colors = useTheme();
-  const styles = getStyles(colors);
+  const styles = useMemo(() => getStyles(colors), [colors]);
 
   useEffect(() => {
     async function prepare() {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import {
   Text,
   TextInput,
@@ -12,8 +12,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useNavigation } from "@react-navigation/native";
-
-import { register } from "../../../api/user-service";
+import { register } from "../../../api/auth-service";
 import { getStyles } from "./register.styles";
 import { useTheme } from "@/src/theme/theme-context";
 import { useTranslation } from "react-i18next";
@@ -26,7 +25,7 @@ import Button from "../../app/shared/components/button/button";
 export default function Register() {
   const navigation = useNavigation();
   const colors = useTheme();
-  const styles = getStyles(colors);
+  const styles = useMemo(() => getStyles(colors), [colors]);
   const { t } = useTranslation();
 
   /* ---------- form state ---------- */

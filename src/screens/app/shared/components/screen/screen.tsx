@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { I18nManager, Text, View, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
@@ -20,7 +20,7 @@ const Screen: React.FC<ScreenProps> = ({
   children,
 }) => {
   const colors = useTheme();
-  const styles = getStyles(colors);
+  const styles = useMemo(() => getStyles(colors), [colors]);
   const navigation = useNavigation<NavigationProp<any>>();
   const isRTL = I18nManager.isRTL;
 

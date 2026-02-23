@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { StyleProp, Text, TouchableOpacity, View, ViewStyle } from "react-native";
 import { useTheme } from "@/src/theme/theme-context";
 import { getStyles } from "./chip.styles";
@@ -14,7 +14,7 @@ interface ChipProps {
 }
 const Chip = ({ text, Icon, onPress, style, selected }: ChipProps) => {
   const colors = useTheme();
-  const styles = getStyles(colors);
+  const styles = useMemo(() => getStyles(colors), [colors]);
   const { t } = useTranslation();
 
   return (

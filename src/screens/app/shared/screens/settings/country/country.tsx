@@ -20,7 +20,7 @@ type CountryItem = {
 
 const Country = () => {
   const colors = useTheme();
-  const styles = getStyles(colors);
+  const styles = useMemo(() => getStyles(colors), [colors]);
   const { t } = useTranslation();
 
   const [selectedCountry, setSelectedCountry] = useState<string>("JO");

@@ -1,5 +1,5 @@
 import { useTheme } from "@/src/theme/theme-context";
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { Dimensions, StyleSheet, View } from "react-native";
 import {
   Gesture,
@@ -36,7 +36,7 @@ export default function GenericBottomSheet({
   const translateY = useSharedValue(height);
   const startY = useSharedValue(0);
   const colors = useTheme();
-  const styles = getStyles(colors);
+  const styles = useMemo(() => getStyles(colors), [colors]);
 
   useEffect(() => {
     translateY.value = withSpring(isOpen ? 0 : height, {

@@ -1,5 +1,5 @@
 // src/screens/client/explore/explore.tsx
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { View, ActivityIndicator, Text, Alert } from "react-native";
 import MapView, { Marker } from "react-native-maps";
 import * as Location from "expo-location";
@@ -20,7 +20,7 @@ export default function Explore() {
   const [selectedShop, setSelectedShop] = useState<Shop | null>(null);
 
   const colors = useTheme();
-  const styles = getStyles(colors);
+  const styles = useMemo(() => getStyles(colors), [colors]);
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language as "ar" | "en";
 

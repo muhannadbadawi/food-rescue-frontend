@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useTranslation } from "react-i18next";
 import { getStyles } from "./reset-password.styles";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import {
   View,
   Text,
@@ -30,7 +30,7 @@ type ResetPasswordNavigationProp = NativeStackNavigationProp<
 const ResetPassword = () => {
   const navigation = useNavigation<ResetPasswordNavigationProp>();
   const colors = useTheme();
-  const styles = getStyles(colors);
+  const styles = useMemo(() => getStyles(colors), [colors]);
   const { t } = useTranslation();
   // const [showPassword, setShowPassword] = useState(false);
   // const [showConfirmPassword, setShowConfirmPassword] = useState(false);

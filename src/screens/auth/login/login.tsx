@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import {
   View,
   Text,
@@ -36,7 +36,7 @@ type LoginScreenNavigationProp = NativeStackNavigationProp<
 export default function Login() {
   const navigation = useNavigation<LoginScreenNavigationProp>();
   const colors = useTheme();
-  const styles = getStyles(colors);
+  const styles = useMemo(() => getStyles(colors), [colors]);
   const { t } = useTranslation();
   const { login } = useAuth();
 

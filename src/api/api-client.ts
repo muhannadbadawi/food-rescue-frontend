@@ -1,11 +1,23 @@
 // src/api/api-client.ts
 import axios from "axios";
 import CONFIG from "@/config";
+import * as SecureStore from "expo-secure-store";
 
 const api = axios.create({
   baseURL: CONFIG.API_URL,
   withCredentials: true,
 });
+
+api.interceptors.request.use(
+  async (config) => {
+    const token = await SecureStore.getItemAsync("ACCESS_TOKEN");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error),
+);
 
 let isRefreshing = false;
 let refreshSubscribers: any[] = [];
@@ -35,13 +47,17 @@ api.interceptors.response.use(
           const { data } = await axios.post(
             `${CONFIG.API_URL}/api/Auth/refresh`,
             null,
-            { withCredentials: true }
+            { withCredentials: true },
           );
+          await SecureStore.setItemAsync("ACCESS_TOKEN", data.accessToken);
 
           isRefreshing = false;
           onRefreshed(data.accessToken);
         } catch (refreshError) {
           isRefreshing = false;
+          await SecureStore.deleteItemAsync("ACCESS_TOKEN");
+          await SecureStore.deleteItemAsync("REFRESH_TOKEN");
+
           return Promise.reject(refreshError);
         }
       }
@@ -55,7 +71,7 @@ api.interceptors.response.use(
     }
 
     return Promise.reject(error);
-  }
+  },
 );
 
 export default api;

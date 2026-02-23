@@ -10,7 +10,7 @@ import EmptyScreen from "@/src/screens/app/shared/components/empty/empty";
 
 const ReceiptsScreen = () => {
   const colors = useTheme();
-  const styles = getStyles(colors);
+  const styles = useMemo(() => getStyles(colors), [colors]);
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language as "ar" | "en";
 

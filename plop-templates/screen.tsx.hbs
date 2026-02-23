@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Text } from "react-native";
 import { useTheme } from "@/src/theme/theme-context";
 import { getStyles } from "./{{name}}.styles";
@@ -7,7 +7,7 @@ import Screen from "@/src/screens/app/shared/components/screen/screen";
 
 const {{pascalCase name}} = () => {
   const colors = useTheme();
-  const styles = getStyles(colors);
+  const styles = useMemo(() => getStyles(colors), [colors]);
   const { t } = useTranslation();
 
   return (

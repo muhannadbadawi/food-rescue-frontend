@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useMemo, useState } from "react";
 import {
   ActivityIndicator,
   StyleProp,
@@ -33,7 +33,7 @@ const Button = ({
   spinnerSize,
 }: IButton) => {
   const colors = useTheme();
-  const styles = getStyles(colors);
+  const styles = useMemo(() => getStyles(colors), [colors]);
   const [loading, setLoading] = useState(false);
 
   const handlePress = async () => {

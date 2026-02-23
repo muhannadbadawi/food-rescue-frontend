@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import Screen from "@/src/screens/app/shared/components/screen/screen";
 import { useTheme } from "@/src/theme/theme-context";
@@ -8,7 +8,7 @@ import { changeLanguage } from "@/src/localization/i18n";
 
 const LanguageScreen = () => {
   const colors = useTheme();
-  const styles = getStyles(colors);
+  const styles = useMemo(() => getStyles(colors), [colors]);
   const { t, i18n } = useTranslation();
 
   const languages: Array<{ code: "ar" | "en"; label: string; flag: string }> = [

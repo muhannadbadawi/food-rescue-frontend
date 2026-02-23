@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { View, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@/src/theme/theme-context";
@@ -13,7 +13,7 @@ interface EmptyScreenProps {
 
 const EmptyScreen = ({ title, subtitle, icon }: EmptyScreenProps) => {
   const colors = useTheme();
-  const styles = getStyles(colors);
+  const styles = useMemo(() => getStyles(colors), [colors]);
   const { t } = useTranslation();
 
   return (

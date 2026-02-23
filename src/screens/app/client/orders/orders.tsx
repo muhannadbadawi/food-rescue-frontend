@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { View, Text, FlatList, Image, TouchableOpacity } from "react-native";
 import { useTheme } from "@/src/theme/theme-context";
 import { getStyles } from "./orders.styles";
@@ -8,7 +8,7 @@ import { orders } from "@/src/constants/mockData";
 
 const Orders = () => {
   const colors = useTheme();
-  const styles = getStyles(colors);
+  const styles = useMemo(() => getStyles(colors), [colors]);
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language as "ar" | "en";
 

@@ -34,7 +34,6 @@ type AuthContextType = {
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
-const LOGIN_KEY = "IS_LOGGED_IN";
 const ACCESS_TOKEN_KEY = "ACCESS_TOKEN";
 const REFRESH_TOKEN_KEY = "REFRESH_TOKEN";
 
@@ -59,20 +58,28 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         if (storedAccessToken) {
           const decoded: JwtPayload = jwtDecode(storedAccessToken);
 
-          setAuthState({
-            isLoggedIn: true,
-            userRole: decoded.role,
-            accessToken: storedAccessToken,
-            refreshToken: storedRefreshToken || undefined,
-          });
+          const isExpired = decoded.exp * 1000 < Date.now();
+
+          if (isExpired) {
+            await SecureStore.deleteItemAsync(ACCESS_TOKEN_KEY);
+            await SecureStore.deleteItemAsync(REFRESH_TOKEN_KEY);
+          } else {
+            setAuthState({
+              isLoggedIn: true,
+              userRole: decoded.role,
+              accessToken: storedAccessToken,
+              refreshToken: storedRefreshToken || undefined,
+            });
+          }
         }
       } catch (err) {
+        await SecureStore.deleteItemAsync(ACCESS_TOKEN_KEY);
+        await SecureStore.deleteItemAsync(REFRESH_TOKEN_KEY);
         console.log("Error loading auth state:", err);
       } finally {
         setLoading(false);
       }
     };
-
     loadAuth();
   }, []);
 

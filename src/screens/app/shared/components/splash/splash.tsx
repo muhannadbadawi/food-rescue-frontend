@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Image, View, ActivityIndicator, Text } from "react-native";
 import { useTheme } from "@/src/theme/theme-context";
 import { getStyles } from "./splash.styles";
@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 
 const Splash = () => {
   const colors = useTheme();
-  const styles = getStyles(colors);
+  const styles = useMemo(() => getStyles(colors), [colors]);
   const { t } = useTranslation();
 
   return (

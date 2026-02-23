@@ -1,5 +1,5 @@
 // src/screens/client/settings/payment-method/payment-method.tsx
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { View, Text, FlatList, TouchableOpacity, Image } from "react-native";
 import { useTheme } from "@/src/theme/theme-context";
 import { getStyles } from "./payment-method.styles";
@@ -19,7 +19,7 @@ const cardIcons: Record<string, any> = {
 
 const PaymentMethodScreen = () => {
   const colors = useTheme();
-  const styles = getStyles(colors);
+  const styles = useMemo(() => getStyles(colors), [colors]);
   const { t } = useTranslation();
 
   const [defaultCardId, setDefaultCardId] = useState<number | null>(

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import Screen from "@/src/screens/app/shared/components/screen/screen";
 import { useTheme, useThemeController } from "@/src/theme/theme-context";
@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 
 const ThemeScreen = () => {
   const colors = useTheme();
-  const styles = getStyles(colors);
+  const styles = useMemo(() => getStyles(colors), [colors]);
   const { t } = useTranslation();
   const { theme, setTheme } = useThemeController();
 

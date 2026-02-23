@@ -10,7 +10,7 @@ export const logout = async () => {
   await api.post("/api/Auth/logout");
 };
 
-// export const register = async (data: RegisterData) => {
-//   const response = await api.post("/api/Users", data);
-//   return response.data;
-// };
+export const register = async (data: any) => { //data: RegisterData
+  const response = await api.post("/api/Users", data);
+  return response.data;
+};

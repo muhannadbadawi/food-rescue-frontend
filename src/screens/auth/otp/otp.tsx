@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   View,
@@ -28,7 +28,7 @@ type OTPScreenNavigationProp = NativeStackNavigationProp<
 const OtpScreen = () => {
   const navigation = useNavigation<OTPScreenNavigationProp>();
   const colors = useTheme();
-  const styles = getStyles(colors);
+  const styles = useMemo(() => getStyles(colors), [colors]);
   const { t } = useTranslation();
 
   const [otp, setOtp] = useState("");

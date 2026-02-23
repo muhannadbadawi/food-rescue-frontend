@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import {
   View,
   Text,
@@ -26,7 +26,7 @@ type NavigationProp = NativeStackNavigationProp<
 
 const SavedAddressesScreen = () => {
   const colors = useTheme();
-  const styles = getStyles(colors);
+  const styles = useMemo(() => getStyles(colors), [colors]);
   const { t } = useTranslation();
   const navigation = useNavigation<NavigationProp>();
   const handleDelete = (id: number) => {

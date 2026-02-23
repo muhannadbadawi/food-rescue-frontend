@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { View, Text, Image } from "react-native";
 import { useTheme } from "@/src/theme/theme-context";
 import { getStyles } from "./profile.styles";
@@ -7,7 +7,7 @@ import Avatar from "@/src/screens/app/shared/components/avatar/avatar";
 
 const Profile = () => {
   const colors = useTheme();
-  const styles = getStyles(colors);
+  const styles = useMemo(() => getStyles(colors), [colors]);
   const { t } = useTranslation();
 
   return (

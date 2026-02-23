@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import {
   Text,
   TextInput,
@@ -29,7 +29,7 @@ type LoginScreenNavigationProp = NativeStackNavigationProp<
 const ForgotPassword = () => {
   const navigation = useNavigation<LoginScreenNavigationProp>();
   const colors = useTheme();
-  const styles = getStyles(colors);
+  const styles = useMemo(() => getStyles(colors), [colors]);
   const { t } = useTranslation();
 
   const [email, setEmail] = useState("");
