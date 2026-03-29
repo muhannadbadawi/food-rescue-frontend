@@ -88,7 +88,7 @@ export interface PaymentMethod {
   expiry: string;
 }
 
-export interface Response <data> {
+export interface Response<data> {
   data: data;
   message: string;
   isSuccess: boolean;
@@ -100,9 +100,22 @@ export interface LoginResponse {
   expiresAt: string;
   refreshTokenExpiresAt: string;
   refreshToken: string;
-} 
+}
 
 export interface LoginRequest {
   email: string;
   password: string;
+}
+
+export interface User {
+  address: string;
+  dateOfBirth: string;
+  email: string;
+  firstName: string;
+  id: string;
+  lastName: string;
+  phone: string;
+  role: string;
+  userName: string;
+  gender: number;
 }

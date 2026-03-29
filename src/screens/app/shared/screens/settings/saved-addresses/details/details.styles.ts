@@ -21,7 +21,7 @@ export const getStyles = (colors: any, isRTL: boolean) =>
 
     value: {
       fontSize: 16,
-      color: colors.text,
+      color: colors.textPrimary,
       marginBottom: 12,
     },
 
@@ -34,7 +34,7 @@ export const getStyles = (colors: any, isRTL: boolean) =>
       borderRadius: 8,
       padding: 10,
       fontSize: 16,
-      color: colors.text,
+      color: colors.textPrimary,
       marginBottom: 12,
     },
 

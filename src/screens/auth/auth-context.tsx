@@ -27,6 +27,7 @@ type AuthContextType = {
   userRole?: UserRole;
   accessToken?: string;
   refreshToken?: string;
+  userId?: string;
   login: (loginRequest: LoginRequest) => Promise<void>;
   logout: () => Promise<void>;
   loading: boolean;
@@ -41,6 +42,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [authState, setAuthState] = useState({
     isLoggedIn: false,
     userRole: undefined as UserRole | undefined,
+    userId: undefined as string | undefined,
     accessToken: undefined as string | undefined,
     refreshToken: undefined as string | undefined,
   });
@@ -66,6 +68,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           } else {
             setAuthState({
               isLoggedIn: true,
+              userId: decoded.userId,
               userRole: decoded.role,
               accessToken: storedAccessToken,
               refreshToken: storedRefreshToken || undefined,
@@ -95,6 +98,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const decoded: JwtPayload = jwtDecode(token);
 
       setAuthState({
+        userId: decoded.userId,
         isLoggedIn: true,
         userRole: decoded.role,
         accessToken: token,
@@ -115,6 +119,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       console.log("Logout error:", err);
     } finally {
       setAuthState({
+        userId: undefined,
         isLoggedIn: false,
         userRole: undefined,
         accessToken: undefined,
@@ -139,12 +144,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       authState.userRole,
       authState.accessToken,
       authState.refreshToken,
+      authState.userId,
       login,
       logout,
       loading,
     ],
   );
-
   return (
     <AuthContext.Provider value={contextValue}>
       {loading ? <Splash /> : children}
