@@ -54,6 +54,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       try {
         const storedAccessToken =
           await SecureStore.getItemAsync(ACCESS_TOKEN_KEY);
+          console.log("storedAccessToken: ", storedAccessToken);
+
         const storedRefreshToken =
           await SecureStore.getItemAsync(REFRESH_TOKEN_KEY);
 

@@ -3,6 +3,7 @@ export type SettingsStackParamList = {
   Profile: undefined;           //Shared
   LanguageScreen: undefined;    //Shared
   ThemeScreen: undefined;       //Shared
+  EditProfile: undefined;      //Shared
 
   Receipts: undefined;          //Client
   SavedAddresses: undefined;    //Client

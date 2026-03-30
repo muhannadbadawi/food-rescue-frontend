@@ -5,12 +5,14 @@ import { Ionicons } from "@expo/vector-icons";
 import { useTheme } from "@/src/theme/theme-context";
 import { getStyles } from "./screen.styles";
 import { useNavigation, NavigationProp } from "@react-navigation/native";
+import Splash from "../splash/splash";
 
 type ScreenProps = {
   title?: string;
   showBackButton?: boolean;
   rightSideComponent?: React.ReactNode;
   children?: React.ReactNode;
+  loading?: boolean;
 };
 
 const Screen: React.FC<ScreenProps> = ({
@@ -18,6 +20,7 @@ const Screen: React.FC<ScreenProps> = ({
   showBackButton = false,
   rightSideComponent,
   children,
+  loading = false,
 }) => {
   const colors = useTheme();
   const styles = useMemo(() => getStyles(colors), [colors]);
@@ -48,8 +51,7 @@ const Screen: React.FC<ScreenProps> = ({
           </View>
         </View>
       )}
-
-      {children}
+      {loading ? <Splash /> : children}
     </SafeAreaView>
   );
 };

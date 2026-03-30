@@ -22,6 +22,7 @@ export type ClientSettingsStackParamList = {
   LanguageScreen: undefined;
   ThemeScreen: undefined;
   Country: undefined;
+  EditProfile: undefined;
 };
 
 const Stack = createNativeStackNavigator<ClientSettingsStackParamList>();
@@ -38,6 +39,7 @@ export default function ClientSettingsStack() {
       <Stack.Screen name="Country" component={Country} />
       <Stack.Screen name="LanguageScreen" component={LanguageScreen} />
       <Stack.Screen name="ThemeScreen" component={ThemeScreen} />
+      <Stack.Screen name="EditProfile" component={ThemeScreen} />
     </Stack.Navigator>
   );
 }

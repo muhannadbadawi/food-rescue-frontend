@@ -1,5 +1,5 @@
-import React, { useCallback, useMemo } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { Text, TouchableOpacity } from "react-native";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { FlatList } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
@@ -13,31 +13,58 @@ import Profile from "../profile/profile";
 import { SettingScreens } from "@/src/navigation/screens-type/setting-screens";
 import { SettingsStackParamList } from "../settings-stack-param";
 import { getStyles } from "./settings.styles";
+import { User } from "@/src/constants/types";
+import { getUserByUserId as apiGetUserByUserId } from "@/src/api/user-service";
 
 type NavigationProp = NativeStackNavigationProp<
   SettingsStackParamList,
   "SettingsMain"
 >;
+type UserRole = "User" | "merchant";
 
 type SettingsButton = {
   id: number;
   title: string;
   icon: React.ReactNode;
   onPress: () => void;
-  roles?: ("User" | "merchant")[];
+  roles?: UserRole[];
 };
 
-const ProfileScreen = () => {
+// icon helper to reduce repetition
+const Ion = (name: any, styles: any) => (
+  <Ionicons name={name} size={24} style={styles.icon} />
+);
+
+const SettingsScreen = () => {
   const colors = useTheme();
   const styles = useMemo(() => getStyles(colors), [colors]);
   const navigation = useNavigation<NavigationProp>();
   const { logout, userRole } = useAuth();
   const { t } = useTranslation();
+  const { userId } = useAuth();
+  const [user, setUser] = useState<User | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const navigateTo = useCallback(
+  const nav = useCallback(
     (screen: keyof SettingsStackParamList) => () => navigation.navigate(screen),
-    [navigation]
+    [navigation],
   );
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      if (userId) {
+        try {
+          const userData = await apiGetUserByUserId(userId);
+          setUser(userData);
+        } catch (err) {
+          console.error("Failed to fetch user", err);
+        } finally {
+          setIsLoading(false);
+        }
+      }
+    };
+    fetchUser();
+  }, [userId]);
 
   const buttons: SettingsButton[] = useMemo(
     () => [
@@ -45,112 +72,106 @@ const ProfileScreen = () => {
         id: 0,
         title: t("settings.receipts"),
         icon: <Ionicons name="documents-sharp" size={24} style={styles.icon} />,
-        onPress: navigateTo(SettingScreens.Receipts),
+        onPress: nav(SettingScreens.Receipts),
         roles: ["User"],
       },
       {
         id: 1,
         title: t("settings.paymentMethod"),
         icon: <MaterialIcons name="payment" size={24} style={styles.icon} />,
-        onPress: navigateTo(SettingScreens.PaymentMethod),
+        onPress: nav(SettingScreens.PaymentMethod),
         roles: ["User"],
       },
       {
         id: 2,
         title: t("settings.savedAddresses"),
-        icon: (
-          <Ionicons name="location-outline" size={24} style={styles.icon} />
-        ),
-        onPress: navigateTo(SettingScreens.SavedAddresses),
+        icon: Ion("location-outline", styles),
+        onPress: nav(SettingScreens.SavedAddresses),
         roles: ["User"],
       },
       {
         id: 3,
         title: t("settings.country"),
-        icon: <Ionicons name="globe-outline" size={24} style={styles.icon} />,
-        onPress: navigateTo(SettingScreens.Country),
+        icon: Ion("globe-outline", styles),
+        onPress: nav(SettingScreens.Country),
         roles: ["User"],
       },
       {
         id: 4,
         title: t("settings.theme"),
-        icon: (
-          <Ionicons
-            name="color-palette-outline"
-            size={24}
-            style={styles.icon}
-          />
-        ),
-        onPress: navigateTo(SettingScreens.ThemeScreen),
+        icon: Ion("color-palette-outline", styles),
+        onPress: nav(SettingScreens.ThemeScreen),
         roles: ["User", "merchant"],
       },
       {
         id: 5,
         title: t("settings.language"),
-        icon: (
-          <Ionicons name="language-outline" size={24} style={styles.icon} />
-        ),
-        onPress: navigateTo(SettingScreens.LanguageScreen),
+        icon: Ion("language-outline", styles),
+        onPress: nav(SettingScreens.LanguageScreen),
         roles: ["User", "merchant"],
       },
       {
         id: 6,
         title: t("settings.logout"),
-        icon: <Ionicons name="log-out-outline" size={24} style={styles.icon} />,
+        icon: Ion("log-out-outline", styles),
         onPress: logout,
         roles: ["User", "merchant"],
       },
     ],
-    [t, styles.icon, navigateTo, logout]
+    [t, styles.icon, nav, logout],
   );
 
   const visibleButtons = useMemo(
     () =>
       buttons.filter(
-        (btn) => !btn.roles || (userRole && btn.roles.includes(userRole))
+        (btn) => !btn.roles || (userRole && btn.roles.includes(userRole)),
       ),
-    [buttons, userRole]
+    [buttons, userRole],
   );
 
   const renderItem = useCallback(
-    ({ item, index }: { item: SettingsButton; index: number }) => {
-      const isFirst = index === 0;
-      const isLast = index === visibleButtons.length - 1;
+    ({ item, index }: { item: SettingsButton; index: number }) => (
+      <TouchableOpacity
+        style={[
+          styles.buttonWrapper,
+          index === 0 && styles.firstItem,
+          index === visibleButtons.length - 1 && styles.lastItem,
+        ]}
+        onPress={item.onPress}
+        activeOpacity={0.4}
+      >
+        {item.icon}
+        <Text style={styles.buttonText}>{item.title}</Text>
+      </TouchableOpacity>
+    ),
+    [styles, visibleButtons.length],
+  );
 
-      return (
-        <TouchableOpacity
-          style={[
-            styles.buttonWrapper,
-            isFirst && styles.firstItem,
-            isLast && styles.lastItem,
-          ]}
-          onPress={item.onPress}
-          activeOpacity={0.4}
-        >
-          {item.icon}
-          <Text style={styles.buttonText}>{item.title}</Text>
-        </TouchableOpacity>
-      );
-    },
-    [styles, visibleButtons.length]
+  const renderHeader = useMemo(
+    () => (
+      <TouchableOpacity
+        onPress={() => navigation.navigate(SettingScreens.EditProfile)}
+      >
+        <Profile user={user!} />
+      </TouchableOpacity>
+    ),
+    [user, navigation],
   );
 
   return (
-    <Screen>
-      <View style={styles.container}>
-        <View style={styles.header}>
-          <Profile />
-        </View>
-
-        <FlatList
-          data={visibleButtons}
-          renderItem={renderItem}
-          keyExtractor={(item) => item.id.toString()}
-          showsVerticalScrollIndicator={false}
-        />
-      </View>
+    <Screen loading={isLoading}>
+      <FlatList
+        data={visibleButtons}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id.toString()}
+        ListHeaderComponent={renderHeader}
+        contentContainerStyle={{
+          paddingHorizontal: 16,
+          paddingBottom: 20,
+        }}
+      />
     </Screen>
   );
 };
 
-export default ProfileScreen;
+export default SettingsScreen;
