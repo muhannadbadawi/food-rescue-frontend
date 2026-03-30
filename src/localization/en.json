@@ -11,7 +11,6 @@
     "password": "Password",
     "login": "Login",
     "phoneNumber": "Phone Number",
-
     "confirmPassword": "Confirm Password",
     "login-screen": {
       "welcome": "Welcome",
@@ -26,6 +25,7 @@
     },
     "register-screen": {
       "title": "Create Account",
+      "passwordsDontMatch": "Passwords do not match",
       "subtitle": "Join us today",
       "userType": "Account Type",
       "customer": "Customer",

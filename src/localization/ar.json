@@ -26,6 +26,7 @@
     "register-screen": {
       "title": "إنشاء حساب",
       "subtitle": "انضم إلينا اليوم",
+      "passwordsDontMatch": "كلمات المرور غير متطابقة",
       "userType": "نوع الحساب",
       "customer": "عميل",
       "shopOwner": "صاحب محل",

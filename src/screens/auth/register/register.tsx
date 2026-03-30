@@ -35,11 +35,22 @@ export default function Register() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   /* ---------- handlers ---------- */
   const handleRegister = async () => {
+    if (password !== confirmPassword) {
+      alert(t("auth.register-screen.passwordsDontMatch"));
+      return;
+    }
     if (userType === "customer") {
-      await register({ email, phone_number: phoneNumber.trim(), password });
+      await register({
+        email,
+        phone: phoneNumber.replace(/\s+/g, ""),
+        password,
+        confirmPassword,
+        role: "User",
+      });
     } else {
       // await registerShopOwner({
       //   email,
@@ -149,6 +160,11 @@ export default function Register() {
         placeholder={t("auth.password")}
         passwordValue={password}
         setPasswordValue={setPassword}
+      />
+      <Password
+        placeholder={t("auth.confirmPassword")}
+        passwordValue={confirmPassword}
+        setPasswordValue={setConfirmPassword}
       />
     </>
   );

@@ -10,6 +10,7 @@ export const DefaultColors = {
     background: "#FFFFFF",
     surface: "#F9FAFB",
     card: "#E5E7EB",
+
     /* ===== Text ===== */
     textPrimary: "#111827",
     textSecondary: "#6B7280",
@@ -31,6 +32,11 @@ export const DefaultColors = {
     /* ===== Selection & Overlay ===== */
     selected: primaryGreen,
     overlay: "rgba(0,0,0,0.4)",
+
+    /* ===== Shadows ===== */
+    shadow: "rgba(0,0,0,0.1)",
+    shadowSoft: "rgba(0,0,0,0.05)",
+    shadowStrong: "rgba(0,0,0,0.2)",
   },
 
   dark: {
@@ -64,5 +70,10 @@ export const DefaultColors = {
     /* ===== Selection & Overlay ===== */
     selected: primaryGreen,
     overlay: "rgba(0,0,0,0.6)",
+
+    /* ===== Shadows ===== */
+    shadow: "rgba(0,0,0,0.6)",
+    shadowSoft: "rgba(0,0,0,0.4)",
+    shadowStrong: "rgba(0,0,0,0.8)",
   },
 } as const;

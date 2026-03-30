@@ -11,9 +11,7 @@ const Profile = () => {
   const colors = useTheme();
   const styles = useMemo(() => getStyles(colors), [colors]);
   const { userId } = useAuth();
-  const [user, setUser] = useState<User | null>(
-    null,
-  );
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -34,11 +32,15 @@ const Profile = () => {
     <View style={styles.container}>
       <View style={styles.card}>
         <Avatar
-          name={user?.firstName}
+          name={user?.firstName ?? user?.email}
           size={150}
           containerStyle={styles.avatar}
         />
-        <Text style={styles.name}>{user?.firstName}</Text>
+        {user?.firstName ? (
+          <Text
+            style={styles.name}
+          >{`${user.firstName} ${user.lastName}`}</Text>
+        ) : null}
         <Text style={styles.email}>{user?.email}</Text>
       </View>
     </View>
